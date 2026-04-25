@@ -1,14 +1,7 @@
-import { TemplateContext } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { site1 } from "./site1"
+import { site2 } from "./site2"
 
-export const data: any = {
-  church1: {
-    name: "教会1",
-    message: "ようこそ！",
-    template: "template1"
-  },
-  church2: {
-    name: "教会2",
-    message: "Welcome!",
-    template: "template2"
-  }
-}
+export const sites = [
+  site1,
+  site2
+]
