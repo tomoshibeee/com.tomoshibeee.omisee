@@ -1,31 +1,19 @@
-type Props = {
-  site: {
-    name: string
-    message: string
-  }
-}
+export default function Template2({ site }: any) {
+  const hero = site.blocks.find((b: any) => b.type === "hero")
+  const info = site.blocks.find((b: any) => b.type === "info")
 
-export default function Template1({ site }: Props) {
   return (
-    <main className="p-6 space-y-8">
-      {/* Hero */}
-      <section className="text-center space-y-4">
-        <h1 className="text-3xl font-bold">{site.name}</h1>
-        <p className="text-gray-600">{site.message}</p>
+    <main>
+      {/* Heroだけ巨大表示 */}
+      {/* <section className="bg-gradient-to-r from-purple-500 to-pink-500"> */}
+      <section className="h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 to-red-500 text-white">
+      {/* <section className="h-screen flex items-center justify-center bg-black text-white"> */}
+        <h1 className="text-5xl">{hero?.title}</h1>
       </section>
 
-      {/* Info */}
-      <section className="space-y-2">
-        <h2 className="text-xl font-semibold">礼拝のご案内</h2>
-        <p>毎週日曜 10:00〜</p>
-      </section>
-
-      {/* Contact */}
-      <section className="space-y-2">
-        <h2 className="text-xl font-semibold">お問い合わせ</h2>
-        <button className="bg-black text-white px-4 py-2 rounded">
-          連絡する
-        </button>
+      {/* Infoはカード風 */}
+      <section className="p-10 grid grid-cols-2 gap-4">
+        <div className="border p-4">{info?.text}</div>
       </section>
     </main>
   )
