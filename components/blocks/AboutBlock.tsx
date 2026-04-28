@@ -10,12 +10,17 @@ type Props = {
 
 export default function AboutBlock({ block }: Props) {
   return (
-    <section className="p-6">
+    <section className="p-6 text-gray-800">
       <div className="max-w-xl mx-auto bg-white rounded-2xl shadow-md p-6 space-y-4">
-        <h2 className="text-xl font-bold">About</h2>
+        <h2 className="text-xl font-bold text-center md:text-left">About</h2>
 
-        {/* 上段：画像 + 名前・役職 */}
-        <div className="flex items-center gap-4">
+        <div
+          className="
+          flex flex-col items-center text-center
+          md:flex-row md:items-start md:text-left
+          gap-4
+        "
+        >
           <img
             src="https://i.pravatar.cc/150"
             // src={block.image}
@@ -23,12 +28,14 @@ export default function AboutBlock({ block }: Props) {
             className="w-24 h-24 rounded-full object-cover"
           />
 
-          <div>
-            <p className="font-semibold text-lg">{block.name} {block.role}</p>
-            <p className="text-gray-700 text-sm">{block.bio}</p>
-            <p className="text-gray-600 leading-relaxed">
-              {block.message}
+          <div className="space-y-2">
+            <p className="font-semibold text-lg text-gray-900">
+              {block.name}
+              <span className="text-sm text-gray-500 ml-2">{block.role}</span>
             </p>
+            <p className="text-left">{block.bio}</p>
+
+            <p className="text-left">{block.message}</p>
           </div>
         </div>
       </div>
