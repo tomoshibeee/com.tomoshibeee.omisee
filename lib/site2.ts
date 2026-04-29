@@ -21,5 +21,12 @@ export const site2 = {
         "横浜教会の主任牧師を務めています。皆さんとお会いできるのを楽しみにしています！",
     },
     { type: "info", text: "毎週日曜 10:00〜" },
+    {
+      type: "access",
+      address: "神奈川県港北区〇〇1-2-3",
+      // lat: null,
+      // lng: null,
+      access: "駅から徒歩5分",
+    },
   ],
-};
+}; 
