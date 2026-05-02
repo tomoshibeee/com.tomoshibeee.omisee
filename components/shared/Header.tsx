@@ -9,6 +9,14 @@ export default function Header({ site }: any) {
             {m.label}
           </a>
         ))}
+        {site.sns?.map((s) => {
+          const Icon = s.icon;
+          return (
+            <a key={s.url} href={s.url}>
+              <Icon size={18} />
+            </a>
+          );
+        })}
       </nav>
       {/* スマホ用 */}
       <button className="md:hidden">☰</button>
