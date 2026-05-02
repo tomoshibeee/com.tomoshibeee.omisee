@@ -3,6 +3,8 @@ import Footer from "@/components/shared/Footer";
 import AboutBlock from "../blocks/AboutBlock";
 import AccessBlock from "../blocks/AccessBlock";
 
+import * as Hero from "@/components/blocks/hero"
+
 export default function Template2({ site }: any) {
   const hero = site.blocks.find((b: any) => b.type === "hero");
   const info = site.blocks.find((b: any) => b.type === "info");
@@ -15,11 +17,7 @@ export default function Template2({ site }: any) {
 
       <main>
         {/* Heroだけ巨大表示 */}
-        {/* <section className="bg-gradient-to-r from-purple-500 to-pink-500"> */}
-        <section className="h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 to-red-500 text-white">
-          {/* <section className="h-screen flex items-center justify-center bg-black text-white"> */}
-          <h1 className="text-5xl">{hero?.title}</h1>
-        </section>
+        <Hero.HeroBlockSingleImage block={hero} />
 
         {/* AboutはHeroの次に大きく表示 */}
         <AboutBlock block={about} />
