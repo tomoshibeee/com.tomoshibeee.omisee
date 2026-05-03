@@ -15,11 +15,11 @@ export default async function Page({
     template2: Template2,
   };
 
-  const site = sites.find((s) => s.slug === slug);
+  const site = sites.find((s) => s.meta.slug === slug);
 
   if (!site) return <div>Not Found</div>;
 
-  const Template = templateMap[site.template];
+  const Template = templateMap[site.layout.template];
 
   if (!Template) return <div>Template Not Found</div>;
 

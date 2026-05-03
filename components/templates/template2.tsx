@@ -4,12 +4,13 @@ import AboutBlock from "../blocks/AboutBlock";
 import AccessBlock from "../blocks/AccessBlock";
 
 import * as Hero from "@/components/blocks/hero"
+import InfoBlock from "../blocks/InfoBlock";
 
 export default function Template2({ site }: any) {
-  const hero = site.blocks.find((b: any) => b.type === "hero");
-  const info = site.blocks.find((b: any) => b.type === "info");
-  const about = site.blocks.find((b: any) => b.type === "about");
-  const access = site.blocks.find((b: any) => b.type === "access");
+  const hero = site.layout.blocks.find((b: any) => b.type === "hero");
+  const info = site.layout.blocks.find((b: any) => b.type === "info");
+  const about = site.layout.blocks.find((b: any) => b.type === "about");
+  const access = site.layout.blocks.find((b: any) => b.type === "access");
 
   return (
     <>
@@ -23,9 +24,7 @@ export default function Template2({ site }: any) {
         <AboutBlock block={about} />
 
         {/* Infoはカード風 */}
-        <section className="p-10 grid grid-cols-2 gap-4">
-          <div className="border p-4">{info?.text}</div>
-        </section>
+        <InfoBlock block={info} />
 
         {/* Accessはシンプルに */}
         <AccessBlock block={access} />

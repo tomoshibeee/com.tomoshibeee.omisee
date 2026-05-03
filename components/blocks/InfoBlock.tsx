@@ -2,8 +2,8 @@
 
 export default function InfoBlock({ block }: any) {
   return (
-    <section>
-      <p>{block.text}</p>
+    <section className="p-10 grid grid-cols-2 gap-4">
+      <div className="border p-4">{block.data?.text}</div>
     </section>
   );
 }
