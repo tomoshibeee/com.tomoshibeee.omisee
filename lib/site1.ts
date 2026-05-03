@@ -32,7 +32,7 @@ export const site1 = {
         data: {
           name: "東京太郎",
           role: "主任牧師",
-          image: "/representative.jpg",
+          image: "https://i.pravatar.cc/150",
           bio: "東京生まれ。神学校卒業後、国内外の教会で牧師として奉仕。2020年より現職。",
           message:
             "東京教会の主任牧師を務めています。皆さんとお会いできるのを楽しみにしています！",

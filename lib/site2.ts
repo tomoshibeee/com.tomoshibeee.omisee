@@ -32,7 +32,7 @@ export const site2 = {
         data: {
           name: "横浜太郎",
           role: "主任牧師",
-          image: "/representative.jpg",
+          image: "https://i.pravatar.cc/150?img=3",
           bio: "横浜生まれ。神学校卒業後、国内外の教会で牧師として奉仕。2020年より現職。",
           message:
             "横浜教会の主任牧師を務めています。皆さんとお会いできるのを楽しみにしています！",
