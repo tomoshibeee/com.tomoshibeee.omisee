@@ -1,9 +1,7 @@
-type Props = {
-  address: string
-}
+import { AccessData } from "@/types/block";
 
-export default function MapEmbed({ address }: Props) {
-  const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(address)}&output=embed`
+export default function MapEmbed(data: AccessData) {
+  const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(data.address)}&output=embed`
 
   return (
     <div className="w-full h-64 rounded-xl overflow-hidden">

@@ -5,15 +5,9 @@ import InfoBlock from "./info/InfoBlock";
 import AccessBlock from "./access/AccessBlock";
 import CtaBlock from "./cta/CtaBlock";
 
-interface Props {
-  block: {
-    type: string;
-    variant?: string;
-    data: unknown;
-  };
-}
+import { Block } from "../../types/block";
 
-export default function BlockRenderer({ block }: Props) {
+export default function BlockRenderer({ block }: { block: Block }) {
   let content = null;
 
   switch (block.type) {

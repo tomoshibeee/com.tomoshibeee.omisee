@@ -1,14 +1,8 @@
-interface Props {
-  name: string
-  role?: string
-  image: string
-  bio?: string
-  message?: string
-}
+import { AboutData } from "@/types/block";
 
-export default function AboutBlock({ name, role, image, bio, message }: Props) {
+export default function AboutBlock(data: AboutData) {
   return (
-    name?.trim() && (
+    data.name.trim() && (
       <section className="p-6 text-gray-800">
         <div className="max-w-xl mx-auto bg-white rounded-2xl shadow-md p-6 space-y-4">
           <h2 className="text-xl font-bold text-center md:text-left">
@@ -23,24 +17,24 @@ export default function AboutBlock({ name, role, image, bio, message }: Props) {
           "
           >
             <img
-              src={image}
-              alt={name}
+              src={data.image}
+              alt={data.name}
               className="w-24 h-24 rounded-full object-cover"
             />
 
             <div className="space-y-2">
               <p className="font-semibold text-lg text-gray-900">
-                {name}
-                {role && (
+                {data.name}
+                {data.role && (
                   <span className="text-sm text-gray-500 ml-2">
-                    {role}
+                    {data.role}
                   </span>
                 )}
               </p>
 
-              {bio && <p className="text-left">{bio}</p>}
-              {message && (
-                <p className="text-left">{message}</p>
+              {data.bio && <p className="text-left">{data.bio}</p>}
+              {data.message && (
+                <p className="text-left">{data.message}</p>
               )}
             </div>
           </div>

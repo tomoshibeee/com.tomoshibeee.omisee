@@ -1,20 +1,16 @@
 import MapBlock from "./MapEmbed";
 
-interface Props {
-  address: string;
-  access: string;
-}
-
-export default function AccessBlock({ address, access }: Props) {
+import { AccessData } from "@/types/block";
+export default function AccessBlock(data: AccessData) {
   return (
     <section className="p-6 space-y-4">
       <h2 className="text-xl font-bold">Access</h2>
 
-      <p>{address}</p>
+      <p>{data.address}</p>
 
-      <MapBlock address={address} />
+      <MapBlock address={data.address} />
 
-      <p>{access}</p>
+      <p>{data.access}</p>
     </section>
   );
 }
