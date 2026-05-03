@@ -1,4 +1,9 @@
-export default function CtaBlock({ label, href }: any) {
+interface Props {
+  label: string;
+  href: string;
+}
+
+export default function CtaBlock({ label, href }: Props) {
   return (
     <section className="p-10 grid grid-cols-2 gap-4">
       <a href={href} className="border p-4 text-center">
