@@ -1,6 +1,11 @@
-import MapBlock from "./MapEmbed"
+import MapBlock from "./MapEmbed";
 
-export default function AccessBlock({ address, access }: any) {
+interface Props {
+  address: string;
+  access: string;
+}
+
+export default function AccessBlock({ address, access }: Props) {
   return (
     <section className="p-6 space-y-4">
       <h2 className="text-xl font-bold">Access</h2>
@@ -11,5 +16,5 @@ export default function AccessBlock({ address, access }: any) {
 
       <p>{access}</p>
     </section>
-  )
+  );
 }
