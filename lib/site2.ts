@@ -20,7 +20,7 @@ export const site2 = {
     ],
   },
   layout: {
-    template: "template1",
+    template: "template2",
     blocks: [
       {
         type: "hero",
