@@ -1,3 +1,11 @@
+interface Props {
+  name: string
+  role?: string
+  image: string
+  bio?: string
+  message?: string
+}
+
 export default function AboutBlock({ name, role, image, bio, message }: Props) {
   return (
     name?.trim() && (
