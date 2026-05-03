@@ -1,7 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
+interface Props {
+  title: string;
+  message: string;
+} 
 
-export default function HeroBlockCarousel({ title, message }: any) {
+export default function HeroBlockCarousel({ title, message }: Props) {
   console.log("Rendering HeroBlockCarousel with title:", title);
 
   const INTERVAL = 3000;
