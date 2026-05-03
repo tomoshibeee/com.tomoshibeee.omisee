@@ -1,11 +1,3 @@
-import {
-  FaTwitter,
-  FaFacebook,
-  FaInstagram,
-  FaYoutube,
-  FaBlog,
-} from "react-icons/fa6";
-
 export const site2 = {
   name: "横浜教会（デモ）",
   slug: "yokohama-church",
@@ -18,11 +10,11 @@ export const site2 = {
     { label: "Contact", href: "#contact" },
   ],
   sns: [
-    { name: "X", url: "#", icon: FaTwitter },
-    { name: "Facebook", url: "#", icon: FaFacebook },
-    { name: "Instagram", url: "#", icon: FaInstagram },
-    { name: "YouTube", url: "#", icon: FaYoutube },
-    { name: "Note", url: "#", icon: FaBlog },
+    { type: "x", url: "#" },
+    { type: "facebook", url: "#" },
+    { type: "instagram", url: "#" },
+    { type: "youtube", url: "#" },
+    { type: "note", url: "#" },
   ],
   blocks: [
     { type: "hero", title: "横浜教会", message: "ようこそ！" },
@@ -44,4 +36,4 @@ export const site2 = {
       access: "駅から徒歩5分",
     },
   ],
-}; 
+};

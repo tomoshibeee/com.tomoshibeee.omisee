@@ -1,11 +1,3 @@
-import {
-  FaTwitter,
-  FaFacebook,
-  FaInstagram,
-  FaYoutube,
-  FaBlog,
-} from "react-icons/fa6";
-
 export const site1 = {
   name: "東京教会（デモ）",
   slug: "tokyo-church",
@@ -18,11 +10,11 @@ export const site1 = {
     { label: "お問い合わせ", href: "#contact" },
   ],
   sns: [
-    { name: "X", url: "#", icon: FaTwitter },
-    { name: "Facebook", url: "#", icon: FaFacebook },
-    { name: "Instagram", url: "#", icon: FaInstagram },
-    { name: "YouTube", url: "#", icon: FaYoutube },
-    { name: "Note", url: "#", icon: FaBlog },
+    { type: "x", url: "#" },
+    { type: "facebook", url: "#" },
+    { type: "instagram", url: "#" },
+    { type: "youtube", url: "#" },
+    { type: "note", url: "#" },
   ],
   blocks: [
     { type: "hero", title: "東京教会", message: "ようこそ！" },
