@@ -1,4 +1,9 @@
-export default function HeroBlockSingleImage({ title, message }: any) {
+interface Props {
+  title: string;
+  message: string;
+}
+
+export default function HeroBlockSingleImage({ title, message }: Props) {
   // console.log("title:", title);
   return (
     <section
