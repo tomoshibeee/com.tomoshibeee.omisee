@@ -48,6 +48,13 @@ export const site1 = {
           access: "駅から徒歩5分",
         },
       },
+      {
+        type: "cta",
+        data: {
+          label: "お問い合わせ",
+          href: "#contact",
+        },
+      },
     ],
   },
 };

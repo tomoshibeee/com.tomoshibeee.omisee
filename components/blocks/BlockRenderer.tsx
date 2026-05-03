@@ -3,25 +3,42 @@ import HeroCarousel from "./hero/HeroCarousel";
 import AboutBlock from "./about/AboutBlock";
 import InfoBlock from "./info/InfoBlock";
 import AccessBlock from "./access/AccessBlock";
+import CtaBlock from "./cta/CtaBlock";
 
 export default function BlockRenderer({ block }: any) {
+  let content = null;
+
   switch (block.type) {
     case "hero":
-      if (block.variant === "carousel") {
-        return <HeroCarousel {...block.data} />;
-      }
-      return <HeroBlockSingleImage {...block.data} />;
+      content =
+        block.variant === "carousel"
+          ? <HeroCarousel {...block.data} />
+          : <HeroBlockSingleImage {...block.data} />;
+      break;
 
     case "about":
-      return <AboutBlock {...block.data} />;
+      content = <AboutBlock {...block.data} />;
+      break;
 
     case "info":
-      return <InfoBlock {...block.data} />;
+      content = <InfoBlock {...block.data} />;
+      break;
 
     case "access":
-      return <AccessBlock {...block.data} />;
+      content = <AccessBlock {...block.data} />;
+      break;
+
+    case "cta":
+      content = <CtaBlock {...block.data} />;
+      break;
 
     default:
       return null;
   }
+
+  return (
+    <section id={block.type}>
+      {content}
+    </section>
+  );
 }

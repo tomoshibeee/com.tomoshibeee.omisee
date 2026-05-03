@@ -48,6 +48,13 @@ export const site2 = {
           access: "駅から徒歩5分",
         },
       },
+      {
+        type: "cta",
+        data: {
+          label: "礼拝に参加する",
+          href: "#info",
+        },
+      },
     ],
   },
 };
