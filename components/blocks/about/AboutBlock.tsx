@@ -1,16 +1,6 @@
-type Props = {
-  block: {
-    name: string;
-    role: string;
-    image: string;
-    bio: string;
-    message: string;
-  };
-};
-
-export default function AboutBlock({ block }: Props) {
+export default function AboutBlock({ name, role, image, bio, message }: Props) {
   return (
-    block.name?.trim() && (
+    name?.trim() && (
       <section className="p-6 text-gray-800">
         <div className="max-w-xl mx-auto bg-white rounded-2xl shadow-md p-6 space-y-4">
           <h2 className="text-xl font-bold text-center md:text-left">
@@ -25,24 +15,24 @@ export default function AboutBlock({ block }: Props) {
           "
           >
             <img
-              src="https://i.pravatar.cc/150"
-              alt={block.name}
+              src={image}
+              alt={name}
               className="w-24 h-24 rounded-full object-cover"
             />
 
             <div className="space-y-2">
               <p className="font-semibold text-lg text-gray-900">
-                {block.name}
-                {block.role && (
+                {name}
+                {role && (
                   <span className="text-sm text-gray-500 ml-2">
-                    {block.role}
+                    {role}
                   </span>
                 )}
               </p>
 
-              {block.bio && <p className="text-left">{block.bio}</p>}
-              {block.message && (
-                <p className="text-left">{block.message}</p>
+              {bio && <p className="text-left">{bio}</p>}
+              {message && (
+                <p className="text-left">{message}</p>
               )}
             </div>
           </div>

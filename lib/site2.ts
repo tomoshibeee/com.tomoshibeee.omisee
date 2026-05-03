@@ -20,11 +20,11 @@ export const site2 = {
     ],
   },
   layout: {
-    template: "template2",
+    template: "template1",
     blocks: [
       {
         type: "hero",
-        variant: "single",
+        variant: "carousel",
         data: { title: "横浜教会", message: "ようこそ！" },
       },
       {

@@ -2,7 +2,7 @@ type Props = {
   address: string
 }
 
-export default function MapBlock({ address }: Props) {
+export default function MapEmbed({ address }: Props) {
   const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(address)}&output=embed`
 
   return (

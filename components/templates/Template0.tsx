@@ -1,8 +1,8 @@
 import Header from "@/components/shared/Header";
 import Footer from "@/components/shared/Footer";
 import HeroBlock from "../blocks/HeroBlock";
-import InfoBlock from "../blocks/InfoBlock";
-import AboutBlock from "../blocks/AboutBlock";
+import InfoBlock from "../blocks/info/InfoBlock";
+import AboutBlock from "../blocks/about/AboutBlock";
 import AccessBlock from "../blocks/AccessBlock";
 
 const blockMap: any = {

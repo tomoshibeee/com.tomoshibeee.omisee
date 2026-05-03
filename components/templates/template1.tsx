@@ -1,36 +1,16 @@
 import Header from "@/components/shared/Header";
+import BlockRenderer from "../blocks/BlockRenderer";
 import Footer from "@/components/shared/Footer";
-import AboutBlock from "../blocks/AboutBlock";
-import InfoBlock from "../blocks/InfoBlock";
-import AccessBlock from "../blocks/AccessBlock";
 
-import * as Hero from "@/components/blocks/hero"
-
-export default function Template2({ site }: any) {
-  const hero = site.layout.blocks.find((b: any) => b.type === "hero");
-  const info = site.layout.blocks.find((b: any) => b.type === "info");
-  const about = site.layout.blocks.find((b: any) => b.type === "about");
-  const access = site.layout.blocks.find((b: any) => b.type === "access");
-
+export default function Template1({ site }: any) {
+  console.log("Rendering Template1 with site:", site);
   return (
-    <>
+    <div>
       <Header site={site} />
-
-      <main>
-        {/* Heroだけ巨大表示 */}
-        <Hero.HeroBlockSingleImage block={hero} />
-
-        {/* AboutはHeroの次に大きく表示 */}
-        <AboutBlock block={about} />
-
-        {/* Infoはカード風 */}
-        <InfoBlock block={info} />
-
-        {/* Accessはシンプルに */}
-        <AccessBlock block={access} />
-      </main>
-
+      {site.layout.blocks.map((block: any, i: number) => (
+        <BlockRenderer key={i} block={block} />
+      ))}
       <Footer site={site} />
-    </>
+    </div>
   );
 }

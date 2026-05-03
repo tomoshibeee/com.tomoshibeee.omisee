@@ -1,7 +1,7 @@
 import { sites } from "@/lib/data";
 
 import Template1 from "@/components/templates/Template1";
-import Template2 from "@/components/templates/Template2";
+// import Template2 from "@/components/templates/Template2";
 
 export default async function Page({
   params,
@@ -12,10 +12,11 @@ export default async function Page({
 
   const templateMap: any = {
     template1: Template1,
-    template2: Template2,
+    // template2: Template2,
   };
 
   const site = sites.find((s) => s.meta.slug === slug);
+  // console.log("Found site for slug:", slug, site);
 
   if (!site) return <div>Not Found</div>;
 

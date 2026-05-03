@@ -1,7 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
 
-export default function HeroBlockCarousel({ block }: any) {
+export default function HeroBlockCarousel({ title, message }: any) {
+  console.log("Rendering HeroBlockCarousel with title:", title);
+
   const INTERVAL = 3000;
   const DURATION = 700;
 
@@ -67,8 +69,8 @@ export default function HeroBlockCarousel({ block }: any) {
       {/* テキスト */}
       <div className="absolute inset-0 flex items-center justify-center z-10 text-center">
         <div>
-          <h1 className="text-5xl font-bold">{block.title}</h1>
-          <p className="mt-4">{block.message}</p>
+          <h1 className="text-5xl font-bold">{title}</h1>
+          <p className="mt-4">{message}</p>
         </div>
       </div>
 
