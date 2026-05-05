@@ -38,6 +38,14 @@ export const site1 = {
               ],
             },
           },
+          {
+            id: "contact-cta",
+            type: "cta",
+            data: {
+              label: "お問い合わせ",
+              href: "#contact",
+            },
+          },
         ],
       },
       {
@@ -45,8 +53,8 @@ export const site1 = {
         type: "about",
         blocks: [
           {
-            id: "about-main",
-            type: "about",
+            id: "greeting-main",
+            type: "greeting",
             data: {
               name: "東京太郎",
               role: "主任牧師",
@@ -61,7 +69,13 @@ export const site1 = {
       {
         id: "service",
         type: "service",
-        blocks: [{ id: "service-info", type: "info", data: { text: "毎週日曜 10:00〜" } }],
+        blocks: [
+          {
+            id: "service-info",
+            type: "info",
+            data: { text: "毎週日曜 10:00〜" },
+          },
+        ],
       },
       {
         id: "access",
@@ -82,16 +96,7 @@ export const site1 = {
       {
         id: "contact",
         type: "contact",
-        blocks: [
-          {
-            id: "contact-cta",
-            type: "cta",
-            data: {
-              label: "お問い合わせ",
-              href: "#contact",
-            },
-          },
-        ],
+        blocks: [],
       },
     ],
   },

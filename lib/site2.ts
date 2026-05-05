@@ -49,6 +49,14 @@ export const site2 = {
               ],
             },
           },
+          {
+            id: "contact-cta",
+            type: "cta",
+            data: {
+              label: "礼拝に参加する",
+              href: "#info",
+            },
+          },
         ],
       },
       {
@@ -56,8 +64,8 @@ export const site2 = {
         type: "about",
         blocks: [
           {
-            id: "about-main",
-            type: "about",
+            id: "greeting-main",
+            type: "greeting",
             data: {
               name: "横浜太郎",
               role: "主任牧師",
@@ -72,7 +80,13 @@ export const site2 = {
       {
         id: "service",
         type: "service",
-        blocks: [{ id: "service-info", type: "info", data: { text: "毎週日曜 10:00〜" } }],
+        blocks: [
+          {
+            id: "service-info",
+            type: "info",
+            data: { text: "毎週日曜 10:00〜" },
+          },
+        ],
       },
       {
         id: "access",
@@ -93,16 +107,7 @@ export const site2 = {
       {
         id: "contact",
         type: "contact",
-        blocks: [
-          {
-            id: "contact-cta",
-            type: "cta",
-            data: {
-              label: "礼拝に参加する",
-              href: "#info",
-            },
-          },
-        ],
+        blocks: [],
       },
     ],
   },

@@ -30,7 +30,13 @@ export type CtaData = {
 };
 
 export type Block =
-  | { id?: string; type: "hero"; variant?: "single" | "carousel"; data: HeroData }
+  | {
+      id?: string;
+      type: "hero";
+      variant?: "single" | "carousel";
+      data: HeroData;
+    }
+  | { id?: string; type: "greeting"; data: GreetingData }
   | { id?: string; type: "about"; data: AboutData }
   | { id?: string; type: "info"; data: InfoData }
   | { id?: string; type: "access"; data: AccessData }

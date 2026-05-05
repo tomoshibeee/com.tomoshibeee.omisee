@@ -1,5 +1,6 @@
 import HeroBlockSingleImage from "./hero/HeroSingleImage";
 import HeroCarousel from "./hero/HeroCarousel";
+import GreetingBlock from "./greeting/GreetingBlock";
 import InfoBlock from "./info/InfoBlock";
 import AccessBlock from "./access/AccessBlock";
 import CtaBlock from "./cta/CtaBlock";
@@ -14,6 +15,9 @@ export default function BlockRenderer({ block }: { block: Block }) {
           ? <HeroCarousel {...block.data} />
           : <HeroBlockSingleImage {...block.data} />
       );
+
+    case "greeting":
+      return <GreetingBlock {...block.data} />;
 
     case "info":
       return <InfoBlock {...block.data} />;
