@@ -24,6 +24,7 @@ export const site2 = {
     sections: [
       {
         id: "hero",
+        type: "hero",
         blocks: [
           {
             id: "hero-carousel",
@@ -52,6 +53,7 @@ export const site2 = {
       },
       {
         id: "about",
+        type: "about",
         blocks: [
           {
             id: "about-main",
@@ -69,10 +71,12 @@ export const site2 = {
       },
       {
         id: "service",
+        type: "service",
         blocks: [{ id: "service-info", type: "info", data: { text: "毎週日曜 10:00〜" } }],
       },
       {
         id: "access",
+        type: "access",
         blocks: [
           {
             id: "access-main",
@@ -88,6 +92,7 @@ export const site2 = {
       },
       {
         id: "contact",
+        type: "contact",
         blocks: [
           {
             id: "contact-cta",

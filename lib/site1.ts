@@ -24,6 +24,7 @@ export const site1 = {
     sections: [
       {
         id: "hero",
+        type: "hero",
         blocks: [
           {
             id: "hero-simple",
@@ -41,9 +42,11 @@ export const site1 = {
       },
       {
         id: "about",
+        type: "about",
         blocks: [
           {
-            type: "greeting",
+            id: "about-main",
+            type: "about",
             data: {
               name: "東京太郎",
               role: "主任牧師",
@@ -57,13 +60,16 @@ export const site1 = {
       },
       {
         id: "service",
-        blocks: [{ type: "infoBlock", data: { text: "毎週日曜 10:00〜" } }],
+        type: "service",
+        blocks: [{ id: "service-info", type: "info", data: { text: "毎週日曜 10:00〜" } }],
       },
       {
         id: "access",
+        type: "access",
         blocks: [
           {
-            type: "accessBlock",
+            id: "access-main",
+            type: "access",
             data: {
               address: "東京都〇〇...",
               mapUrl:
@@ -75,9 +81,11 @@ export const site1 = {
       },
       {
         id: "contact",
+        type: "contact",
         blocks: [
           {
-            type: "ctaBlock",
+            id: "contact-cta",
+            type: "cta",
             data: {
               label: "お問い合わせ",
               href: "#contact",
