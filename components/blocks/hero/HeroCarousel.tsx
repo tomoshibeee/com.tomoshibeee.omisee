@@ -53,7 +53,7 @@ export default function HeroBlockCarousel(data: HeroData) {
           <img
             key={i}
             src={img.url}
-            alt={img.alt} 
+            alt={img.alt ?? "Slide Image"} 
             className="w-full h-full object-cover flex-shrink-0"
           />
         ))}
