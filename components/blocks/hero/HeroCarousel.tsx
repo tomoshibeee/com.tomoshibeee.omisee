@@ -6,13 +6,8 @@ import { HeroData } from "@/types/block";
 export default function HeroBlockCarousel(data: HeroData) {
   const INTERVAL = 3000;
   const DURATION = 700;
-
-  const images = [
-    "https://picsum.photos/id/1018/1600/900",
-    "https://picsum.photos/id/1015/1600/900",
-    "https://picsum.photos/id/1019/1600/900",
-  ];
-
+  
+  const { images } = data;
   const extended = [...images, images[0]];
 
   const [index, setIndex] = useState(0);

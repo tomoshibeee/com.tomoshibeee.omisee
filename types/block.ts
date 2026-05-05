@@ -1,6 +1,7 @@
 export type HeroData = {
   title: string;
   message: string;
+  images: string[];
 };
 
 export type AboutData = {

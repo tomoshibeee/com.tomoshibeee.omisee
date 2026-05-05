@@ -25,7 +25,15 @@ export const site2 = {
       {
         type: "hero",
         variant: "carousel",
-        data: { title: "横浜教会", message: "ようこそ！" },
+        data: {
+          title: "横浜教会",
+          message: "ようこそ！",
+          images: [
+            "https://picsum.photos/id/1018/1600/900",
+            "https://picsum.photos/id/1015/1600/900",
+            "https://picsum.photos/id/1019/1600/900",
+          ],
+        },
       },
       {
         type: "about",
