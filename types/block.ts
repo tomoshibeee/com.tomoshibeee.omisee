@@ -33,8 +33,3 @@ export type Block =
   | { id?: string; type: "info"; data: InfoData }
   | { id?: string; type: "access"; data: AccessData }
   | { id?: string; type: "cta"; data: CtaData };
-
-export type Section = {
-  id: string;
-  blocks: Block[];
-};
