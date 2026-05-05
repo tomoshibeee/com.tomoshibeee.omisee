@@ -53,7 +53,12 @@ export default function HeroBlockCarousel(data: HeroData) {
           <img
             key={i}
             src={img.url}
-            alt={img.alt ?? "Slide Image"} 
+            alt={img.alt ?? "Slide Image"}
+            onError={(e) => {
+              e.currentTarget.onerror = null;
+              e.currentTarget.src =
+                "https://via.placeholder.com/1200x600?text=Image+Not+Found";
+            }}
             className="w-full h-full object-cover flex-shrink-0"
           />
         ))}
