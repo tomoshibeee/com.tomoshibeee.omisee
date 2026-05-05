@@ -1,7 +1,5 @@
-import { AccessData } from "@/types/block";
-
-export default function MapEmbed(data: AccessData) {
-  const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(data.address)}&output=embed`
+export default function MapEmbed({ address }: { address: string }) {
+  const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(address)}&output=embed`;
 
   return (
     <div className="w-full h-64 rounded-xl overflow-hidden">
@@ -11,5 +9,5 @@ export default function MapEmbed(data: AccessData) {
         loading="lazy"
       />
     </div>
-  )
+  );
 }

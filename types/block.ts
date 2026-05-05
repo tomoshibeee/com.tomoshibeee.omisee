@@ -28,8 +28,13 @@ export type CtaData = {
 };
 
 export type Block =
-  | { type: "hero"; variant?: "single" | "carousel"; data: HeroData }
-  | { type: "about"; data: AboutData }
-  | { type: "info"; data: InfoData }
-  | { type: "access"; data: AccessData }
-  | { type: "cta"; data: CtaData };
+  | { id?: string; type: "hero"; variant?: "single" | "carousel"; data: HeroData }
+  | { id?: string; type: "about"; data: AboutData }
+  | { id?: string; type: "info"; data: InfoData }
+  | { id?: string; type: "access"; data: AccessData }
+  | { id?: string; type: "cta"; data: CtaData };
+
+export type Section = {
+  id: string;
+  blocks: Block[];
+};

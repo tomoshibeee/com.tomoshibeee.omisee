@@ -24,7 +24,7 @@ export default function Header({ site }: any) {
             {m.label}
           </a>
         ))}
-        {site.meta.sns?.map((s, i) => {
+        {site.meta.sns?.map((s: any, i: number) => {
           const Icon = SNS_ICON_MAP[s.type];
 
           if (!Icon) return null;
