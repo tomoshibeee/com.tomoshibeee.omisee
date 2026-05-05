@@ -12,6 +12,8 @@ export type AboutData = {
   message?: string;
 };
 
+export type GreetingData = AboutData;
+
 export type InfoData = {
   text: string;
 };

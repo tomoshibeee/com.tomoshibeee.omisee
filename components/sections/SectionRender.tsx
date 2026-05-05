@@ -1,18 +1,15 @@
-import AboutSection from "./about/AboutSection";
+import BaseSection from "./BaseSection";
+import { SectionData } from "@/types/section";
 
-import { Section } from "@/types/section";
-
-export default function SectionRenderer({ section }: { section: Section }) {
+export default function SectionRenderer({ section }: { section: SectionData }) {
   switch (section.type) {
     case "about":
       return (
-        <section id={section.id}>
-          {section.blocks.map((block, i) =>
-            block.type === "about" ? (
-              <AboutSection key={i} {...block.data} />
-            ) : null
+        <>
+          {section.blocks.map((block: any, i) =>
+            block.type === "about" ? <BaseSection key={i} {...block} /> : null,
           )}
-        </section>
+        </>
       );
 
     default:
