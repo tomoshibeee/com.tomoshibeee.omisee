@@ -6,7 +6,7 @@ import { HeroData } from "@/types/block";
 export default function HeroBlockCarousel(data: HeroData) {
   const INTERVAL = 3000;
   const DURATION = 700;
-  
+
   const { images } = data;
   const extended = [...images, images[0]];
 
@@ -49,10 +49,11 @@ export default function HeroBlockCarousel(data: HeroData) {
           transform: `translateX(-${index * 100}%)`,
         }}
       >
-        {extended.map((src, i) => (
+        {extended.map((img, i) => (
           <img
             key={i}
-            src={src}
+            src={img.url}
+            alt={img.alt} 
             className="w-full h-full object-cover flex-shrink-0"
           />
         ))}

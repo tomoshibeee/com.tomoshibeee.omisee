@@ -25,10 +25,12 @@ export const site1 = {
       {
         type: "hero",
         variant: "single",
-        data: { 
-          title: "東京教会", 
-          message: "ようこそ！", 
-          images: ["https://picsum.photos/1200/600"]
+        data: {
+          title: "東京教会",
+          message: "ようこそ！",
+          images: [
+            { url: "https://picsum.photos/1200/600", alt: "Hero Image" },
+          ],
         },
       },
       {

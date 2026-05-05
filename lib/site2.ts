@@ -29,9 +29,18 @@ export const site2 = {
           title: "横浜教会",
           message: "ようこそ！",
           images: [
-            "https://picsum.photos/id/1018/1600/900",
-            "https://picsum.photos/id/1015/1600/900",
-            "https://picsum.photos/id/1019/1600/900",
+            {
+              url: "https://picsum.photos/id/1018/1600/900",
+              alt: "Hero Image 1",
+            },
+            {
+              url: "https://picsum.photos/id/1015/1600/900",
+              alt: "Hero Image 2",
+            },
+            {
+              url: "https://picsum.photos/id/1019/1600/900",
+              alt: "Hero Image 3",
+            },
           ],
         },
       },
