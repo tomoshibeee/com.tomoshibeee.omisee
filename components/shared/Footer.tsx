@@ -54,7 +54,7 @@ export default function Footer({ props }: { props: SiteData }) {
               Email:
               <svg width={200} height={20}>
                 <text x="0" y="15" fontSize="12">
-                  **{email}**
+                  {email}
                 </text>
               </svg>
             </li>{" "}

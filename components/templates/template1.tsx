@@ -18,7 +18,7 @@ export default function Template1({ site }: any) {
       {sections.map((section: any, sectionIndex: number) => (
         <BaseSection key={section.id ?? sectionIndex} {...section} />
       ))}
-      <Footer site={site} />
+      <Footer props={site} />
     </div>
   );
 }
