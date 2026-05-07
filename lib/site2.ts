@@ -2,6 +2,7 @@ export const site2 = {
   meta: {
     slug: "yokohama-church",
     name: "横浜教会（デモ）",
+    email: "info@yokohama-church.com",
     message: "ようこそ！",
     sns: [
       { type: "x", url: "#" },
