@@ -1,6 +1,6 @@
 import { sites } from "@/lib/data";
 
-import Template1 from "@/components/templates/template1";
+import Template1 from "@/components/templates/Template1";
 // import Template2 from "@/components/templates/Template2";
 
 export default async function Page({
