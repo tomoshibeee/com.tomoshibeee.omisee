@@ -3,33 +3,33 @@ export default function Footer({ site }: any) {
     <footer className="bottom-0 left-0 pt-6 w-full border-t bg-white text-center text-sm text-gray-500">
       <div className="flex flex-col md:flex-row gap-2 w-full justify-center mb-4">
         <div className="flex-1">
-          <h1>教会について</h1>
+          <h2>教会について</h2>
           <ul>
-            <li>教会案内</li>
-            <li>牧師紹介</li>
-            <li>教会沿革</li>
-            <li>お問い合わせ</li>
+            <li><a href="/about">教会案内</a></li>
+            <li><a href="/pastors">牧師紹介</a></li>
+            <li><a href="/history">教会沿革</a></li>
+            <li><a href="/contact">お問い合わせ</a></li>
           </ul>
         </div>
         <div className="flex-1">
-          <h1>サイトマップ</h1>
+          <h2>サイトマップ</h2>
           <ul>
-            <li>ホーム</li>
-            <li>ニュース</li>
-            <li>イベント</li>
+            <li><a href="/">ホーム</a></li>
+            <li><a href="/news">ニュース</a></li>
+            <li><a href="/events">イベント</a></li>
           </ul>
         </div>
         <div className="flex-1">
-          <h1>法的情報</h1>
+          <h2>法的情報</h2>
           <ul>
-            <li>プライバシーポリシー</li>
-            <li>利用規約</li>
+            <li><a href="/privacy">プライバシーポリシー</a></li>
+            <li><a href="/terms">利用規約</a></li>    
           </ul>
         </div>
         <div className="flex-1">
-          <h1>お問い合わせ</h1>
+          <h2>お問い合わせ</h2>
           <ul>
-            <li>お問い合わせフォーム</li>
+            <li><a href="/contact">お問い合わせフォーム</a></li>
           </ul>
         </div>
       </div>
