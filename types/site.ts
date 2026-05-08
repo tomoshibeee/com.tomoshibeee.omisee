@@ -1,4 +1,4 @@
-import { Section } from "./section";
+import { Section } from "../types/section";
 
 export type SiteData = {
   meta: {
