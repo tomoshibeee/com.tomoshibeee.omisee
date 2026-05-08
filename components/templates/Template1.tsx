@@ -1,7 +1,7 @@
 import Header from "@/components/shared/Header";
-import BlockRenderer from "../blocks/BlockRenderer";
 import Footer from "@/components/shared/Footer";
 import BaseSection from "../sections/BaseSection";
+import { SectionData } from "@/types/section";
 
 export default function Template1({ site }: any) {
   console.log("Rendering Template1 with site:", site);
@@ -15,8 +15,8 @@ export default function Template1({ site }: any) {
   return (
     <div>
       <Header site={site} />
-      {sections.map((section: any, sectionIndex: number) => (
-        <BaseSection key={section.id ?? sectionIndex} {...section} />
+      {sections.map((section: SectionData, sectionIndex: number) => (
+        <BaseSection key={section.id ?? sectionIndex} meta={site.meta} section={{...section}} />
       ))}
       <Footer props={site} />
     </div>

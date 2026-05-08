@@ -19,9 +19,6 @@ export type InfoData = {
 };
 
 export type AccessData = {
-  address: string;
-  mapUrl: string;
-  access: string;
 };
 
 export type CtaData = {

@@ -3,6 +3,8 @@ export const site2 = {
     slug: "yokohama-church",
     name: "横浜教会（デモ）",
     email: "info@yokohama-church.com",
+    address: "横浜市港北区〇〇...",
+    access: "駅から徒歩5分",
     message: "ようこそ！",
     sns: [
       { type: "x", url: "#" },
@@ -94,13 +96,9 @@ export const site2 = {
         type: "access",
         blocks: [
           {
-            id: "access-main",
+            id: "access-block",
             type: "access",
             data: {
-              address: "横浜市港北区〇〇...",
-              mapUrl:
-                "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3267.3517196202515!2d138.48555261298384!3d35.022929974376375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601a33fa1dc1e4ad%3A0xc0d4e81b2e26cd0a!2sHeartpia%20Shimizu!5e0!3m2!1sen!2sjp!4v1777457707431!5m2!1sen!2sjp",
-              access: "駅から徒歩5分",
             },
           },
         ],

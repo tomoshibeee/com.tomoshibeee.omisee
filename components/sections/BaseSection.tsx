@@ -1,14 +1,23 @@
+import { MetaData } from "@/types/meta";
 import { SectionData } from "@/types/section";
 import BlockRenderer from "@/components/blocks/BlockRenderer";
 
-export default function BaseSection(data: SectionData) {
+export default function BaseSection({
+  section,
+  meta,
+}: {
+  section: SectionData;
+  meta: MetaData;
+}) {
+  if (!section) return null;
   return (
-    <section id={data.id} className="p-6 text-gray-800">
-      {/* <p>{data.id}</p> */}
-      {(data.blocks ?? []).map((block: any, blockIndex: number) => (
-        <div key={block.id ?? `${block.type}-${blockIndex}`}> 
-          <BlockRenderer block={block} />
-        </div>
+    <section id={section.id} className="p-6 text-gray-800">
+      {(section.blocks ?? []).map((block, i) => (
+        <BlockRenderer
+          key={block.id ?? `${block.type}-${i}`}
+          meta={meta}
+          block={block}
+        />
       ))}
     </section>
   );

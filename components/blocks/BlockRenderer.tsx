@@ -5,9 +5,10 @@ import InfoBlock from "./info/InfoBlock";
 import AccessBlock from "./access/AccessBlock";
 import CtaBlock from "./cta/CtaBlock";
 
+import { MetaData } from "@/types/meta";
 import { Block } from "../../types/block";
 
-export default function BlockRenderer({ block }: { block: Block }) {
+export default function BlockRenderer({ meta, block }: { meta: MetaData, block: Block }) {
   switch (block.type) {
     case "hero":
       return (
@@ -23,7 +24,7 @@ export default function BlockRenderer({ block }: { block: Block }) {
       return <InfoBlock {...block.data} />;
 
     case "access":
-      return <AccessBlock {...block.data} />;
+      return <AccessBlock {...meta} />;
 
     case "cta":
       return <CtaBlock {...block.data} />;

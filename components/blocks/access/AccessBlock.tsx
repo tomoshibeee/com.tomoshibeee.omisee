@@ -1,16 +1,17 @@
 import MapBlock from "./MapEmbed";
 
-import { AccessData } from "@/types/block";
-export default function AccessBlock(data: AccessData) {
+import { MetaData } from "@/types/meta";
+
+export default function AccessBlock(meta: MetaData) {
   return (
     <section className="p-6 space-y-4">
       <h2 className="text-xl font-bold">Access</h2>
 
-      <p>{data.address}</p>
+      <p>{meta.address}</p>
 
-      <MapBlock address={data.address} />
+      <MapBlock address={meta.address} />
 
-      <p>{data.access}</p>
+      <p>{meta.access}</p>
     </section>
   );
 }
