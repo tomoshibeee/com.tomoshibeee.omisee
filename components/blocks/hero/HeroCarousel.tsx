@@ -1,4 +1,7 @@
 "use client";
+
+console.log("🔥 HeroBlockCarousel mounted");
+
 import { useEffect, useState } from "react";
 
 import { HeroData } from "@/types/block";
@@ -13,6 +16,10 @@ export default function HeroBlockCarousel(data: HeroData) {
   const [index, setIndex] = useState(0);
   const [transition, setTransition] = useState(true);
 
+  // useEffect(() => {
+  //   console.log("index:", index);
+  // }, [index]);
+
   // 自動スライド
   useEffect(() => {
     const timer = setInterval(() => {
@@ -20,7 +27,7 @@ export default function HeroBlockCarousel(data: HeroData) {
     }, INTERVAL);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [images.length]);
 
   // ダミー到達時のワープ処理
   useEffect(() => {
@@ -36,7 +43,21 @@ export default function HeroBlockCarousel(data: HeroData) {
         setTransition(true);
       }, DURATION + 50);
     }
-  }, [index]);
+  }, [index, images.length]);
+
+  // if (!images || images.length === 0)
+  //   return (
+  //     <section className="h-screen flex items-center justify-center">
+  //       No images
+  //     </section>
+  //   );
+
+  // if (!loaded)
+  //   return (
+  //     <section className="h-screen flex items-center justify-center">
+  //       Loading...
+  //     </section>
+  //   );
 
   return (
     <section className="relative h-screen overflow-hidden text-white">
@@ -46,7 +67,7 @@ export default function HeroBlockCarousel(data: HeroData) {
           transition ? "transition-transform duration-700" : ""
         }`}
         style={{
-          transform: `translateX(-${index * 100}%)`,
+          transform: `translateX(-${index * 100}vw)`,
         }}
       >
         {extended.map((img, i) => (
@@ -54,11 +75,6 @@ export default function HeroBlockCarousel(data: HeroData) {
             key={i}
             src={img.url}
             alt={img.alt ?? "Slide Image"}
-            onError={(e) => {
-              e.currentTarget.onerror = null;
-              e.currentTarget.src =
-                "https://via.placeholder.com/1200x600?text=Image+Not+Found";
-            }}
             className="w-full h-full object-cover flex-shrink-0"
           />
         ))}
