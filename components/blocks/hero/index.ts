@@ -1,2 +1,2 @@
-export { default as HeroBlockSingleImage } from "./HeroSingleImage"
-export { default as HeroBlockCarousel } from "./HeroCarousel"
+export { default as HeroBlockImage } from "./HeroBlockImage"
+export { default as HeroBlockCarousel } from "./HeroBlockCarousel"

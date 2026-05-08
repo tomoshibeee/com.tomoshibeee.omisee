@@ -1,5 +1,5 @@
-import HeroBlockSingleImage from "./hero/HeroSingleImage";
-import HeroBlockCarousel from "./hero/HeroCarousel";
+import HeroBlockImage from "./hero/HeroBlockImage";
+import HeroBlockCarousel from "./hero/HeroBlockCarousel";
 import GreetingBlock from "./greeting/GreetingBlock";
 import InfoBlock from "./info/InfoBlock";
 import AccessBlock from "./access/AccessBlock";
@@ -13,7 +13,7 @@ export default function BlockRenderer({ block }: { block: Block }) {
       return (
         block.variant === "carousel"
           ? <HeroBlockCarousel {...block.data} />
-          : <HeroBlockSingleImage {...block.data} />
+          : <HeroBlockImage {...block.data} />
       );
 
     case "greeting":
