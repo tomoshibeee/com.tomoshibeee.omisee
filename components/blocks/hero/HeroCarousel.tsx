@@ -67,7 +67,7 @@ export default function HeroBlockCarousel(data: HeroData) {
           transition ? "transition-transform duration-700" : ""
         }`}
         style={{
-          transform: `translateX(-${index * 100}vw)`,
+          transform: `translateX(-${index * 100}%)`,
         }}
       >
         {extended.map((img, i) => (
