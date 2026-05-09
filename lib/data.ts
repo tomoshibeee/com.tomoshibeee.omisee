@@ -1,5 +1,5 @@
-import { site1 } from "./site1"
-import { site2 } from "./site2"
+import { site1 } from "../data/site1"
+import { site2 } from "../data/site2"
 
 export const sites = [
   site1,
