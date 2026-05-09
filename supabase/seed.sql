@@ -3,6 +3,9 @@ insert into
 values
     ('最初のニュース'),
     ('テスト投稿');
+
+-- SITE + SNS + NAV + LAYOUT
+with site as (
   insert into sites (
     id, slug, name, email, address, access, message
   )
