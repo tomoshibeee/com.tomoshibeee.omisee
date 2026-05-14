@@ -18,7 +18,7 @@ export type NewsData = {
 
 export type GreetingData = AboutData;
 
-export type InfoData = {
+export type ServiceData = {
   items: { icon: string; text: string }[];
 };
 
@@ -38,6 +38,6 @@ export type Block =
   | { id?: string; type: "news"; data: NewsData }
   | { id?: string; type: "greeting"; data: GreetingData }
   | { id?: string; type: "about"; data: AboutData }
-  | { id?: string; type: "info"; data: InfoData }
+  | { id?: string; type: "service"; data: ServiceData }
   | { id?: string; type: "access"; data: AccessData }
   | { id?: string; type: "cta"; data: CtaData };
