@@ -22,8 +22,7 @@ export type AccessData = {
 };
 
 export type CtaData = {
-  label: string;
-  href: string;
+  buttons?: { label: string; href: string }[];
 };
 
 export type Block =

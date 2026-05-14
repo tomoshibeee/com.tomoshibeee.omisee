@@ -53,11 +53,13 @@ export const site2 = {
             },
           },
           {
-            id: "contact-cta",
+            id: "hero-cta",
             type: "cta",
             data: {
-              label: "礼拝に参加する",
-              href: "#info",
+              buttons: [
+                { label: "礼拝に参加する", href: "#info" },
+                { label: "お問い合わせ", href: "#contact" },
+              ],
             },
           },
         ],
@@ -98,8 +100,7 @@ export const site2 = {
           {
             id: "access-block",
             type: "access",
-            data: {
-            },
+            data: {},
           },
         ],
       },

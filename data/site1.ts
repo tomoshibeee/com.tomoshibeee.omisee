@@ -45,8 +45,10 @@ export const site1 = {
             id: "contact-cta",
             type: "cta",
             data: {
-              label: "お問い合わせ",
-              href: "#contact",
+              buttons: [
+                { label: "礼拝動画", href: "#info" },
+                { label: "お問い合わせ", href: "#contact" }
+              ],
             },
           },
         ],
