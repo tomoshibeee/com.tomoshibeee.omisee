@@ -1,7 +1,7 @@
 import HeroBlockImage from "./hero/HeroBlockImage";
 import HeroBlockCarousel from "./hero/HeroBlockCarousel";
 import GreetingBlock from "./greeting/GreetingBlock";
-import InfoBlock from "./info/InfoBlock";
+import ServiceBlock from "./service/ServiceBlock";
 import AccessBlock from "./access/AccessBlock";
 import CtaBlock from "./cta/CtaBlock";
 
@@ -20,8 +20,8 @@ export default function BlockRenderer({ meta, block }: { meta: MetaData, block: 
     case "greeting":
       return <GreetingBlock {...block.data} />;
 
-    case "info":
-      return <InfoBlock {...block.data} />;
+    case "service":
+      return <ServiceBlock {...block.data} />;
 
     case "access":
       return <AccessBlock {...meta} />;

@@ -87,8 +87,8 @@ export const site2 = {
         type: "service",
         blocks: [
           {
-            id: "service-info",
-            type: "info",
+            id: "service-id",
+            type: "service",
             data: { items: [{ icon: "map", text: "毎週日曜 10:00〜" }] },
           },
         ],

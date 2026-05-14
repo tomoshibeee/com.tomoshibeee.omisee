@@ -76,7 +76,7 @@ export const site1 = {
         blocks: [
           {
             id: "service-info1",
-            type: "info",
+            type: "service",
             data: { 
               items: [
                 { icon: "map", text: "日曜礼拝 日曜10:00〜" },
