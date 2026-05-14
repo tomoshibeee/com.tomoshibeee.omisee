@@ -1,6 +1,6 @@
 export type HeroData = {
   title: string;
-  messages: string;
+  message?: string;
   images: { url: string; alt: string }[];
 };
 
@@ -15,7 +15,7 @@ export type AboutData = {
 export type GreetingData = AboutData;
 
 export type InfoData = {
-  text: string;
+  items: { icon: string; text: string }[];
 };
 
 export type AccessData = {

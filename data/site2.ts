@@ -5,7 +5,6 @@ export const site2 = {
     email: "info@yokohama-church.com",
     address: "横浜市港北区〇〇...",
     access: "駅から徒歩5分",
-    message: "ようこそ！",
     message: "unused",
     sns: [
       { type: "x", url: "#" },
@@ -90,7 +89,7 @@ export const site2 = {
           {
             id: "service-info",
             type: "info",
-            data: { text: "毎週日曜 10:00〜" },
+            data: { items: [{ icon: "map", text: "毎週日曜 10:00〜" }] },
           },
         ],
       },

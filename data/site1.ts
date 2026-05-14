@@ -75,10 +75,16 @@ export const site1 = {
         type: "service",
         blocks: [
           {
-            id: "service-info",
+            id: "service-info1",
             type: "info",
-            data: { text: "毎週日曜 10:00〜" },
-          },
+            data: { 
+              items: [
+                { icon: "map", text: "日曜礼拝 日曜10:00〜" },
+                { icon: "map", text: "聖書勉強会 水曜10:00〜" },
+                { icon: "map", text: "青年委員会 木曜10:00〜" }
+              ] 
+            }
+          }
         ],
       },
       {
