@@ -1,4 +1,4 @@
-import { InfoData } from "@/types/block";
+import { ServiceData } from "@/types/block";
 
 import { FaMapLocation } from "react-icons/fa6";
 
@@ -6,7 +6,7 @@ const SNS_ICON_MAP: { [key: string]: React.ComponentType } = {
   map: FaMapLocation,
 };
 
-export default function InfoBlock(data: InfoData) {
+export default function ServiceBlock(data: ServiceData) {
   return (
     <div className="p-10 grid grid-cols-1 md:grid-cols-3 gap-4">
       {data.items.map((item, i) => {
