@@ -6,6 +6,7 @@ export const site2 = {
     address: "横浜市港北区〇〇...",
     access: "駅から徒歩5分",
     message: "ようこそ！",
+    message: "unused",
     sns: [
       { type: "x", url: "#" },
       { type: "facebook", url: "#" },
@@ -34,7 +35,7 @@ export const site2 = {
             type: "hero",
             variant: "carousel",
             data: {
-              title: "横浜教会",
+              title: "誰にでも開かれた教会へ",
               message: "ようこそ！",
               images: [
                 {

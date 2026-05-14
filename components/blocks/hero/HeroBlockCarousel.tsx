@@ -87,7 +87,7 @@ export default function HeroBlockCarousel(data: HeroData) {
       <div className="absolute inset-0 flex items-center justify-center z-10 text-center">
         <div>
           <h1 className="text-5xl font-bold">{data.title}</h1>
-          <p className="mt-4">{data.message}</p>
+          <p className="mt-4">{data.message ?? ""}</p>
         </div>
       </div>
 

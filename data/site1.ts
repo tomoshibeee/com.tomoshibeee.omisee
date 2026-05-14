@@ -5,7 +5,7 @@ export const site1 = {
     email: "info@tokyo-church.com",
     address: "東京都新宿区1-2-3",
     access: "JR新宿駅から徒歩5分",
-    message: "ようこそ！",
+    message: "unused",
     sns: [
       { type: "x", url: "#" },
       { type: "facebook", url: "#" },
@@ -34,8 +34,7 @@ export const site1 = {
             type: "hero",
             variant: "single",
             data: {
-              title: "東京教会",
-              message: "ようこそ！",
+              title: "東京の下町に佇む小さな教会",
               images: [
                 { url: "https://picsum.photos/1200/600", alt: "Hero Image" },
               ],

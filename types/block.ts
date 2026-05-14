@@ -1,6 +1,6 @@
 export type HeroData = {
   title: string;
-  message: string;
+  messages: string;
   images: { url: string; alt: string }[];
 };
 
