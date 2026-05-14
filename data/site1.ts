@@ -46,7 +46,24 @@ export const site1 = {
             data: {
               buttons: [
                 { label: "礼拝動画", href: "#info" },
-                { label: "お問い合わせ", href: "#contact" }
+                { label: "お問い合わせ", href: "#contact" },
+              ],
+            },
+          },
+        ],
+      },
+      {
+        id: "news",
+        type: "news",
+        blocks: [
+          {
+            id: "news-main",
+            type: "news",
+            data: {
+              items: [
+                { title: "クリスマス礼拝のお知らせ", date: "2024-12-24" },
+                { title: "新年礼拝のお知らせ", date: "2025-01-01" },
+                { title: "復活祭礼拝のお知らせ", date: "2025-04-20" },
               ],
             },
           },
@@ -77,14 +94,14 @@ export const site1 = {
           {
             id: "service-info1",
             type: "service",
-            data: { 
+            data: {
               items: [
                 { icon: "map", text: "日曜礼拝 日曜10:00〜" },
                 { icon: "map", text: "聖書勉強会 水曜10:00〜" },
-                { icon: "map", text: "青年委員会 木曜10:00〜" }
-              ] 
-            }
-          }
+                { icon: "map", text: "青年委員会 木曜10:00〜" },
+              ],
+            },
+          },
         ],
       },
       {
@@ -94,8 +111,7 @@ export const site1 = {
           {
             id: "access-block",
             type: "access",
-            data: {
-            },
+            data: {},
           },
         ],
       },

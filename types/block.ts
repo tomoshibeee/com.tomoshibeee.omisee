@@ -12,14 +12,17 @@ export type AboutData = {
   message?: string;
 };
 
+export type NewsData = {
+  items: { title: string; date: string }[];
+};
+
 export type GreetingData = AboutData;
 
 export type InfoData = {
   items: { icon: string; text: string }[];
 };
 
-export type AccessData = {
-};
+export type AccessData = {};
 
 export type CtaData = {
   buttons?: { label: string; href: string }[];
@@ -32,6 +35,7 @@ export type Block =
       variant?: "single" | "carousel";
       data: HeroData;
     }
+  | { id?: string; type: "news"; data: NewsData }
   | { id?: string; type: "greeting"; data: GreetingData }
   | { id?: string; type: "about"; data: AboutData }
   | { id?: string; type: "info"; data: InfoData }
