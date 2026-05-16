@@ -9,7 +9,7 @@ export default function HeroBlockSingleImage({ title, message = "", images }: He
       className="h-screen flex items-center justify-center text-white bg-cover bg-center"
       style={backgroundImage ? { backgroundImage } : undefined}
     >
-      <h1 className="text-5xl font-bold">{title}</h1>
+      <h1 className="center text-5xl font-bold">{title}</h1>
       <p>{message}</p>
     </section>
   );
