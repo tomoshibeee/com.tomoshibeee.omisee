@@ -1,5 +1,11 @@
 import { Section } from "../types/section";
 
+type MenuItem = {
+  label: string;
+  href?: string;
+  children?: MenuItem[];
+};
+
 export type SiteData = {
   meta: {
     slug: string;
@@ -9,10 +15,7 @@ export type SiteData = {
     sns: { type: string; url: string }[];
   };
   navigation: {
-    menu?: Array<{
-      href: string;
-      label: string;
-    }>;
+    menu?: MenuItem[];
   };
   layout: {
     template: string;

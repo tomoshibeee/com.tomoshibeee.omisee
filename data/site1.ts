@@ -1,3 +1,5 @@
+import { Labrada } from "next/font/google";
+
 export const site1 = {
   meta: {
     slug: "tokyo-church",
@@ -16,8 +18,27 @@ export const site1 = {
   },
   navigation: {
     menu: [
-      { label: "教会について", href: "#about" },
-      { label: "礼拝", href: "#service" },
+      {
+        label: "教会紹介",
+        children: [
+          { label: "牧師紹介", href: "#about" },
+          { label: "教会のビジョン", href: "#vision" },
+        ],
+      },
+      {
+        label: "礼拝案内",
+        children: [
+          { label: "礼拝", href: "#service" },
+          { label: "イベント情報", href: "#events" },
+        ],
+      },
+      {
+        label:"活動紹介",
+        children: [
+          { label: "ボランティア", href: "#volunteer" },
+          { label: "地域交流", href: "#community" },
+        ],
+      },
       { label: "アクセス", href: "#access" },
       { label: "お問い合わせ", href: "#contact" },
     ],
