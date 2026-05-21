@@ -1,15 +1,18 @@
 import { SiteData } from "@/types/site";
+
 export default function Footer({ props }: { props: SiteData }) {
   const {
     meta: { name, email },
     navigation: { menu },
   } = props;
+
   return (
-    <footer className="bottom-0 left-0 pt-6 w-full border-t bg-white text-center text-sm text-gray-500">
-      <div className="flex flex-col md:flex-row gap-2 w-full justify-center mb-4">
-        <div className="flex-1">
-          <h2>教会について</h2>
-          <ul>
+    <footer className="w-full border-t bg-white pt-6 text-center text-sm text-gray-500">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6 px-4">
+        {/* 教会について */}
+        <div>
+          <h2 className="font-semibold mb-2">教会について</h2>
+          <ul className="space-y-1">
             <li>
               <a href="/about">教会案内</a>
             </li>
@@ -24,19 +27,32 @@ export default function Footer({ props }: { props: SiteData }) {
             </li>
           </ul>
         </div>
-        <div className="flex-1">
-          <h2>サイトマップ</h2>
-          <ul className="flex flex-col gap-2 list-none p-0">
-            {menu?.map((m: { href: string; label: string }) => (
-              <li key={m.href}>
+
+        {/* サイトマップ */}
+        <div>
+          <h2 className="font-semibold mb-2">サイトマップ</h2>
+          <ul className="space-y-1">
+            {menu?.map((m, i) => (
+              <li key={i}>
                 <a href={m.href}>{m.label}</a>
+                {m.children && m.children.length > 0 && (
+                  <ul className="pl-4 mt-1 space-y-1">
+                    {m.children.map((c, j) => (
+                      <li key={j}>
+                        <a href={c.href}>{c.label}</a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </li>
             ))}
           </ul>
         </div>
-        <div className="flex-1">
-          <h2>法的情報</h2>
-          <ul>
+
+        {/* 法的情報 */}
+        <div>
+          <h2 className="font-semibold mb-2">法的情報</h2>
+          <ul className="space-y-1">
             <li>
               <a href="/privacy">プライバシーポリシー</a>
             </li>
@@ -45,24 +61,19 @@ export default function Footer({ props }: { props: SiteData }) {
             </li>
           </ul>
         </div>
-        <div className="flex-1">
-          <h2>お問い合わせ</h2>
-          <ul>
+
+        {/* お問い合わせ */}
+        <div>
+          <h2 className="font-semibold mb-2">お問い合わせ</h2>
+          <ul className="space-y-1">
             <li>東京都港区南青山1-1</li>
             <li>電話: 03-1234-5678</li>
-            <li>
-              Email:
-              <svg width={200} height={20}>
-                <text x="0" y="15" fontSize="12">
-                  {email}
-                </text>
-              </svg>
-            </li>{" "}
+            <li>Email: {email}</li>
           </ul>
         </div>
       </div>
-      <hr className="width-full" />
-      <p>
+
+      <p className="border-t pt-4 pb-2">
         &copy; {new Date().getFullYear()} {name}. All rights reserved.
       </p>
     </footer>
