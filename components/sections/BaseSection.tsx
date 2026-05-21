@@ -11,7 +11,7 @@ export default function BaseSection({
 }) {
   if (!section) return null;
   return (
-    <section id={section.id} className="p-6 text-gray-800">
+    <section id={section.id} className="p-0 text-gray-800">
       {(section.blocks ?? []).map((block, i) => (
         <BlockRenderer
           key={block.id ?? `${block.type}-${i}`}
