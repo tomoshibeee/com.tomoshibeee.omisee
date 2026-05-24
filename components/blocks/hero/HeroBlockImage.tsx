@@ -5,12 +5,12 @@ export default function HeroBlockSingleImage({ title, message = "", images }: He
   const backgroundImage = imageUrl ? `url(${imageUrl})` : undefined;
 
   return (
-    <section
+    <div
       className="h-screen flex items-center justify-center text-white bg-cover bg-center"
       style={backgroundImage ? { backgroundImage } : undefined}
     >
       <h1 className="center text-5xl font-bold">{title}</h1>
       <p>{message}</p>
-    </section>
+    </div>
   );
 }

@@ -47,20 +47,20 @@ export default function HeroBlockCarousel(data: HeroData) {
 
   // if (!images || images.length === 0)
   //   return (
-  //     <section className="h-screen flex items-center justify-center">
+  //     <div className="h-screen flex items-center justify-center">
   //       No images
-  //     </section>
+  //     </div>
   //   );
 
   // if (!loaded)
   //   return (
-  //     <section className="h-screen flex items-center justify-center">
+  //     <div className="h-screen flex items-center justify-center">
   //       Loading...
-  //     </section>
+  //     </div>
   //   );
 
   return (
-    <section className="relative h-screen overflow-hidden text-white">
+    <div className="relative h-screen overflow-hidden text-white">
       {/* スライド本体 */}
       <div
         className={`flex h-full ${
@@ -103,6 +103,6 @@ export default function HeroBlockCarousel(data: HeroData) {
           />
         ))}
       </div>
-    </section>
+    </div>
   );
 }

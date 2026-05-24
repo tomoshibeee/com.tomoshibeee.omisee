@@ -3,7 +3,7 @@ import { GreetingData } from "@/types/block";
 export default function GreetingBlock(data: GreetingData) {
   return (
     data.name.trim() && (
-      <section className="p-6 text-gray-800">
+      <div className="p-6 text-gray-800">
         <div className="max-w-xl mx-auto bg-white rounded-2xl shadow-md p-6 space-y-4">
           <h2 className="text-xl font-bold text-center md:text-left">
             Greeting
@@ -39,7 +39,7 @@ export default function GreetingBlock(data: GreetingData) {
             </div>
           </div>
         </div>
-      </section>
+      </div>
     )
   )
 }
