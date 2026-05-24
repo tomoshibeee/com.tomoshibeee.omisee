@@ -31,8 +31,9 @@ export default function NewsBlock({ source, limit }: NewsData) {
                 className="grid grid-cols-1 md:grid-cols-[120px_1fr_auto] gap-2 md:gap-4 border-b pb-4"
               >
                 {/* 日付 */}
+                {/* TODO: 日付のフォーマットを日本語にする */}
                 <span className="text-gray-600 text-sm md:text-base">
-                  {item.date}
+                  {new Date(item.date).toLocaleDateString("ja-JP")}
                 </span>
                 {/* タイトル */}
                 <span className="font-semibold">{item.title}</span>
