@@ -15,7 +15,7 @@ export default function ServiceBlock({ items }: ServiceData) {
       {items.map((item) => (
         <div
           key={item.id}
-          className="border rounded-xl p-6 shadow-sm hover:shadow-md transition"
+          className="bg-white rounded-2xl p-6 shadow-md hover:shadow-md transition"
         >
           <h3 className="font-semibold mb-3">{item.title}</h3>
 
