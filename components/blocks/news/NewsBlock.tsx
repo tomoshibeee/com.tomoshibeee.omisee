@@ -3,11 +3,20 @@ import { news2 } from "@/data/news2";
 
 export const DATA_MAP: {
   [key: string]: {
-    items: { title: string; date: string; doc?: string; youtube?: string }[];
+    items: NewsItem[];
   };
 } = {
   news1: { items: news1 },
   news2: { items: news2 },
+};
+
+type NewsItem = {
+  title: string;
+  content?: string;
+  eventDate: string;
+  publishedAt: string;
+  doc?: string;
+  youtube?: string;
 };
 
 import { NewsData } from "@/types/block";
@@ -15,41 +24,86 @@ import { NewsData } from "@/types/block";
 import { FaFileAlt, FaYoutube } from "react-icons/fa";
 
 export default function NewsBlock({ source, limit }: NewsData) {
-  console.log("NewsBlock source:", source, "limit:", limit);
   const data = DATA_MAP[source];
-  console.log("NewsBlock items:", data);
-  const displayedItems = limit !== undefined ? data.items.slice(0, limit) : data.items;
+
+  const now = new Date();
+
+  const sortedItems = [...data.items]
+    .filter((item) => new Date(item.publishedAt) <= now)
+    .sort(
+      (a, b) =>
+        new Date(b.eventDate ?? b.publishedAt).getTime() -
+        new Date(a.eventDate ?? a.publishedAt).getTime(),
+    );
+
+  const displayedItems =
+    limit !== undefined ? sortedItems.slice(0, limit) : sortedItems;
   return (
     <div className="m-4 py-12">
       <div className="container mx-auto">
         <h2 className="text-3xl font-bold mb-8">お知らせ</h2>
         <div className="space-y-4">
-          {displayedItems.map(
-            (item: { date: string; title: string }, index) => (
+          {displayedItems.map((item: NewsItem, index) => {
+            const isLong = item.content && item.content.length > 60;
+
+            return (
               <div
                 key={index}
                 className="grid grid-cols-1 md:grid-cols-[120px_1fr_auto] gap-2 md:gap-4 border-b pb-4"
               >
                 {/* 日付 */}
-                {/* TODO: 日付のフォーマットを日本語にする */}
                 <span className="text-gray-600 text-sm md:text-base">
-                  {new Date(item.date).toLocaleDateString("ja-JP")}
+                  {item.eventDate &&
+                    new Date(item.eventDate).toLocaleDateString("ja-JP")}
                 </span>
-                {/* タイトル */}
-                <span className="font-semibold">{item.title}</span>
-                {/* ボタン */}
-                <div className="flex gap-2 justify-end mt-1 md:mt-0">
-                  <button className="flex items-center justify-center w-8 h-8 rounded bg-blue-500 text-white hover:bg-blue-600">
-                    <FaFileAlt />
-                  </button>
 
-                  <button className="flex items-center justify-center w-8 h-8 rounded bg-red-500 text-white hover:bg-red-600">
-                    <FaYoutube />
-                  </button>
-                </div>{" "}
+                {/* メイン（タイトル＋本文） */}
+                <div>
+                  <span className="font-semibold block">{item.title}</span>
+
+                  {item.content && (
+                    <p
+                      className={`text-gray-700 text-sm md:text-base mt-1 ${isLong ? "line-clamp-2" : ""}`}
+                    >
+                      {item.content}
+                    </p>
+                  )}
+
+                  {isLong && (
+                    <a
+                      href="#access"
+                      className={`block text-right text-blue-500 text-sm underline mt-1`}
+                    >
+                      詳しくはこちら →
+                    </a>
+                  )}
+                </div>
+
+                {/* ボタン */}
+                <div className="flex gap-2 justify-end items-start">
+                  {item.doc && (
+                    <a
+                      href={item.doc}
+                      target="_blank"
+                      className="flex items-center justify-center w-8 h-8 rounded bg-blue-500 text-white hover:bg-blue-600"
+                    >
+                      <FaFileAlt />
+                    </a>
+                  )}
+
+                  {item.youtube && (
+                    <a
+                      href={item.youtube}
+                      target="_blank"
+                      className="flex items-center justify-center w-8 h-8 rounded bg-red-500 text-white hover:bg-red-600"
+                    >
+                      <FaYoutube />
+                    </a>
+                  )}
+                </div>
               </div>
-            ),
-          )}
+            );
+          })}
         </div>
       </div>
     </div>
