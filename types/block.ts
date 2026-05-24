@@ -13,7 +13,8 @@ export type AboutData = {
 };
 
 export type NewsData = {
-  items: { title: string; date: string }[];
+  source: string;
+  limit?: number;
 };
 
 export type GreetingData = AboutData;

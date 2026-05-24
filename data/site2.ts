@@ -90,11 +90,8 @@ export const site2 = {
             id: "news-main",
             type: "news",
             data: {
-              items: [
-                { title: "クリスマス礼拝のお知らせ", date: "2024-12-24" },
-                { title: "新年礼拝のお知らせ", date: "2025-01-01" },
-                { title: "復活祭礼拝のお知らせ", date: "2025-04-20" },
-              ],
+              source: "news2",
+              limit: 5,
             },
           },
         ],
