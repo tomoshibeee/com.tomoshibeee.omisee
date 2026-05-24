@@ -19,7 +19,14 @@ export type NewsData = {
 export type GreetingData = AboutData;
 
 export type ServiceData = {
-  items: { icon: string; text: string }[];
+  items: {
+    id: string;
+    title: string;
+    time: string;
+    location: string;
+    link?: string;
+    comment?: string;
+  }[];
 };
 
 export type AccessData = {};
