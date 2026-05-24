@@ -1,14 +1,17 @@
 import { news1 } from "@/data/news1";
 import { news2 } from "@/data/news2";
 
-export const DATA_MAP: {
-  [key: string]: {
-    items: NewsItem[];
-  };
-} = {
-  news1: { items: news1 },
-  news2: { items: news2 },
+type NewsGroup = {
+  id: string;
+  items: NewsItem[];
 };
+
+// TODO : DBからお知らせを取得するようにする
+export const NEWS_LIST : NewsGroup[] = [
+  { id: "news1", items: news1 },
+  { id: "news2", items: news2 }
+  // { id: "news3", items: news3 },
+];
 
 type NewsItem = {
   title: string;
@@ -24,7 +27,15 @@ import { NewsData } from "@/types/block";
 import { FaFileAlt, FaYoutube } from "react-icons/fa";
 
 export default function NewsBlock({ source, limit }: NewsData) {
-  const data = DATA_MAP[source];
+  const data = NEWS_LIST.find((news) => news.id === source);
+
+  if (data === undefined) {
+    return (
+      <div className="p-6 bg-red-100 text-red-700 rounded">
+        ニュースのデータが見つかりませんでした。
+      </div>
+    );
+  } 
 
   const now = new Date();
 
