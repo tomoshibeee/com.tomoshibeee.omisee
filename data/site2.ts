@@ -104,9 +104,33 @@ export const site2 = {
         type: "service",
         blocks: [
           {
-            id: "service-id",
+            id: "service-info1",
             type: "service",
-            data: { items: [{ icon: "map", text: "毎週日曜 10:00〜" }] },
+            data: {
+              items: [
+                {
+                  id: "service1",
+                  title: "日曜礼拝",
+                  time: "日曜10:00〜",
+                  location: "本堂",
+                  comment: "カジュアルな服装でお越しいただけます",
+                },
+                {
+                  id: "service2",
+                  title: "聖書勉強会",
+                  time: "水曜10:00〜",
+                  location: "教室",
+                  comment: "初心者歓迎！聖書の基礎から学べます",
+                },
+                {
+                  id: "service3",
+                  title: "青年委員会",
+                  time: "木曜10:00〜",
+                  location: "教室",
+                  comment: "高校生〜30代の若者が集まる活動的なグループです",
+                },
+              ],
+            },
           },
         ],
       },

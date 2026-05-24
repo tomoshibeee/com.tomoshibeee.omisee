@@ -1,4 +1,5 @@
 import { Labrada } from "next/font/google";
+import { comment } from "postcss";
 
 export const site1 = {
   meta: {
@@ -33,7 +34,7 @@ export const site1 = {
         ],
       },
       {
-        label:"活動紹介",
+        label: "活動紹介",
         children: [
           { label: "ボランティア", href: "#volunteer" },
           { label: "地域交流", href: "#community" },
@@ -117,9 +118,21 @@ export const site1 = {
             type: "service",
             data: {
               items: [
-                { icon: "map", text: "日曜礼拝 日曜10:00〜" },
-                { icon: "map", text: "聖書勉強会 水曜10:00〜" },
-                { icon: "map", text: "青年委員会 木曜10:00〜" },
+                {
+                  id: "service1",
+                  title: "日曜礼拝",
+                  time: "日曜10:00〜",
+                  location: "本堂",
+                  comment: "カジュアルな服装でお越しいただけます",
+                  link: "#news",
+                },
+                {
+                  id: "service2",
+                  title: "聖書勉強会",
+                  time: "水曜10:00〜",
+                  location: "教室",
+                  comment: "どなたでも参加できます",
+                }
               ],
             },
           },
