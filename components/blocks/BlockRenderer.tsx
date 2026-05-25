@@ -16,7 +16,7 @@ import {
   AccessBlockType,
   CtaBlockType,
   ServiceBlockType,
-} from "@/types/block/index";
+} from "@/features/block/index";
 interface Props {
   meta: MetaData;
   block: Block;

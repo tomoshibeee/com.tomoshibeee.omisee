@@ -1,4 +1,4 @@
-import { ServiceBlockData } from "@/types/block";
+import { ServiceBlockData } from "@/features/block";
 
 import { FaClock, FaMapMarkerAlt } from "react-icons/fa";
 

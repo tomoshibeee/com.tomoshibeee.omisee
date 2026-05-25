@@ -1,4 +1,5 @@
-import { HeroBlockData } from "@/types/block";
+import { HeroBlockData }  from "@/features/block";
+
 
 export default function HeroBlockSingleImage({ title, message = "", images }: HeroBlockData) {
   const imageUrl = images?.[0]?.url;

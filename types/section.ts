@@ -1,4 +1,4 @@
-import { Block } from "../types/block";
+import { Block } from "@/features/block";
 
 export type SectionData = {
   id: string;

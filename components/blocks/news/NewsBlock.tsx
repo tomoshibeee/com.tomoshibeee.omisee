@@ -22,7 +22,7 @@ type NewsItem = {
   youtube?: string;
 };
 
-import { NewsBlockData } from "@/types/block";
+import { NewsBlockData } from "@/features/block";
 
 import { FaFileAlt, FaYoutube } from "react-icons/fa";
 

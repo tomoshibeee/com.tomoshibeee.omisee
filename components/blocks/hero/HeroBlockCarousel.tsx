@@ -4,7 +4,7 @@ console.log("🔥 HeroBlockCarousel mounted");
 
 import { useEffect, useState } from "react";
 
-import { HeroBlockData } from "@/types/block";
+import { HeroBlockData } from "@/features/block";
 
 export default function HeroBlockCarousel(data: HeroBlockData) {
   const INTERVAL = 3000;

@@ -1,4 +1,4 @@
-import { GreetingBlockData } from "@/types/block";
+import { GreetingBlockData } from "@/features/block";
 
 export default function GreetingBlock(data: GreetingBlockData) {
   return (

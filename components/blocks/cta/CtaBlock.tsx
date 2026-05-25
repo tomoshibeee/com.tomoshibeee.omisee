@@ -1,4 +1,4 @@
-import { CtaBlockData } from "@/types/block";
+import { CtaBlockData } from "@/features/block";
 
 export default function CtaBlock(props: CtaBlockData) {
   const buttons = props.buttons || [];
