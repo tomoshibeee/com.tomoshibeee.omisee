@@ -72,5 +72,5 @@ export default function BlockRenderer({ meta, block }: Props) {
 
   if (!render) return null;
 
-  return render(block, meta);
+  return render(block as any, meta);
 }

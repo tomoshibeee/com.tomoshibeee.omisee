@@ -1,6 +1,6 @@
-import { HeroData } from "@/types/block";
+import { HeroBlockData } from "@/types/block";
 
-export default function HeroBlockSingleImage({ title, message = "", images }: HeroData) {
+export default function HeroBlockSingleImage({ title, message = "", images }: HeroBlockData) {
   const imageUrl = images?.[0]?.url;
   const backgroundImage = imageUrl ? `url(${imageUrl})` : undefined;
 

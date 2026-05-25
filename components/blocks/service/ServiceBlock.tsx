@@ -1,4 +1,4 @@
-import { ServiceData } from "@/types/block";
+import { ServiceBlockData } from "@/types/block";
 
 import { FaClock, FaMapMarkerAlt } from "react-icons/fa";
 
@@ -8,7 +8,7 @@ const getGridCols = (count: number) => {
   return "grid-cols-1 md:grid-cols-3";
 };
 
-export default function ServiceBlock({ items }: ServiceData) {
+export default function ServiceBlock({ items }: ServiceBlockData) {
   const gridCols = getGridCols(items.length);
   return (
     <div className={`p-10 grid ${gridCols} gap-6`}>

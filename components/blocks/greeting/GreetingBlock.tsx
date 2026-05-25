@@ -1,6 +1,6 @@
-import { GreetingData } from "@/types/block";
+import { GreetingBlockData } from "@/types/block";
 
-export default function GreetingBlock(data: GreetingData) {
+export default function GreetingBlock(data: GreetingBlockData) {
   return (
     data.name.trim() && (
       <div className="p-6 text-gray-800">
@@ -33,13 +33,11 @@ export default function GreetingBlock(data: GreetingData) {
               </p>
 
               {data.bio && <p className="text-left">{data.bio}</p>}
-              {data.message && (
-                <p className="text-left">{data.message}</p>
-              )}
+              {data.message && <p className="text-left">{data.message}</p>}
             </div>
           </div>
         </div>
       </div>
     )
-  )
+  );
 }

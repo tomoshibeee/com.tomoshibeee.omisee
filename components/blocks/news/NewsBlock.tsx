@@ -22,11 +22,11 @@ type NewsItem = {
   youtube?: string;
 };
 
-import { NewsData } from "@/types/block";
+import { NewsBlockData } from "@/types/block";
 
 import { FaFileAlt, FaYoutube } from "react-icons/fa";
 
-export default function NewsBlock({ source, limit }: NewsData) {
+export default function NewsBlock({ source, limit }: NewsBlockData) {
   const data = NEWS_LIST.find((news) => news.id === source);
 
   if (data === undefined) {

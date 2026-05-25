@@ -1,6 +1,6 @@
-import { CtaData } from "@/types/block";
+import { CtaBlockData } from "@/types/block";
 
-export default function CtaBlock(props: CtaData) {
+export default function CtaBlock(props: CtaBlockData) {
   const buttons = props.buttons || [];
   if (buttons.length === 0) return null;
   return (
