@@ -16,7 +16,7 @@ import {
   AccessBlockType,
   CtaBlockType,
   ServiceBlockType,
-} from "../../types/block";
+} from "@/types/block/index";
 interface Props {
   meta: MetaData;
   block: Block;
@@ -25,7 +25,7 @@ type BlockRendererMap = {
   hero: (block: HeroBlockType) => JSX.Element;
   news: (block: NewsBlockType) => JSX.Element;
   greeting: (block: GreetingBlockType) => JSX.Element;
-  access: (block: AccessBlockType) => JSX.Element;
+  access: (block: AccessBlockType, meta: MetaData) => JSX.Element;
   cta: (block: CtaBlockType) => JSX.Element;
   service: (block: ServiceBlockType) => JSX.Element;
 };
