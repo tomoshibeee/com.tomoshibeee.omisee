@@ -8,15 +8,29 @@ import AccessBlock from "./access/AccessBlock";
 import CtaBlock from "./cta/CtaBlock";
 
 import { MetaData } from "@/types/meta";
-import { Block } from "../../types/block";
+import {
+  Block,
+  HeroBlockType,
+  NewsBlockType,
+  GreetingBlockType,
+  AccessBlockType,
+  CtaBlockType,
+  ServiceBlockType,
+} from "../../types/block";
 interface Props {
   meta: MetaData;
   block: Block;
 }
+type BlockRendererMap = {
+  hero: (block: HeroBlockType) => JSX.Element;
+  news: (block: NewsBlockType) => JSX.Element;
+  greeting: (block: GreetingBlockType) => JSX.Element;
+  access: (block: AccessBlockType) => JSX.Element;
+  cta: (block: CtaBlockType) => JSX.Element;
+  service: (block: ServiceBlockType) => JSX.Element;
+};
 
-type BlockRendererFn = (block: Block, meta?: MetaData) => JSX.Element;
-
-const blockRegistry: Record<string, BlockRendererFn> = {
+const blockRegistry: BlockRendererMap = {
   hero: (block) => {
     if (block.type !== "hero") return {} as JSX.Element;
     return block.variant === "carousel" ? (
@@ -37,15 +51,14 @@ const blockRegistry: Record<string, BlockRendererFn> = {
   },
 
   service: (block) => {
-    if (block.type !== "service") return {} as JSX.Element;
     return <ServiceBlock {...block.data} />;
   },
 
   access: (block, meta) => {
-    if (block.type !== "access") return {} as JSX.Element;
+    // if (block.type !== "access") return {} as JSX.Element;
     if (!meta) throw new Error("meta missing");
     // if (!meta.slug) throw new Error("slug missing");
-    return <AccessBlock {...meta } />;
+    return <AccessBlock {...meta} />;
   },
 
   cta: (block) => {

@@ -36,6 +36,52 @@ export type CtaData = {
   buttons?: { label: string; href: string }[];
 };
 
+export type HeroBlockType = {
+  type: "hero";
+  variant?: "single" | "carousel";
+  data: {
+    title: string;
+    message?: string;
+    images: { url: string; alt: string }[];
+  };
+};
+
+export type ServiceBlockType = {
+  type: "service";
+  data: ServiceData;
+};
+
+export type NewsBlockType = {
+  type: "news";
+  data: {
+    source: string;
+    limit?: number;
+  };
+};
+
+export type GreetingBlockType = {
+  type: "greeting";
+  data: {
+    name: string;
+    role?: string;
+    image: string;
+    bio?: string;
+    message?: string;
+  };
+};
+
+export type AccessBlockType = {
+  type: "access";
+  data: object;
+};
+
+export type CtaBlockType = {
+  type: "cta";
+  data: {
+    buttons?: { label: string; href: string }[];
+  };
+};
+
 export type Block =
   | {
       id?: string;
