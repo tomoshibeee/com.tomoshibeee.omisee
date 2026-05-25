@@ -44,7 +44,7 @@ const blockRegistry: Record<string, BlockRendererFn> = {
   access: (block, meta) => {
     if (block.type !== "access") return {} as JSX.Element;
     if (!meta) throw new Error("meta missing");
-    if (!meta.slug) throw new Error("slug missing");
+    // if (!meta.slug) throw new Error("slug missing");
     return <AccessBlock {...meta } />;
   },
 
