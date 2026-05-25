@@ -9,7 +9,7 @@ export default function AccessBlock(meta: MetaData) {
 
       <p>{meta.address}</p>
 
-      <MapBlock address={meta.address} />
+      {meta.address && <MapBlock address={meta.address} />}
 
       <p>{meta.access}</p>
     </div>

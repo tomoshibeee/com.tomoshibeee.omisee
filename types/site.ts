@@ -1,4 +1,5 @@
 import { Section } from "../types/section";
+import { MetaData } from "./meta";
 
 type MenuItem = {
   label: string;
@@ -7,13 +8,7 @@ type MenuItem = {
 };
 
 export type SiteData = {
-  meta: {
-    slug: string;
-    name: string;
-    email: string;
-    message: string;
-    sns: { type: string; url: string }[];
-  };
+  meta: MetaData;
   navigation: {
     menu?: MenuItem[];
   };

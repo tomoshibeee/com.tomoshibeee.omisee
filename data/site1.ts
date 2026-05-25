@@ -1,6 +1,3 @@
-import { Labrada } from "next/font/google";
-import { comment } from "postcss";
-
 export const site1 = {
   meta: {
     slug: "tokyo-church",
