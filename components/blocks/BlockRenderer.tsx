@@ -1,11 +1,11 @@
 import React, { JSX } from "react";
-import HeroBlockImage from "./hero/HeroBlockImage";
-import HeroBlockCarousel from "./hero/HeroBlockCarousel";
-import NewsBlock from "./news/NewsBlock";
-import GreetingBlock from "./greeting/GreetingBlock";
-import ServiceBlock from "./service/ServiceBlock";
-import AccessBlock from "./access/AccessBlock";
-import CtaBlock from "./cta/CtaBlock";
+import HeroBlockImage from "@/features/block/hero/components/HeroBlockImage";
+import HeroBlockCarousel from "@/features/block/hero/components/HeroBlockCarousel";
+import NewsBlock from "@/features/block/news/components/NewsBlock";
+import GreetingBlock from "@/features/block/greeting/components/GreetingBlock";
+import ServiceBlock from "@/features/block/service/components/ServiceBlock";
+import AccessBlock from "@/features/block/access/components/AccessBlock";
+import CtaBlock from "@/features/block/cta/components/CtaBlock";
 
 import { MetaData } from "@/types/meta";
 import {
