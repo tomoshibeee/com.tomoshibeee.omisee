@@ -1,4 +1,4 @@
-import { Section } from "../types/section";
+import { Section } from "@/features/section/components/types";
 import { MetaData } from "./meta";
 
 type MenuItem = {
