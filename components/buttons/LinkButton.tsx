@@ -17,6 +17,7 @@ const SNS_ICON_MAP: Record<string, React.ComponentType<{ size?: number }>> = {
 };
 
 const BUTTON_SIZE = 20;
+const COLOR = "gray";
 
 export default function LinkButton({item}: {item: SNSItem}) {
   const Icon = SNS_ICON_MAP[item.type];
@@ -24,7 +25,9 @@ export default function LinkButton({item}: {item: SNSItem}) {
   return (
     <a
       href={item.url}
-      className="flex h-9 w-9 border border-blue-600 items-center justify-center rounded-full text-blue-600 transition-colors hover:bg-slate-100 hover:text-blue-500"
+      className={`flex h-9 w-9 border border-${COLOR}-600 items-center justify-center rounded-full text-${COLOR}-600 transition-colors hover:bg-slate-100 hover:text-${COLOR}-500`}
+      target="_blank"
+      rel="noopener noreferrer"
     >
       <Icon size={BUTTON_SIZE} />
     </a>
