@@ -21,6 +21,10 @@ export default function Header({ site }: any) {
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
+
+  const sortedSNSItems = [...site.meta.sns].sort((a, b) => a.priority - b.priority);
+  const headerSNSItems = sortedSNSItems.slice(0, 2);
+
   return (
     <header className="sticky top-0 z-50 flex items-center justify-between border-b border-slate-100 bg-white px-4 py-3 pb-0 text-gray-800 font-semibold shadow-sm">
       {" "}
@@ -66,7 +70,7 @@ export default function Header({ site }: any) {
 
         {/* 区切り線を入れる */}
 
-        {site.meta.sns?.map((item: SNSItem, i: number) => {
+        {headerSNSItems.map((item: SNSItem, i: number) => {
           return <LinkButton key={`${item.type}-${i}`} item={item} />;
         })}
 

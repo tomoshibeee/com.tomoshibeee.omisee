@@ -1,4 +1,5 @@
 import { SiteData } from "@/types/site";
+import { SNSItem } from "@/types/sns";
 
 export const site1: SiteData = {
   meta: {
@@ -12,12 +13,12 @@ export const site1: SiteData = {
     access: "JR新宿駅から徒歩5分",
     message: "unused",
     sns: [
-      { type: "x", url: "#" },
-      { type: "facebook", url: "#" },
-      { type: "instagram", url: "#" },
-      { type: "youtube", url: "#" },
-      { type: "note", url: "#" },
-    ],
+      { type: "facebook", url: "#", priority: 3 },
+      { type: "x", url: "#", priority: 1 },
+      { type: "instagram", url: "#", priority: 2 },
+      { type: "youtube", url: "#", priority: 4 },
+      { type: "note", url: "#", priority: 5 },
+    ] as SNSItem[],
   },
   navigation: {
     menu: [
