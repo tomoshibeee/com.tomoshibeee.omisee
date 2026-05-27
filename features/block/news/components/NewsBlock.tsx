@@ -1,5 +1,12 @@
 import { news1 } from "@/data/news1";
 import { news2 } from "@/data/news2";
+import { NewsBlockData } from "@/features/block";
+import {
+  FaArrowRight,
+  FaCalendarDays,
+  FaFileLines,
+  FaYoutube,
+} from "react-icons/fa6";
 
 type NewsGroup = {
   id: string;
@@ -9,7 +16,7 @@ type NewsGroup = {
 // TODO : DBからお知らせを取得するようにする
 export const NEWS_LIST : NewsGroup[] = [
   { id: "news1", items: news1 },
-  { id: "news2", items: news2 }
+  { id: "news2", items: news2 },
   // { id: "news3", items: news3 },
 ];
 
@@ -22,20 +29,24 @@ type NewsItem = {
   youtube?: string;
 };
 
-import { NewsBlockData } from "@/features/block";
-
-import { FaFileAlt, FaYoutube } from "react-icons/fa";
+const formatDate = (date: string) => {
+  const [year, month, day] = date.split("-");
+  if (!year || !month || !day) return date;
+  return `${year}.${month}.${day}`;
+};
 
 export default function NewsBlock({ source, limit }: NewsBlockData) {
   const data = NEWS_LIST.find((news) => news.id === source);
 
   if (data === undefined) {
     return (
-      <div className="p-6 bg-red-100 text-red-700 rounded">
-        ニュースのデータが見つかりませんでした。
+      <div className="bg-white px-6 py-14">
+        <div className="mx-auto max-w-5xl rounded-lg bg-red-50 p-6 text-red-700 shadow-sm">
+          ニュースのデータが見つかりませんでした。
+        </div>
       </div>
     );
-  } 
+  }
 
   const now = new Date();
 
@@ -49,32 +60,46 @@ export default function NewsBlock({ source, limit }: NewsBlockData) {
 
   const displayedItems =
     limit !== undefined ? sortedItems.slice(0, limit) : sortedItems;
+
   return (
-    <div className="m-4 py-12">
-      <div className="container mx-auto">
-        <h2 className="text-3xl font-bold mb-8">お知らせ</h2>
-        <div className="space-y-4">
+    <div className="bg-slate-50 px-6 py-14 text-gray-800">
+      <div className="mx-auto max-w-5xl">
+        <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="text-sm font-semibold text-blue-600">News</p>
+            <h2 className="mt-2 text-3xl font-bold text-gray-900">お知らせ</h2>
+          </div>
+          <p className="max-w-xl leading-7 text-gray-600">
+            礼拝、集会、教会からのお知らせを新しい順に掲載しています。
+          </p>
+        </div>
+
+        <div className="grid gap-4">
           {displayedItems.map((item: NewsItem, index) => {
             const isLong = item.content && item.content.length > 60;
 
             return (
-              <div
+              <article
                 key={index}
-                className="grid grid-cols-1 md:grid-cols-[120px_1fr_auto] gap-2 md:gap-4 border-b pb-4"
+                className="grid gap-5 rounded-lg bg-white p-5 shadow-sm transition hover:shadow-md md:grid-cols-[150px_1fr_auto]"
               >
-                {/* 日付 */}
-                <span className="text-gray-600 text-sm md:text-base">
-                  {item.eventDate &&
-                    new Date(item.eventDate).toLocaleDateString("ja-JP")}
-                </span>
+                <div className="flex items-center gap-3 text-sm font-semibold text-blue-600 md:items-start">
+                  <FaCalendarDays className="mt-0.5 shrink-0" />
+                  <time dateTime={item.eventDate || item.publishedAt}>
+                    {formatDate(item.eventDate || item.publishedAt)}
+                  </time>
+                </div>
 
-                {/* メイン（タイトル＋本文） */}
-                <div>
-                  <span className="font-semibold block">{item.title}</span>
+                <div className="min-w-0">
+                  <h3 className="text-lg font-bold text-gray-900">
+                    {item.title}
+                  </h3>
 
                   {item.content && (
                     <p
-                      className={`text-gray-700 text-sm md:text-base mt-1 ${isLong ? "line-clamp-2" : ""}`}
+                      className={`mt-2 text-sm leading-7 text-gray-600 md:text-base ${
+                        isLong ? "line-clamp-2" : ""
+                      }`}
                     >
                       {item.content}
                     </p>
@@ -83,22 +108,24 @@ export default function NewsBlock({ source, limit }: NewsBlockData) {
                   {isLong && (
                     <a
                       href="#access"
-                      className={`block text-right text-blue-500 text-sm underline mt-1`}
+                      className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700"
                     >
-                      詳しくはこちら →
+                      詳しくはこちら
+                      <FaArrowRight className="text-xs" />
                     </a>
                   )}
                 </div>
 
-                {/* ボタン */}
-                <div className="flex gap-2 justify-end items-start">
+                <div className="flex gap-2 md:justify-end">
                   {item.doc && (
                     <a
                       href={item.doc}
                       target="_blank"
-                      className="flex items-center justify-center w-8 h-8 rounded bg-blue-500 text-white hover:bg-blue-600"
+                      rel="noreferrer"
+                      aria-label={`${item.title}の資料を開く`}
+                      className="flex h-10 w-10 items-center justify-center rounded-md bg-blue-50 text-blue-600 transition hover:bg-blue-600 hover:text-white"
                     >
-                      <FaFileAlt />
+                      <FaFileLines />
                     </a>
                   )}
 
@@ -106,13 +133,15 @@ export default function NewsBlock({ source, limit }: NewsBlockData) {
                     <a
                       href={item.youtube}
                       target="_blank"
-                      className="flex items-center justify-center w-8 h-8 rounded bg-red-500 text-white hover:bg-red-600"
+                      rel="noreferrer"
+                      aria-label={`${item.title}の動画を開く`}
+                      className="flex h-10 w-10 items-center justify-center rounded-md bg-red-50 text-red-600 transition hover:bg-red-600 hover:text-white"
                     >
                       <FaYoutube />
                     </a>
                   )}
                 </div>
-              </div>
+              </article>
             );
           })}
         </div>
