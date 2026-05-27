@@ -1,16 +1,26 @@
+import { FaArrowRight } from "react-icons/fa6";
+
 import { CtaBlockData } from "@/features/block";
 
 export default function CtaBlock(props: CtaBlockData) {
   const buttons = props.buttons || [];
   if (buttons.length === 0) return null;
+
   return (
-    <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20">
-      <div className="flex flex-col sm:flex-row gap-4">
+    <div className="absolute bottom-10 left-1/2 z-20 w-full -translate-x-1/2 px-6">
+      <div className="mx-auto flex max-w-3xl flex-col items-stretch justify-center gap-3 rounded-lg bg-white/90 p-3 shadow-lg backdrop-blur sm:flex-row sm:items-center sm:rounded-full">
         {buttons.map((b, i) => (
-          <a key={i} href={b.href} className="text-center w-full sm:w-auto">
-            <div className="border px-6 py-3 min-w-[180px] bg-blue-500 text-white hover:bg-blue-600 rounded-lg transition-colors">
-              {b.label}
-            </div>
+          <a
+            key={`${b.href}-${i}`}
+            href={b.href}
+            className={`inline-flex min-h-12 items-center justify-center gap-2 rounded-md px-5 py-3 text-sm font-semibold transition sm:min-w-44 sm:rounded-full ${
+              i === 0
+                ? "bg-blue-600 text-white shadow-sm hover:bg-blue-700"
+                : "bg-slate-50 text-gray-800 hover:bg-blue-50 hover:text-blue-700"
+            }`}
+          >
+            <span>{b.label}</span>
+            <FaArrowRight className="text-xs" />
           </a>
         ))}
       </div>
