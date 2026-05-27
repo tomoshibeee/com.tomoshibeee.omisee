@@ -1,11 +1,6 @@
 import { Section } from "@/features/section/types";
 import { MetaData } from "./meta";
-
-type MenuItem = {
-  label: string;
-  href?: string;
-  children?: MenuItem[];
-};
+import { MenuItem } from "./menu";
 
 export type SiteData = {
   meta: MetaData;
