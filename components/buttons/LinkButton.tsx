@@ -16,20 +16,46 @@ const SNS_ICON_MAP: Record<string, React.ComponentType<{ size?: number }>> = {
   note: FaBlog,
 };
 
-const BUTTON_SIZE = 20;
-const COLOR = "gray";
-
-export default function LinkButton({item}: {item: SNSItem}) {
+function LinkButton({
+  item,
+  className,
+}: {
+  item: SNSItem;
+  className?: string;
+}) {
+  const SIZE = 20;
   const Icon = SNS_ICON_MAP[item.type];
   if (!Icon) return null;
+
   return (
     <a
       href={item.url}
-      className={`flex h-9 w-9 border border-${COLOR}-600 items-center justify-center rounded-full text-${COLOR}-600 transition-colors hover:bg-slate-100 hover:text-${COLOR}-500`}
+      aria-label={`${item.type}を開く`}
       target="_blank"
       rel="noopener noreferrer"
+      className={className}
     >
-      <Icon size={BUTTON_SIZE} />
+      <Icon size={SIZE} />
     </a>
+  );
+}
+
+export function LinkButtonHeader({ item }: { item: SNSItem }) {
+  const COLOR = "gray";
+  return (
+    <LinkButton
+      item={item}
+      className={`flex h-9 w-9 items-center justify-center rounded-full text-${COLOR}-600 transition hover:bg-slate-100 hover:text-${COLOR}-900`}
+    />
+  );
+}
+
+export function LinkButtonFooter({ item }: { item: SNSItem }) {
+  const COLOR = "gray";
+  return (
+    <LinkButton
+      item={item}
+      className={`flex h-9 w-9 items-center justify-center rounded-md bg-white/10 text-${COLOR}-200 transition hover:bg-${COLOR}-600 hover:text-white`}
+    />
   );
 }
