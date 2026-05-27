@@ -1,5 +1,5 @@
 import { MetaData } from "@/types/meta";
-import { SectionData } from "@/features/section/components/types";
+import { SectionData } from "@/features/section/types";
 import BlockRenderer from "@/features/block/BlockRenderer";
 
 export default function BaseSection({

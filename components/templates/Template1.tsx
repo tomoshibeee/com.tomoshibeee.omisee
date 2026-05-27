@@ -1,7 +1,7 @@
 import Header from "@/components/shared/Header";
 import Footer from "@/components/shared/Footer";
 import BaseSection from "@/features/section/components/BaseSection";
-import { SectionData } from "@/features/section/components/types";
+import { SectionData } from "@/features/section/types";
 
 export default function Template1({ site }: any) {
   console.log("Rendering Template1 with site:", site);
