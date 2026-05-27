@@ -42,7 +42,7 @@ export default function GreetingBlock(data: GreetingBlockData) {
           <div>
             <p className="text-sm font-semibold text-blue-600">Greeting</p>
             <h2 className="mt-2 text-3xl font-bold text-gray-900">
-              牧師からのごあいさつ
+              {data.role ? `${data.role}からの` : ""}ごあいさつ
             </h2>
           </div>
 
