@@ -34,11 +34,11 @@ export default function Header({ site }: any) {
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
   return (
-    <header className="sticky top-0 z-50 flex items-center justify-between border-b border-slate-100 bg-white px-4 py-3 text-gray-800 shadow-sm">
+    <header className="sticky top-0 z-50 flex items-center justify-between border-b border-slate-100 bg-white px-4 py-0 text-gray-800 shadow-sm">
       <div className="flex items-center gap-2 border-b border-blue-200 font-bold text-gray-900">
         {/* TODO : ロゴ画像を入れるかもしれない */}
         {/* TODO : ロゴがあればここに画像を入れる */}
-        <span className="text-blue-600 leading-none text-lg leading-tight md:text-2dxl ">
+        <span className="text-blue-600 leading-none text-lg leading-tight md:text-2xl ">
           [LOGO]
         </span>
         <span className="leading-none text-lg leading-tight md:text-2xl ">
@@ -50,11 +50,11 @@ export default function Header({ site }: any) {
           <div key={i} className="relative">
             <button
               onClick={() => toggle(i)}
-              className={`px-2 py-1 transition-colors ${
+              className={`my-0 py-4 height-full px-2 py-1 transition-colors ${
                 openIndex === i
                   ? "border-b-2 border-blue-600 text-gray-900"
                   : "border-b-2 border-transparent text-gray-700 hover:text-gray-900"
-              } leading-tight md:text-2xl`}
+              } leading-tight md:text-xl m-0`}
             >
               {m.label}
             </button>
@@ -65,7 +65,7 @@ export default function Header({ site }: any) {
                   <a
                     key={j}
                     href={c.href}
-                    className="block px-4 py-2 whitespace-nowrap text-gray-700 hover:bg-white hover:text-gray-900"
+                    className="block px-4 py-2 whitespace-nowrap text-gray-700 hover:bg-white hover:text-gray-900 leading-tight md:text-md"
                   >
                     {c.label}
                   </a>
