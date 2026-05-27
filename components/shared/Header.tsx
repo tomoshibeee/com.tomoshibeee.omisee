@@ -34,58 +34,61 @@ export default function Header({ site }: any) {
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
   return (
-    <header className="sticky top-0 z-50 flex justify-between items-center p-4 pb-0 bg-white">
-      <div className="font-bold border-b border-red-200">{site.meta.name}</div>
-      <nav ref={menuRef} className="hidden md:flex gap-4">
-        {site.navigation.menu?.map(
-          (
-            m: {
-              href?: string;
-              label: string;
-              children?: { href: string; label: string }[];
-            },
-            i: number,
-          ) => (
-            <div key={i} className="relative">
-              <button
-                onClick={() => toggle(i)} 
-                className={`px-2 py-1 ${
-                  openIndex === i ? "border-gray-900" : "border-transparent"
-                }`}
-              >
-                {m.label}
-              </button>
-              {m.children && m.children.length > 0 && openIndex === i && (
-                <div className="absolute top-full left-0 w-[180px] bg-white shadow-md">
-                  {" "}
-                  {m.children.map((c, j) => (
-                    <a
-                      key={j}
-                      href={c.href}
-                      className="block px-4 py-2 whitespace-nowrap hover:bg-gray-100 last:border-0"
-                    >
-                      {c.label}
-                    </a>
-                  ))}
-                </div>
-              )}
-            </div>
-          ),
-        )}
+    <header className="sticky top-0 z-50 flex items-center justify-between border-b border-slate-100 bg-white px-4 py-3 text-gray-800 shadow-sm">
+      <div className="border-b border-blue-200 font-bold text-gray-900">
+        {site.meta.name}
+      </div>
+
+      <nav ref={menuRef} className="hidden gap-4 text-sm md:flex">
+        {site.navigation.menu?.map((m, i) => (
+          <div key={i} className="relative">
+            <button
+              onClick={() => toggle(i)}
+              className={`px-2 py-1 transition-colors ${
+                openIndex === i
+                  ? "border-b-2 border-blue-600 text-gray-900"
+                  : "border-b-2 border-transparent text-gray-700 hover:text-gray-900"
+              }`}
+            >
+              {m.label}
+            </button>
+
+            {m.children && m.children.length > 0 && openIndex === i && (
+              <div className="absolute left-0 top-full w-[180px] rounded-md border border-slate-100 bg-slate-50 shadow-sm">
+                {m.children.map((c, j) => (
+                  <a
+                    key={j}
+                    href={c.href}
+                    className="block px-4 py-2 whitespace-nowrap text-gray-700 hover:bg-white hover:text-gray-900"
+                  >
+                    {c.label}
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
 
         {site.meta.sns?.map((s: any, i: number) => {
           const Icon = SNS_ICON_MAP[s.type];
           if (!Icon) return null;
 
           return (
-            <a key={`${s.type}-${i}`} href={s.url}>
+            <a
+              key={`${s.type}-${i}`}
+              href={s.url}
+              className="text-blue-600 hover:text-blue-500"
+            >
               <Icon size={18} />
             </a>
           );
         })}
-      </nav>{" "}
+      </nav>
+
       {/* スマホ用 */}
-      <button className="md:hidden">☰</button>
+      <button className="text-gray-700 transition-colors hover:text-blue-600 md:hidden">
+        ☰
+      </button>
     </header>
   );
 }
