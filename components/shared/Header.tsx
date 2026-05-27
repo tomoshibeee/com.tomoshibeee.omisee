@@ -36,7 +36,8 @@ export default function Header({ site }: any) {
   return (
     <header className="sticky top-0 z-50 flex items-center justify-between border-b border-slate-100 bg-white px-4 py-3 text-gray-800 shadow-sm">
       <div className="border-b border-blue-200 font-bold text-gray-900">
-        {site.meta.name}
+        {/* TODO : Add logo */}
+        [LOGO]{site.meta.name}
       </div>
 
       <nav ref={menuRef} className="hidden gap-4 text-sm md:flex">
