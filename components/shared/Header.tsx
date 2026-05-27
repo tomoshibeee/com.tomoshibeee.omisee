@@ -1,6 +1,6 @@
 "use client";
 import { MenuItem } from "@/types/menu";
-import { SNSItem} from "@/types/sns";
+import { SNSItem } from "@/types/sns";
 import { useState, useRef, useEffect } from "react";
 import {
   FaTwitter,
@@ -36,8 +36,9 @@ export default function Header({ site }: any) {
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
   return (
-    <header className="sticky top-0 z-50 flex items-center justify-between border-b border-slate-100 bg-white px-4 py-0 text-gray-800 shadow-sm">
-      <div className="flex items-center gap-2 font-bold text-gray-900">
+    <header className="sticky top-0 z-50 flex items-center justify-between border-b border-slate-100 bg-white px-4 py-3 pb-0 text-gray-800 font-semibold shadow-sm">
+      {" "}
+      <div className="flex items-center gap-2 text-gray-900">
         {/* TODO : ロゴ画像を入れるかもしれない */}
         {/* TODO : ロゴがあればここに画像を入れる */}
         <span className="text-blue-600 leading-none text-lg leading-tight md:text-2xl ">
@@ -94,7 +95,6 @@ export default function Header({ site }: any) {
           );
         })}
       </nav>
-
       {/* スマホ用 */}
       <button className="text-gray-700 transition-colors hover:text-blue-600 md:hidden">
         ☰
