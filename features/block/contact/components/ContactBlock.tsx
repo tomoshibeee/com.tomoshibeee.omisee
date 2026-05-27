@@ -65,37 +65,57 @@ export default function ContactBlock({
           encType="text/plain"
           className="grid gap-4 rounded-lg bg-white p-6 shadow-md"
         >
-          <label className="grid gap-2 text-sm font-medium text-gray-700">
+          <div className="grid gap-2">
+            <label
+              htmlFor="contact-name"
+              className="text-sm font-medium text-gray-700"
+            >
             お名前
+            </label>
             <input
+              id="contact-name"
               name="name"
               required
+              autoComplete="name"
               className="rounded-md border border-gray-300 px-4 py-3 font-normal outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               placeholder="山田 太郎"
             />
-          </label>
+          </div>
 
-          <label className="grid gap-2 text-sm font-medium text-gray-700">
+          <div className="grid gap-2">
+            <label
+              htmlFor="contact-email"
+              className="text-sm font-medium text-gray-700"
+            >
             メールアドレス
+            </label>
             <input
+              id="contact-email"
               name="email"
               type="email"
               required
+              autoComplete="email"
               className="rounded-md border border-gray-300 px-4 py-3 font-normal outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               placeholder="you@example.com"
             />
-          </label>
+          </div>
 
-          <label className="grid gap-2 text-sm font-medium text-gray-700">
+          <div className="grid gap-2">
+            <label
+              htmlFor="contact-message"
+              className="text-sm font-medium text-gray-700"
+            >
             お問い合わせ内容
+            </label>
             <textarea
+              id="contact-message"
               name="message"
               required
               rows={5}
               className="resize-y rounded-md border border-gray-300 px-4 py-3 font-normal outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               placeholder="ご質問やご相談内容をご記入ください"
-            />
-          </label>
+            ></textarea>
+          </div>
 
           <button
             type="submit"
