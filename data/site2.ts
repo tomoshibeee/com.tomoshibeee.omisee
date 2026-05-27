@@ -4,8 +4,9 @@ export const site2: SiteData = {
   meta: {
     slug: "yokohama-church",
     name: "横浜教会（デモ）",
+    tel: "045-123-4567",
     email: "info@yokohama-church.com",
-    address: "横浜市港北区〇〇...",
+    address: "〒220-0011 神奈川県横浜市港北区新横浜1-2-3 横浜ビル5F",
     access: "駅から徒歩5分",
     message: "unused",
     sns: [

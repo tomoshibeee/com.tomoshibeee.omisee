@@ -1,4 +1,4 @@
-import { FaEnvelope, FaLocationDot } from "react-icons/fa6";
+import { FaPhone, FaEnvelope, FaLocationDot } from "react-icons/fa6";
 
 import { ContactBlockData } from "@/features/block";
 import { MetaData } from "@/types/meta";
@@ -25,6 +25,13 @@ export default function ContactBlock({
 
           <div className="space-y-3 text-sm text-gray-700">
             <a
+              href={`tel:${meta.tel}`}
+              className="flex items-center gap-3 rounded-lg bg-white px-4 py-3 shadow-sm transition hover:text-blue-600"
+            >
+              <FaPhone className="shrink-0 text-blue-500" />
+              <span>{meta.tel}</span>
+            </a>
+            <a
               href={`mailto:${meta.email}`}
               className="flex items-center gap-3 rounded-lg bg-white px-4 py-3 shadow-sm transition hover:text-blue-600"
             >
@@ -33,7 +40,21 @@ export default function ContactBlock({
             </a>
             <div className="flex items-center gap-3 rounded-lg bg-white px-4 py-3 shadow-sm">
               <FaLocationDot className="shrink-0 text-blue-500" />
-              <span>{meta.address}</span>
+              <span className="leading-6">
+                {meta.postalCode && (
+                  <>
+                    〒{meta.postalCode}
+                    <br />
+                  </>
+                )}
+                {meta.address}
+                {meta.bldg && (
+                  <>
+                    <br />
+                    {meta.bldg}
+                  </>
+                )}
+              </span>
             </div>
           </div>
         </div>
