@@ -2,6 +2,7 @@ import { FaPhone, FaEnvelope, FaLocationDot } from "react-icons/fa6";
 
 import { ContactBlockData } from "@/features/block";
 import { MetaData } from "@/types/meta";
+import ContactForm from "./ContactForm";
 
 type Props = ContactBlockData & {
   meta: MetaData;
@@ -59,71 +60,7 @@ export default function ContactBlock({
           </div>
         </div>
 
-        <form
-          action={`mailto:${meta.email}`}
-          method="post"
-          encType="text/plain"
-          className="grid gap-4 rounded-lg bg-white p-6 shadow-md"
-        >
-          <div className="grid gap-2">
-            <label
-              htmlFor="contact-name"
-              className="text-sm font-medium text-gray-700"
-            >
-            お名前
-            </label>
-            <input
-              id="contact-name"
-              name="name"
-              required
-              autoComplete="name"
-              className="rounded-md border border-gray-300 px-4 py-3 font-normal outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
-              placeholder="山田 太郎"
-            />
-          </div>
-
-          <div className="grid gap-2">
-            <label
-              htmlFor="contact-email"
-              className="text-sm font-medium text-gray-700"
-            >
-            メールアドレス
-            </label>
-            <input
-              id="contact-email"
-              name="email"
-              type="email"
-              required
-              autoComplete="email"
-              className="rounded-md border border-gray-300 px-4 py-3 font-normal outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
-              placeholder="you@example.com"
-            />
-          </div>
-
-          <div className="grid gap-2">
-            <label
-              htmlFor="contact-message"
-              className="text-sm font-medium text-gray-700"
-            >
-            お問い合わせ内容
-            </label>
-            <textarea
-              id="contact-message"
-              name="message"
-              required
-              rows={5}
-              className="resize-y rounded-md border border-gray-300 px-4 py-3 font-normal outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
-              placeholder="ご質問やご相談内容をご記入ください"
-            ></textarea>
-          </div>
-
-          <button
-            type="submit"
-            className="mt-2 rounded-md bg-blue-600 px-5 py-3 font-semibold text-white transition hover:bg-blue-700"
-          >
-            {submitLabel}
-          </button>
-        </form>
+        <ContactForm email={meta.email} submitLabel={submitLabel} />
       </div>
     </div>
   );
