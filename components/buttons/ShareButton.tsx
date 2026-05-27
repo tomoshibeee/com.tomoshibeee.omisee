@@ -1,15 +1,14 @@
 import { FaShareFromSquare } from "react-icons/fa6";
 
-const BUTTON_SIZE = 20;
-const COLOR = "gray";
-
 export default function ShareButton() {
+  const COLOR = "gray";
+  const SIZE = 20;
   return (
     <div
-      className={`flex h-9 w-9 border border-${COLOR}-600 items-center justify-center rounded-full text-${COLOR}-600 transition-colors hover:bg-slate-100 hover:text-${COLOR}-500`}
+      className={`flex h-9 w-9 items-center justify-center rounded-full text-${COLOR}-600 transition hover:bg-slate-100 hover:text-${COLOR}-900`}
     >
       {" "}
-      <FaShareFromSquare size={BUTTON_SIZE} />
+      <FaShareFromSquare size={SIZE} />
     </div>
   );
 }
