@@ -19,6 +19,11 @@ export type Section =
     }
   | {
       id: string;
+      type: "news";
+      blocks: Block[];
+    }
+  | {
+      id: string;
       type: "service";
       blocks: Block[];
     }
