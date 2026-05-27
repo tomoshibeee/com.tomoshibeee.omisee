@@ -6,6 +6,7 @@ import GreetingBlock from "@/features/block/greeting/components/GreetingBlock";
 import ServiceBlock from "@/features/block/service/components/ServiceBlock";
 import AccessBlock from "@/features/block/access/components/AccessBlock";
 import CtaBlock from "@/features/block/cta/components/CtaBlock";
+import ContactBlock from "./contact/components/ContactBlock";
 
 import { MetaData } from "@/types/meta";
 import {
@@ -16,6 +17,7 @@ import {
   AccessBlockType,
   CtaBlockType,
   ServiceBlockType,
+  ContactBlockType,
 } from "@/features/block/index";
 interface Props {
   meta: MetaData;
@@ -27,6 +29,7 @@ type BlockRendererMap = {
   greeting: (block: GreetingBlockType) => JSX.Element;
   access: (block: AccessBlockType, meta: MetaData) => JSX.Element;
   cta: (block: CtaBlockType) => JSX.Element;
+  contact: (block: ContactBlockType, meta: MetaData) => JSX.Element;
   service: (block: ServiceBlockType) => JSX.Element;
 };
 
@@ -52,6 +55,10 @@ const blockRegistry: BlockRendererMap = {
 
   service: (block) => {
     return <ServiceBlock {...block.data} />;
+  },
+
+  contact: (block, meta) => {
+    return <ContactBlock {...block.data} meta={meta} />;
   },
 
   access: (block, meta) => {

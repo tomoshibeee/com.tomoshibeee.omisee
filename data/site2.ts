@@ -1,4 +1,6 @@
-export const site2 = {
+import { SiteData } from "@/types/site";
+
+export const site2: SiteData = {
   meta: {
     slug: "yokohama-church",
     name: "横浜教会（デモ）",
@@ -145,7 +147,16 @@ export const site2 = {
       {
         id: "contact",
         type: "contact",
-        blocks: [],
+        blocks: [
+          {
+            id: "contact-main",
+            type: "contact",
+            data: {
+              description:
+                "見学、礼拝、各集会についてのご質問をお待ちしています。",
+            },
+          },
+        ],
       },
     ],
   },

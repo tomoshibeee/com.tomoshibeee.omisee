@@ -1,4 +1,6 @@
-export const site1 = {
+import { SiteData } from "@/types/site";
+
+export const site1: SiteData = {
   meta: {
     slug: "tokyo-church",
     name: "東京教会（デモ）",
@@ -146,7 +148,16 @@ export const site1 = {
       {
         id: "contact",
         type: "contact",
-        blocks: [],
+        blocks: [
+          {
+            id: "contact-main",
+            type: "contact",
+            data: {
+              description:
+                "初めての方、礼拝や集会について知りたい方も、お気軽にご連絡ください。",
+            },
+          },
+        ],
       },
     ],
   },
