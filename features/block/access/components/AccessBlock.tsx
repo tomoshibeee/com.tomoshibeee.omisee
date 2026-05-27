@@ -1,17 +1,63 @@
+import { FaLocationDot, FaTrain } from "react-icons/fa6";
+
 import MapBlock from "./MapEmbed";
 
 import { MetaData } from "@/types/meta";
 
 export default function AccessBlock(meta: MetaData) {
+  const mapAddress = [meta.postalCode && `〒${meta.postalCode}`, meta.address, meta.bldg]
+    .filter(Boolean)
+    .join(" ");
+
   return (
-    <div className="p-6 space-y-4">
-      <h2 className="text-xl font-bold">Access</h2>
+    <div className="bg-white px-6 py-14 text-gray-800">
+      <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-[0.9fr_1.1fr] md:items-start">
+        <div className="space-y-5">
+          <div>
+            <p className="text-sm font-semibold text-blue-600">Access</p>
+            <h2 className="mt-2 text-3xl font-bold text-gray-900">
+              教会へのアクセス
+            </h2>
+            <p className="mt-4 leading-7 text-gray-600">
+              初めてお越しの方も迷わず来られるよう、所在地と最寄りからの道順をご確認ください。
+            </p>
+          </div>
 
-      <p>{meta.address}</p>
+          <div className="space-y-3 text-sm text-gray-700">
+            <div className="flex items-start gap-3 rounded-lg bg-slate-50 px-4 py-3 shadow-sm">
+              <FaLocationDot className="mt-1 shrink-0 text-blue-500" />
+              <span className="leading-6">
+                {meta.postalCode && (
+                  <>
+                    〒{meta.postalCode}
+                    <br />
+                  </>
+                )}
+                {meta.address}
+                {meta.bldg && (
+                  <>
+                    <br />
+                    {meta.bldg}
+                  </>
+                )}
+              </span>
+            </div>
 
-      {meta.address && <MapBlock address={meta.address} />}
+            {meta.access && (
+              <div className="flex items-start gap-3 rounded-lg bg-slate-50 px-4 py-3 shadow-sm">
+                <FaTrain className="mt-1 shrink-0 text-blue-500" />
+                <span className="leading-6">{meta.access}</span>
+              </div>
+            )}
+          </div>
+        </div>
 
-      <p>{meta.access}</p>
+        {mapAddress && (
+          <div className="rounded-lg bg-slate-50 p-3 shadow-md">
+            <MapBlock address={mapAddress} />
+          </div>
+        )}
+      </div>
     </div>
   );
 }
