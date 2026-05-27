@@ -3,6 +3,7 @@ import { MenuItem } from "@/types/menu";
 import { SNSItem } from "@/types/sns";
 import { useState, useRef, useEffect } from "react";
 import LinkButton from "@/components/buttons/LinkButton";
+import ShareButton from "@/components/buttons/ShareButton";
 
 export default function Header({ site }: any) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -74,10 +75,8 @@ export default function Header({ site }: any) {
           return <LinkButton key={`${item.type}-${i}`} item={item} />;
         })}
 
-        {/* Share */}
-        <button className="ml-2 rounded-full bg-slate-100 px-3 py-1 text-xs text-gray-700 hover:bg-slate-200">
-          Share
-        </button>
+        {/* Share Button */}
+        <ShareButton />
       </nav>
       {/* スマホ用 */}
       <button className="text-gray-700 transition-colors hover:text-blue-600 md:hidden">
