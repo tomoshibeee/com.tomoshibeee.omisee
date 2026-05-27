@@ -35,11 +35,16 @@ export default function Header({ site }: any) {
   }, []);
   return (
     <header className="sticky top-0 z-50 flex items-center justify-between border-b border-slate-100 bg-white px-4 py-3 text-gray-800 shadow-sm">
-      <div className="border-b border-blue-200 font-bold text-gray-900">
-        {/* TODO : Add logo */}
-        [LOGO]{site.meta.name}
+      <div className="flex items-center gap-2 border-b border-blue-200 font-bold text-gray-900">
+        {/* TODO : ロゴ画像を入れるかもしれない */}
+        {/* TODO : ロゴがあればここに画像を入れる */}
+        <span className="text-blue-600 leading-none text-lg leading-tight md:text-2dxl ">
+          [LOGO]
+        </span>
+        <span className="leading-none text-lg leading-tight md:text-2xl ">
+          {site.meta.name}
+        </span>
       </div>
-
       <nav ref={menuRef} className="hidden gap-4 text-sm md:flex">
         {site.navigation.menu?.map((m, i) => (
           <div key={i} className="relative">
@@ -49,7 +54,7 @@ export default function Header({ site }: any) {
                 openIndex === i
                   ? "border-b-2 border-blue-600 text-gray-900"
                   : "border-b-2 border-transparent text-gray-700 hover:text-gray-900"
-              }`}
+              } leading-tight md:text-2xl`}
             >
               {m.label}
             </button>
