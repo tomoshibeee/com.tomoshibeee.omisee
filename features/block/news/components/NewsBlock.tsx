@@ -1,6 +1,8 @@
 // TODO : DBからお知らせを取得するようにする
 import news1 from "@/lib/data/site1/news.json";
 import news2 from "@/lib/data/site2/news.json";
+import news3 from "@/lib/data/site3/news.json";  
+
 import { NewsBlockData } from "@/features/block";
 import {
   FaArrowRight,
@@ -18,7 +20,7 @@ type NewsGroup = {
 export const NEWS_LIST : NewsGroup[] = [
   { id: "news1", items: news1 },
   { id: "news2", items: news2 },
-  // { id: "news3", items: news3 },
+  { id: "news3", items: news3 },
 ];
 
 type NewsItem = {
@@ -71,7 +73,7 @@ export default function NewsBlock({ source, limit }: NewsBlockData) {
             <h2 className="mt-2 text-3xl font-bold text-gray-900">お知らせ</h2>
           </div>
           <p className="max-w-xl leading-7 text-gray-600">
-            礼拝、集会、教会からのお知らせを新しい順に掲載しています。
+            お知らせを新しい順に掲載しています。
           </p>
         </div>
 

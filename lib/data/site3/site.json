@@ -1,0 +1,143 @@
+{
+  "meta": {
+    "slug": "akiyama-glasses",
+    "name": "秋山メガネ",
+    "tel": "045-123-4567",
+    "email": "info@akiyama-glasses.com",
+    "postalCode": "421-1234",
+    "address": "静岡県静岡市駿河区呉服町1-2-3",
+    "bldg": "秋山ビル1F",
+    "access": "駅から徒歩5分",
+    "message": "unused",
+    "sns": [
+      { "type": "x", "url": "#", "priority": 1 },
+      { "type": "facebook", "url": "#", "priority": 2 },
+      { "type": "instagram", "url": "#", "priority": 3 },
+      { "type": "youtube", "url": "#", "priority": 4 },
+      { "type": "note", "url": "#", "priority": 5 }
+    ]
+  },
+  "navigation": {
+    "menu": [
+      { "label": "店舗情報", "href": "#about",  "priority": 1 , "children": [
+        { "label": "当店のビジョン", "href": "#vision", "priority": 1 },
+        { "label": "店長挨拶", "href": "#greeting", "priority": 2 }
+      ] },
+      { "label": "オンラインストア", "href": "#service", "priority": 2 },
+      { "label": "アクセス", "href": "#access", "priority": 3 },
+      { "label": "お問い合わせ", "href": "#contact", "priority": 4 }
+    ]
+  },
+  "layout": {
+    "template": "template1",
+    "sections": [
+      {
+        "id": "hero",
+        "type": "hero",
+        "blocks": [
+          {
+            "id": "hero-carousel",
+            "type": "hero",
+            "variant": "carousel",
+            "data": {
+              "title": "どんな人も見える世界へ",
+              "message": "眼鏡一筋50年。あなたにぴったりの一本を見つけます。",
+              "images": [
+                {
+                  "url": "https://picsum.photos/id/64/1600/900",
+                  "alt": "Hero Image 1"
+                }
+              ]
+            }
+          },
+          {
+            "id": "hero-cta",
+            "type": "cta",
+            "data": {
+              "buttons": [
+                { "label": "オンライン予約", "href": "#booking" },
+                { "label": "お問い合わせ", "href": "#contact" }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "about",
+        "type": "about",
+        "blocks": [
+          {
+            "id": "greeting-main",
+            "type": "greeting",
+            "data": {
+              "name": "静岡太郎",
+              "role": "社長兼店長",
+              "image": "https://i.pravatar.cc/150?img=3",
+              "bio": "静岡生まれ、静岡育ち。3代続く眼鏡店の家に生まれ、幼い頃から眼鏡に親しむ。大学卒業後、家業を継ぐために帰郷。2020年より現職。",
+              "message": "メガネは単なる視力矯正の道具ではなく、ファッションや自己表現の一部でもあります。お客様一人ひとりのライフスタイルや好みに合わせた最適なメガネ選びをお手伝いします。"
+            }
+          }
+        ]
+      },
+      {
+        "id": "news",
+        "type": "news",
+        "blocks": [
+          {
+            "id": "news-main",
+            "type": "news",
+            "data": {
+              "source": "news3",
+              "limit": 5
+            }
+          }
+        ]
+      },
+      {
+        "id": "service",
+        "type": "service",
+        "blocks": [
+          {
+            "id": "service-info1",
+            "type": "service",
+            "data": {
+              "items": [
+                {
+                  "id": "service1",
+                  "title": "ビジョンケア相談会",
+                  "time": "木曜14:00〜",
+                  "location": "本店舗",
+                  "comment": "メガネの相談に関わらず、iPadやスマホの見え方の相談も承ります。お気軽にご参加ください。"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "access",
+        "type": "access",
+        "blocks": [
+          {
+            "id": "access-block",
+            "type": "access",
+            "data": {}
+          }
+        ]
+      },
+      {
+        "id": "contact",
+        "type": "contact",
+        "blocks": [
+          {
+            "id": "contact-main",
+            "type": "contact",
+            "data": {
+              "description": "初めての方、商品やサービスについて知りたい方も、お気軽にご連絡ください。"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

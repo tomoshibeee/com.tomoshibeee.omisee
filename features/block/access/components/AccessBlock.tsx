@@ -16,7 +16,7 @@ export default function AccessBlock(meta: MetaData) {
           <div>
             <p className="text-sm font-semibold text-blue-600">Access</p>
             <h2 className="mt-2 text-3xl font-bold text-gray-900">
-              教会へのアクセス
+              アクセス
             </h2>
             <p className="mt-4 leading-7 text-gray-600">
               初めてお越しの方も迷わず来られるよう、所在地と最寄りからの道順をご確認ください。

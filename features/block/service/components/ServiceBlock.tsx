@@ -23,7 +23,7 @@ export default function ServiceBlock({ items }: ServiceBlockData) {
           <div>
             <p className="text-sm font-semibold text-blue-600">Service</p>
             <h2 className="mt-2 text-3xl font-bold text-gray-900">
-              礼拝・集会案内
+              サービスのご案内
             </h2>
           </div>
           <p className="max-w-xl leading-7 text-gray-600">
