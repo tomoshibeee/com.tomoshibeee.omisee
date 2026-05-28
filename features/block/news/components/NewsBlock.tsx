@@ -1,6 +1,6 @@
 // TODO : DBからお知らせを取得するようにする
-import news1 from "@/lib/data/site1-news.json";
-import news2 from "@/lib/data/site1-news.json";
+import news1 from "@/lib/data/site1/news.json";
+import news2 from "@/lib/data/site2/news.json";
 import { NewsBlockData } from "@/features/block";
 import {
   FaArrowRight,
