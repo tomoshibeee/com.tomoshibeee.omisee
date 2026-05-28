@@ -24,13 +24,10 @@ export default function Footer({ props }: { props: SiteData }) {
           {sns && sns.length > 0 && (
             <div className="mt-5 flex items-center gap-2">
               {sns
-                .filter((item): item is SNSItem => "priority" in item)
                 .sort((a, b) => a.priority - b.priority)
                 .map((item: SNSItem, i: number) => (
                   <LinkButtonFooter key={`${item.type}-${i}`} item={item} />
                 ))}
-
-              {/* <div className="mx-2 h-5 w-px bg-slate-300" /> */}
 
               {/* Share */}
               <ShareButtonFooter />

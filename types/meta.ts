@@ -1,3 +1,5 @@
+import { SNSItem } from "@/types/sns";
+
 export type MetaData = {
   slug: string;
   name: string;
@@ -8,5 +10,5 @@ export type MetaData = {
   bldg?: string;
   access: string;
   message: string;
-  sns: { type: string; url: string }[];
+  sns: SNSItem[];
 };
