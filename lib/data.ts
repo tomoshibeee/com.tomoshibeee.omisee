@@ -7,6 +7,12 @@ import news1 from "@/lib/data/site1/news.json";
 import news2 from "@/lib/data/site2/news.json";
 import news3 from "@/lib/data/site3/news.json";
 
+import sns1 from "@/lib/data/site1/sns.json";
+import sns2 from "@/lib/data/site2/sns.json";
+import sns3 from "@/lib/data/site3/sns.json";
+
 export const sites = [site1, site2, site3];
 
 export const news = [news1, news2, news3];
+
+export const sns = [sns1, sns2, sns3];

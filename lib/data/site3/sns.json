@@ -1,0 +1,7 @@
+[
+  { "type": "x", "url": "#", "priority": 1 },
+  { "type": "facebook", "url": "#", "priority": 2 },
+  { "type": "instagram", "url": "#", "priority": 3 },
+  { "type": "youtube", "url": "#", "priority": 4 },
+  { "type": "note", "url": "#", "priority": 5 }
+]

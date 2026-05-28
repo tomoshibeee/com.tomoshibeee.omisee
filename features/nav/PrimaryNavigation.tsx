@@ -3,10 +3,10 @@ import { DropDownMenu } from "../menu/DropDownMenu";
 import { LinkButtonHeader } from "@/components/buttons/LinkButton";
 import { ShareButtonHeader } from "@/components/buttons/ShareButton";
 import { SiteData } from "@/types/site";
+import { sns } from "@/lib/data";
+
 export function PrimaryNavigation({ site }: { site: SiteData }) {
-  const sortedSNSItems = [...site.meta.sns].sort(
-    (a, b) => a.priority - b.priority,
-  );
+  const sortedSNSItems = sns[site.meta.sns - 1];
   const headerSNSItems = sortedSNSItems.slice(0, 2);
 
   return (

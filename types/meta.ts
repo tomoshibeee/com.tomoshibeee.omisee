@@ -1,5 +1,3 @@
-import { SNSItem } from "@/types/sns";
-
 export type MetaData = {
   slug: string;
   name: string;
@@ -10,5 +8,5 @@ export type MetaData = {
   bldg?: string;
   access: string;
   message: string;
-  sns: SNSItem[];
+  sns: number; // TODO : 1, 2, 3... (site1, site2, site3...) からSNS情報を取得する形に変更予定
 };
