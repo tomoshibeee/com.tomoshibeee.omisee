@@ -2,12 +2,13 @@
 import { MenuItem } from "@/types/menu";
 import { SNSItem } from "@/types/sns";
 import { useState, useRef, useEffect } from "react";
-import LinkButton from "@/components/buttons/LinkButton";
-import ShareButton from "@/components/buttons/ShareButton";
+import { LinkButtonHeader } from "@/components/buttons/LinkButton";
+import { ShareButtonHeader } from "@/components/buttons/ShareButton";
 
 export default function Header({ site }: any) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
+
   const toggle = (i: number) => {
     setOpenIndex((prev) => (prev === i ? null : i));
   };
@@ -23,43 +24,43 @@ export default function Header({ site }: any) {
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
-  const sortedSNSItems = [...site.meta.sns].sort((a, b) => a.priority - b.priority);
+  const sortedSNSItems = [...site.meta.sns].sort(
+    (a, b) => a.priority - b.priority,
+  );
   const headerSNSItems = sortedSNSItems.slice(0, 2);
 
   return (
-    <header className="sticky top-0 z-50 flex items-center justify-between border-b border-slate-100 bg-white px-4 py-3 pb-0 text-gray-800 font-semibold shadow-sm">
-      {" "}
-      <div className="flex items-center gap-2 text-gray-900">
-        {/* TODO : ロゴ画像を入れるかもしれない */}
-        {/* TODO : ロゴがあればここに画像を入れる */}
-        <span className="text-blue-600 leading-none text-lg leading-tight md:text-2xl ">
-          [LG]
-        </span>
-        <span className="leading-none text-lg leading-tight md:text-2xl ">
+    <header className="sticky top-0 z-50 flex h-14 items-center justify-between border-b border-slate-100 bg-white px-4 text-sm text-gray-800 tracking-tight shadow-sm">
+      {/* ロゴ */}
+      <div className="flex items-center gap-2">
+        <span className="text-blue-600 text-base font-semibold">[LG]</span>
+        <span className="text-base font-semibold text-gray-900">
           {site.meta.name}
         </span>
       </div>
-      <nav ref={menuRef} className="hidden gap-4 text-sm items-center md:flex">
+
+      {/* ナビ */}
+      <nav ref={menuRef} className="hidden md:flex items-center gap-6">
         {site.navigation.menu?.map((m: MenuItem, i: number) => (
           <div key={i} className="relative">
             <button
               onClick={() => toggle(i)}
-              className={`my-0 py-4 height-full px-2 py-1 transition-colors ${
+              className={`px-2 py-2 text-sm transition-colors ${
                 openIndex === i
-                  ? "border-b-0 border-blue-600 text-gray-900"
-                  : "border-b-0 border-transparent text-gray-700 hover:bg-slate-100 hover:text-gray-900 transition-colors"
-              } leading-tight text-lg md:text-lg m-0`}
+                  ? "text-gray-900"
+                  : "text-gray-600 hover:text-gray-900 hover:bg-slate-50"
+              }`}
             >
               {m.label}
             </button>
 
             {m.children && m.children.length > 0 && openIndex === i && (
-              <div className="absolute left-0 top-full w-[180px] border border-slate-100 bg-slate-50 shadow-sm">
+              <div className="absolute left-0 top-full mt-2 w-[180px] rounded-md border border-slate-100 bg-white shadow-sm">
                 {m.children.map((c: MenuItem, j: number) => (
                   <a
                     key={j}
                     href={c.href}
-                    className="block px-4 py-4 whitespace-nowrap text-gray-700 hover:bg-white hover:text-gray-900 leading-tight text-md md:text-md"
+                    className="block px-4 py-2 text-sm text-gray-600 transition hover:bg-slate-50 hover:text-gray-900"
                   >
                     {c.label}
                   </a>
@@ -69,17 +70,25 @@ export default function Header({ site }: any) {
           </div>
         ))}
 
-        {/* 区切り線を入れる */}
+        <div className="mx-2 h-5 w-px bg-slate-300" />
 
-        {headerSNSItems.map((item: SNSItem, i: number) => {
-          return <LinkButton key={`${item.type}-${i}`} item={item} />;
-        })}
+        {/* SNS */}
+        <div className="flex items-center gap-2 pl-2">
+          {headerSNSItems.map((item: SNSItem, i: number) => (
+            <LinkButtonHeader key={`${item.type}-${i}`} item={item} />
+          ))}
+        </div>
 
-        {/* Share Button */}
-        <ShareButton />
+        <div className="mx-2 h-5 w-px bg-slate-300" />
+
+        {/* Share */}
+        <div className="pl-2">
+          <ShareButtonHeader />
+        </div>
       </nav>
-      {/* スマホ用 */}
-      <button className="text-gray-700 transition-colors hover:text-blue-600 md:hidden">
+
+      {/* モバイル */}
+      <button className="text-gray-600 transition hover:text-gray-900 md:hidden">
         ☰
       </button>
     </header>
