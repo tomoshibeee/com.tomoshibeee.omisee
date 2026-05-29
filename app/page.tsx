@@ -1,33 +1,25 @@
 import Link from "next/link";
-import { supabase } from "@/lib/supabase";
 
 import { News } from "@/models/news";
 
 import { sites } from "@/lib/data";
+import { getLatestNews } from "@/services/newsService";
 
 export default async function Page() {
-  const { data, error } = await supabase
-    .from("news")
-    .select("*")
-    .order("published_at", { ascending: false })
-    .limit(5);
-
-  console.log("News data:", data);
-  console.log("Error:", error);
+  const news = await getLatestNews();
   return (
     <main>
       <h1>Tomoshibeee Church1 SaaS</h1>
       <p>it works 🚀</p>
       <div>
         <h1>News</h1>
-        {data?.map((item: News) => (
+        {news?.map((item: News) => (
           <div key={item.id}>
             <p>{item.title}</p>
             <small>{new Date(item.published_at).toLocaleDateString()}</small>
           </div>
         ))}
       </div>
-      {error && <p>エラーが発生しました</p>}
       <h1 className="text-2xl font-bold mb-6">Available Sites</h1>
       <div className="w-full">
         {/* ヘッダー */}
