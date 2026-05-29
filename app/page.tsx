@@ -1,11 +1,7 @@
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 
-type News = {
-  id: string;
-  title: string;
-  published_at: string;
-};
+import { News } from "@/models/news";
 
 import { sites } from "@/lib/data";
 
