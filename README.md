@@ -10,8 +10,7 @@ It enables individuals, small businesses, and churches to create a simple yet tr
 
 **"One page. One place."**
 
-Church1 helps you create your own **maison** —
-a small, personal place on the internet.
+Church1 helps you create your own **maison** — a small, personal place on the internet.
 
 A maison is:
 
@@ -25,7 +24,7 @@ A maison is:
 
 * Small shops (cafes, nail salons, local services)
 * Solo creators / freelancers
-* Churches (treated as one “store”)
+* Churches (treated as one “site”)
 
 ---
 
@@ -51,7 +50,7 @@ A single scrollable page:
 
 4. **Mini Services / Menu (max 3)**
 
-5. **News (optional, latest 1–3)**
+5. **News (optional, latest 1–3 items)**
 
 ---
 
@@ -67,7 +66,7 @@ A single scrollable page:
 ## 💰 Business Model
 
 * Free plan (basic page)
-* Paid plans (¥1000–3000/month)
+* Paid plans (¥1,000–¥3,000/month)
 * Optional transaction fee (events, donations)
 
 ---
@@ -140,7 +139,7 @@ The goal is to enable a single page to be created, edited, and publicly accessib
 
 ## 🧩 Tech Stack
 
-This is a Next.js project bootstrapped with `create-next-app`.
+This project is built with **Next.js** (`create-next-app`).
 
 ---
 
@@ -156,14 +155,14 @@ pnpm dev
 bun dev
 ```
 
-Open http://localhost:3000 to view the app.
+Open [http://localhost:3000](http://localhost:3000) to view the app.
 
 ---
 
 ## 📚 Learn More
 
-* https://nextjs.org/docs
-* https://nextjs.org/learn
+* [https://nextjs.org/docs](https://nextjs.org/docs)
+* [https://nextjs.org/learn](https://nextjs.org/learn)
 
 ---
 
@@ -171,13 +170,114 @@ Open http://localhost:3000 to view the app.
 
 Deploy easily using Vercel:
 
-https://vercel.com/new
+[https://vercel.com/new](https://vercel.com/new)
 
 ---
 
-## ✨ Summary
+## 🧱 Supabase
+
+### Local development (Docker)
+
+```bash
+supabase start
+```
+
+---
+
+### Environment variables
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=<SUPABASE_URL>
+NEXT_PUBLIC_SUPABASE_ANON_KEY=<SUPABASE_ANON_KEY from supabase start>
+DATABASE_URL=postgresql://postgres:postgres@127.0.0.1:54322/postgres
+```
+
+---
+
+## 🗄 Database Design
+
+Church1 uses Supabase (PostgreSQL) as its backend.
+
+### t_site (sites / maisons)
+
+```sql
+create table public.t_site (
+    id uuid primary key default gen_random_uuid(),
+    slug text not null unique,
+    name text not null,
+    description text,
+    created_at timestamptz not null default now(),
+    updated_at timestamptz not null default now()
+);
+```
+
+---
+
+### t_site_news (site news)
+
+```sql
+create table public.t_site_news (
+    id uuid primary key default gen_random_uuid(),
+    site_id uuid not null references public.t_site(id) on delete cascade,
+    title text not null,
+    content text,
+    event_date date not null,
+    published_at timestamptz not null default now(),
+    doc text,
+    youtube text,
+    created_at timestamptz not null default now(),
+    updated_at timestamptz not null default now()
+);
+```
+
+---
+
+## 🔗 Relationship
+
+```
+t_site (1) ─── (N) t_site_news
+```
+
+---
+
+## 🔌 Supabase Client
+
+```ts
+import { createClient } from "@supabase/supabase-js";
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+```
+
+### [only dev(localhost)]
+
+```
+supabase db reset
+```
+
+```
+npm run seed
+```
+
+---
+
+## 📦 Seed / Reset
+
+```bash
+tsx lib/seed.ts
+```
+
+```bash
+$ cd 
+$ supabase db reset
+```
+
+---
+
+## 🔑 Summary
 
 Church1 is not just a link-in-bio tool.
 
-It is a **small but real place on the internet** —
-your own **maison**.
+It is a **small but real place on the internet** — your own **maison**.

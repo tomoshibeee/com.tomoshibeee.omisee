@@ -24,6 +24,6 @@ export const seedDataSites: Site[] = [
     name: "メガネの鷹匠",
     description: "メガネの鷹匠の公式サイト",
     created_at: new Date().toISOString(),
-    updated_at: new Date().toISOString(), 
+    updated_at: new Date().toISOString(),
   },
 ];
