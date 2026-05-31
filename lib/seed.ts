@@ -10,22 +10,22 @@ const supabase = createClient(
 
 async function runSeed() {
   console.log("🌱 Seeding started...");
-//   // =========================
-//   // 1. News作成
-//   // =========================
-//   const { data: news, error: newsError } = await supabase
-//     .from("t_news")
-//     .insert(seedDataNews)
-//     .select()
-// ;
+  //   // =========================
+  //   // 1. News作成
+  //   // =========================
+  //   const { data: news, error: newsError } = await supabase
+  //     .from("t_news")
+  //     .insert(seedDataNews)
+  //     .select()
+  // ;
 
-//   if (newsError || !news) {
-//     console.error("❌ news insert error:", newsError);
-//     return;
-//   }
+  //   if (newsError || !news) {
+  //     console.error("❌ news insert error:", newsError);
+  //     return;
+  //   }
 
-//   const newsIds = news.map(n => n.id);
-//   console.log("✅ news created:", newsIds);
+  //   const newsIds = news.map(n => n.id);
+  //   console.log("✅ news created:", newsIds);
 
   // =========================
   // 2. Sites
@@ -33,17 +33,14 @@ async function runSeed() {
   const { data: sites, error: sitesError } = await supabase
     .from("t_sites")
     .insert(seedDataSites)
-    .select()
-;
-
+    .select();
   if (sitesError || !sites) {
     console.error("❌ sites insert error:", sitesError);
     return;
   }
 
-  const sitesIds = sites.map(n => n.id);
+  const sitesIds = sites.map((n) => n.id);
   console.log("✅ sites created:", sitesIds);
-
 
   // // =========================
   // // 3. NAVIGATION
