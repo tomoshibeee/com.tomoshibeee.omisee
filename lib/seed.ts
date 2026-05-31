@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { createClient } from "@supabase/supabase-js";
-import { seedData } from "../data/seed-data";
-
+// import { seedData } from "../data/seed-data";
+import { seedDataNews } from "../data/seed-data-news";
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -9,23 +9,22 @@ const supabase = createClient(
 
 async function runSeed() {
   console.log("🌱 Seeding started...");
-  // TODO : insert t_news
-  // // =========================
-  // // 1. SITE作成
-  // // =========================
-  // const { data: site, error: siteError } = await supabase
-  //   .from("sites")
-  //   .insert(seedData.site)
-  //   .select()
-  //   .single();
+  // =========================
+  // 1. News作成
+  // =========================
+  const { data: news, error: newsError } = await supabase
+    .from("t_news")
+    .insert(seedDataNews)
+    .select()
+;
 
-  // if (siteError || !site) {
-  //   console.error("❌ site insert error:", siteError);
-  //   return;
-  // }
+  if (newsError || !news) {
+    console.error("❌ news insert error:", newsError);
+    return;
+  }
 
-  // const siteId = site.id;
-  // console.log("✅ site created:", siteId);
+  const newsIds = news.map(n => n.id);
+  console.log("✅ news created:", newsIds);
 
   // // =========================
   // // 2. SNS

@@ -1,5 +1,5 @@
 export type News = {
-  id: string;
+  id?: string;
   title: string;
   published_at: string;
 };
