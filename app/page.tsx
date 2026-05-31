@@ -6,6 +6,7 @@ import { sites } from "@/lib/data";
 import { getLatestNews } from "@/services/newsService";
 
 export default async function Page() {
+  console.log("🚦URL🚦:", process.env.NEXT_PUBLIC_SUPABASE_URL);
   const news = await getLatestNews();
   return (
     <main>
