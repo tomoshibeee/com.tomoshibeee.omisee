@@ -2,6 +2,7 @@ import "dotenv/config";
 import { createClient } from "@supabase/supabase-js";
 // import { seedData } from "../data/seed-data";
 import { seedDataNews } from "../data/seed-data-news";
+import { seedDataSites } from "../data/seed-data-site";
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -9,40 +10,40 @@ const supabase = createClient(
 
 async function runSeed() {
   console.log("🌱 Seeding started...");
+//   // =========================
+//   // 1. News作成
+//   // =========================
+//   const { data: news, error: newsError } = await supabase
+//     .from("t_news")
+//     .insert(seedDataNews)
+//     .select()
+// ;
+
+//   if (newsError || !news) {
+//     console.error("❌ news insert error:", newsError);
+//     return;
+//   }
+
+//   const newsIds = news.map(n => n.id);
+//   console.log("✅ news created:", newsIds);
+
   // =========================
-  // 1. News作成
+  // 2. Sites
   // =========================
-  const { data: news, error: newsError } = await supabase
-    .from("t_news")
-    .insert(seedDataNews)
+  const { data: sites, error: sitesError } = await supabase
+    .from("t_sites")
+    .insert(seedDataSites)
     .select()
 ;
 
-  if (newsError || !news) {
-    console.error("❌ news insert error:", newsError);
+  if (sitesError || !sites) {
+    console.error("❌ sites insert error:", sitesError);
     return;
   }
 
-  const newsIds = news.map(n => n.id);
-  console.log("✅ news created:", newsIds);
+  const sitesIds = sites.map(n => n.id);
+  console.log("✅ sites created:", sitesIds);
 
-  // // =========================
-  // // 2. SNS
-  // // =========================
-  // const { error: snsError } = await supabase.from("site_sns").insert(
-  //   seedData.sns.map((s) => ({
-  //     site_id: siteId,
-  //     type: s.type,
-  //     url: s.url,
-  //   })),
-  // );
-
-  // if (snsError) {
-  //   console.error("❌ sns insert error:", snsError);
-  //   return;
-  // }
-
-  // console.log("✅ sns inserted");
 
   // // =========================
   // // 3. NAVIGATION

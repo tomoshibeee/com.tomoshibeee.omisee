@@ -15,9 +15,9 @@ function getRandomDate(): string {
 }
 
 const sites: Site[] = []; // TODO : DBからサイトデータを取得するように変更
-const site1 = sites.find(s => s.slug === "tokyo-biblical-church")!;
-const site2 = sites.find(s => s.slug === "organic-apple")!;
-const site3 = sites.find(s => s.slug === "takajo-glasses-store")!;
+const site1 = sites.find((s) => s.slug === "tokyo-biblical-church")!;
+const site2 = sites.find((s) => s.slug === "organic-apple")!;
+const site3 = sites.find((s) => s.slug === "takajo-glasses-store")!;
 
 export const seedDataSiteNews: SiteNews[] = [
   {

@@ -1,7 +1,7 @@
 import { Site } from "../models/site";
 import { randomUUID } from "crypto";
 
-export const seedSiteData: Site[] = [
+export const seedDataSites: Site[] = [
   {
     id: randomUUID(),
     name: "東京チャーチ",
