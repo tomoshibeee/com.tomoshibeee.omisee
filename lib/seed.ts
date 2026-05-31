@@ -3,24 +3,13 @@ import { randomUUID } from "crypto";
 
 import { createClient } from "@supabase/supabase-js";
 
-import { seedDataNews } from "../data/seed-data-news";
-import { seedDataSites } from "../data/seed-data-site";
-import { seedDataSiteNews } from "../data/seed-data-site-news";
+import { dummyNewsData } from "../data/seed-data-news";
+import { dummySiteData } from "../data/seed-data-site";
+import { dummySiteNewsData } from "../data/seed-data-site-news";
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
 );
-
-function getRandomDate(): string {
-  const now = new Date();
-  const past = new Date();
-  past.setFullYear(now.getFullYear() - 1);
-
-  const randomTime =
-    past.getTime() + Math.random() * (now.getTime() - past.getTime());
-
-  return new Date(randomTime).toISOString();
-}
 
 async function runSeed() {
   console.log("🌱 Seeding started...");
@@ -29,7 +18,7 @@ async function runSeed() {
   // =========================
   const { data: news, error: newsError } = await supabase
     .from("t_news")
-    .insert(seedDataNews)
+    .insert(dummyNewsData())
     .select()
     ;
 
@@ -46,7 +35,7 @@ async function runSeed() {
   // =========================
   const { data: sites, error: sitesError } = await supabase
     .from("t_sites")
-    .insert(seedDataSites)
+    .insert(dummySiteData())
     .select();
   if (sitesError || !sites) {
     console.error("❌ sites insert error:", sitesError);
@@ -59,24 +48,10 @@ async function runSeed() {
   // =========================
   // 3. Site News
   // =========================
-  const newsRows = sitesIds.flatMap(siteId =>
-    Array.from({ length: 3 }).map(() => ({
-      id: randomUUID(),
-      site_id: siteId,
-      title: `news-site-${siteId}-${Math.random().toString(36).slice(2, 5)}`,
-      content:
-        "これはサイトニュースのサンプルコンテンツです。サイトIDに紐づくニュースの内容をここに記載します。",
-      doc: null,
-      youtube: null,
-      published_at: getRandomDate(),
-      event_date: getRandomDate(),
-      created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString(),
-    }))
-  );
+  const siteNewsRows = dummySiteNewsData(sitesIds);
   const { data: siteNews, error: siteNewsError } =
     await supabase.from("t_site_news")
-      .insert(newsRows)
+      .insert(siteNewsRows)
       .select();
 
   if (siteNewsError || !siteNews) {
