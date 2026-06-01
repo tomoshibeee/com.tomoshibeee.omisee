@@ -201,7 +201,7 @@ Church1 uses Supabase (PostgreSQL) as its backend.
 ### t_site (sites / maisons)
 
 ```sql
-create table public.t_site (
+create table public.t_sites (
     id uuid primary key default gen_random_uuid(),
     slug text not null unique,
     name text not null,
@@ -218,7 +218,7 @@ create table public.t_site (
 ```sql
 create table public.t_site_news (
     id uuid primary key default gen_random_uuid(),
-    site_id uuid not null references public.t_site(id) on delete cascade,
+    site_id uuid not null references public.t_sites(id) on delete cascade,
     title text not null,
     content text,
     event_date date not null,
