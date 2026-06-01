@@ -76,7 +76,7 @@ async function runSeed() {
   }
 
   const siteNewsIds = siteNews.map((n) => n.id);
-  console.log("✅ siteNews created:", siteNewsIds);
+  console.log("✅ site news created:", siteNewsIds);
 
   console.log("🚀 Seed completed!");
 }

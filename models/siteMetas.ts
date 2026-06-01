@@ -5,7 +5,7 @@ export type SiteMetas = {
     name: string;
     tel: string;
     email: string;
-    postalCode: string;
+    postal_code: string;
     address: string;
     building: string;
     access: string;
