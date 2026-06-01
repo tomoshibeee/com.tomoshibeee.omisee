@@ -1,1 +1,0 @@
-alter table public.t_site rename to t_sites;
