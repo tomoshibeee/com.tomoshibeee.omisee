@@ -1,7 +1,7 @@
 import { randomUUID } from "crypto";
 import { SiteMetas } from "../models/siteMetas";
 
-export function dummySiteMetasData(siteIds: string[]) {
+export function dummySiteMetaData(siteIds: string[]) {
     const now = new Date().toISOString();
 
     return siteIds.map((siteId, i) => {

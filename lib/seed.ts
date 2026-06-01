@@ -4,7 +4,7 @@ import { createClient } from "@supabase/supabase-js";
 
 import { dummyNewsData } from "../data/seed-data-news";
 import { dummySiteData } from "../data/seed-data-sites";
-import { dummySiteMetasData } from "../data/seed-data-site-metas";
+import { dummySiteMetaData } from "../data/seed-data-site-metas";
 import { dummySiteNewsData } from "../data/seed-data-site-news";
 
 const supabase = createClient(
@@ -51,7 +51,7 @@ async function runSeed() {
   // =========================
   const { data: siteMetas, error: siteMetasError } = await supabase
     .from("t_site_metas")
-    .insert(dummySiteMetasData(sitesIds))
+    .insert(dummySiteMetaData(sitesIds))
     .select();
   if (siteMetasError || !siteMetas) {
     console.error("❌ siteMetas insert error:", siteMetasError);
