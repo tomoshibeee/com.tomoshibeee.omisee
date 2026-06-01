@@ -4,7 +4,7 @@ import { randomUUID } from "crypto";
 import { createClient } from "@supabase/supabase-js";
 
 import { dummyNewsData } from "../data/seed-data-news";
-import { dummySiteData } from "../data/seed-data-site";
+import { dummySiteData } from "../data/seed-data-sites";
 import { dummySiteNewsData } from "../data/seed-data-site-news";
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
