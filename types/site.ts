@@ -8,7 +8,6 @@ export type SiteData = {
     menu?: MenuItem[];
   };
   layout: {
-    template: string;
     sections: Section[];
   };
 };

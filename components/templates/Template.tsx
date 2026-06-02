@@ -2,9 +2,10 @@ import Header from "@/components/shared/Header";
 import Footer from "@/components/shared/Footer";
 import BaseSection from "@/features/section/components/BaseSection";
 import { SectionData } from "@/features/section/types";
+import { SiteData } from "@/types/site";
 
-export default function Template1({ site }: any) {
-  console.log("Rendering Template1 with site:", site);
+export default function Template(site : SiteData) {
+  console.log("🚦Rendering Template with site:", site);
   const rawSections = site?.layout?.sections;
   const blocks = site?.layout?.blocks ?? [];
   const sections =
@@ -15,10 +16,10 @@ export default function Template1({ site }: any) {
   return (
     <div>
       <Header site={site} />
-      {sections.map((section: SectionData, sectionIndex: number) => (
+      {/* {sections.map((section: SectionData, sectionIndex: number) => (
         <BaseSection key={section.id ?? sectionIndex} meta={site.meta} section={{...section}} />
       ))}
-      <Footer site={site} />
+      <Footer site={site} /> */}
     </div>
   );
 }

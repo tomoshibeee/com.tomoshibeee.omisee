@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { News } from "@/models/news";
 
-import { getSiteMetas } from "@/services/siteMetaService";
+import { getSiteMetas } from "@/services/siteService";
 import { getLatestNews } from "@/services/newsService";
 
 export default async function Page() {

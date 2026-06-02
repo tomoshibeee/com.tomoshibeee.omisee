@@ -1,6 +1,7 @@
 import { sites } from "@/lib/data";
 
 import { getSiteIdBySlug } from "@/services/siteService";
+import { getSiteData } from "@/services/siteService";
 
 import Template from "@/components/templates/Template";
 
@@ -16,11 +17,12 @@ export default async function Page({
   // TODO : design a better error page
   if (!siteId) return <div>Site Not Found</div>;
 
-  const site = sites.find((s) => s.meta.slug === slug);
-  // console.log("Found site for slug:", slug, site);
+  const site = await getSiteData(siteId);
+  // console.log("🚦Found site for slug:", slug, site);
   if (!site) return <div>Not Found</div>;
 
   if (!Template) return <div>Template Not Found</div>;
 
-  return <Template site={site} />;
+  // Template expects SiteData props directly, so spread the site object
+  return <Template {...site} />;
 }

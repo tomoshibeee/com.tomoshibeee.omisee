@@ -62,7 +62,7 @@ export default function Footer({ site }: { site: SiteData }) {
         <div>
           <h3 className="font-semibold text-white">サイトマップ</h3>
           <ul className="mt-4 space-y-2">
-            {site.navigation.menu?.map((m, i) => (
+            {/* {site.navigation.menu?.map((m, i) => (
               <li key={i}>
                 <a href={m.href ?? "#"} className="transition hover:text-white">
                   {m.label}
@@ -82,7 +82,7 @@ export default function Footer({ site }: { site: SiteData }) {
                   </ul>
                 )}
               </li>
-            ))}
+            ))} */}
           </ul>
         </div>
 
