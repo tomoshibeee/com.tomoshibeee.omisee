@@ -2,6 +2,7 @@ import "dotenv/config";
 
 import { createClient } from "@supabase/supabase-js";
 
+import { dummySocialTypeData } from "../data/seed-data-social-types";
 import { dummyNewsData } from "../data/seed-data-news";
 import { dummySiteData } from "../data/seed-data-sites";
 import { dummySiteMetaData } from "../data/seed-data-site-metas";
@@ -15,7 +16,40 @@ const supabase = createClient(
 async function runSeed() {
   console.log("🌱 Seeding started...");
   // =========================
-  // 1. News作成
+  // 0. Clear existing data
+  // =========================
+  const tables = ["m_social_types", "t_site_news", "t_site_metas", "t_sites", "t_news"];
+  for (const table of tables) {
+    const { error } =
+      await supabase.from(table).delete().not("id", "is", null);
+    // await supabase.from(table).delete();
+    if (error) {
+      console.error(`❌ Error clearing table ${table}:`, error);
+      return;
+    }
+    console.log(`✅ Cleared table ${table}`);
+  }
+
+  // =========================
+  // 1. Social Types 作成
+  // =========================
+  const { data: socialTypes, error: socialTypesError } = await supabase
+    .from("m_social_types")
+    .insert(dummySocialTypeData())
+    .select()
+    ;
+
+  if (socialTypesError || !socialTypes) {
+    console.error("❌ socialTypes insert error:", socialTypesError);
+    return;
+  }
+
+  const socialTypesIds = socialTypes.map(n => n.id);
+  console.log("✅ socialTypes created:", socialTypesIds);
+
+
+  // =========================
+  // 2. News作成
   // =========================
   const { data: news, error: newsError } = await supabase
     .from("t_news")
@@ -32,7 +66,7 @@ async function runSeed() {
   console.log("✅ news created:", newsIds);
 
   // =========================
-  // 2. Sites
+  // 3. Sites
   // =========================
   const { data: sites, error: sitesError } = await supabase
     .from("t_sites")
@@ -47,7 +81,7 @@ async function runSeed() {
   console.log("✅ sites created:", sitesIds);
 
   // =========================
-  // 3. Site Metas
+  // 4. Site Metas
   // =========================
   const { data: siteMetas, error: siteMetasError } = await supabase
     .from("t_site_metas")
@@ -62,7 +96,7 @@ async function runSeed() {
   console.log("✅ site metas created:", siteMetasIds);
 
   // =========================
-  // 4. Site News
+  // 5. Site News
   // =========================
   const siteNewsRows = dummySiteNewsData(sitesIds);
   const { data: siteNews, error: siteNewsError } =
