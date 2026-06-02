@@ -6,7 +6,9 @@ import { SiteData } from "@/types/site";
 import { sns } from "@/lib/data";
 
 export function PrimaryNavigation({ site }: { site: SiteData }) {
-  const sortedSocialLinks = site?.socialLinks?.sort((a, b) => a.orderBy - b.orderBy) as SocialLink[];
+  const sortedSocialLinks = site?.socialLinks?.sort(
+    (a, b) => a.orderBy - b.orderBy,
+  ) as SocialLink[];
   const headerSocialLinks = sortedSocialLinks.slice(0, 2);
 
   console.log("🚦[Debug] PrimaryNavigation received site:", site);
