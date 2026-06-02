@@ -19,7 +19,8 @@ export default function Template(site : SiteData) {
       {/* {sections.map((section: SectionData, sectionIndex: number) => (
         <BaseSection key={section.id ?? sectionIndex} meta={site.meta} section={{...section}} />
       ))}
-      <Footer site={site} /> */}
+      */}
+      <Footer site={site} /> 
     </div>
   );
 }
