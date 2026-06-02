@@ -17,8 +17,8 @@ export function dummySiteSocialLinks(siteIds: string[]) {
         {
             id: randomUUID(),
             site_id: "uuid-site-1",
-            type: "twitter",
-            url: "https://twitter.com/shizuoka_jonan",
+            type: "x",
+            url: "https://x.com/shizuoka_jonan",
             display_order: 2,
             created_at: now,
             updated_at: now,
@@ -40,7 +40,7 @@ export function dummySiteSocialLinks(siteIds: string[]) {
             display_order: 1,
             created_at: now,
             updated_at: now,
-        },      
+        },
         {
             id: randomUUID(),
             site_id: "uuid-site-3",

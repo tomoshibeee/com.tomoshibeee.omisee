@@ -1,4 +1,4 @@
-import { SocialType } from "../models/socialTypes";
+import { SocialType } from "../models/socialType";
 
 // 過去1年のランダム日付を生成
 function getRandomDate(): string {
