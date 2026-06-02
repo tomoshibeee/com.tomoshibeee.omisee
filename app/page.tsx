@@ -2,11 +2,12 @@ import Link from "next/link";
 
 import { News } from "@/models/news";
 
-import { sites } from "@/lib/data";
+import { getSiteMetas } from "@/services/siteMetaService";
 import { getLatestNews } from "@/services/newsService";
 
 export default async function Page() {
   // console.log("🚦URL🚦:", process.env.NEXT_PUBLIC_SUPABASE_URL);
+  const siteMetas = await getSiteMetas();
   const news = await getLatestNews();
   return (
     <main>
@@ -31,18 +32,18 @@ export default async function Page() {
         </div>
 
         {/* ボディ */}
-        {sites.map((s) => (
+        {siteMetas.map((meta) => (
           <div
-            key={s.meta.slug}
+            key={meta.slug}
             className="grid grid-cols-3 items-center border-t px-4 py-3 hover:bg-gray-50 transition"
           >
-            <div className="font-medium">{s.meta.name}</div>
+            <div className="font-medium">{meta.name}</div>
 
-            <div className="text-sm text-gray-500">/p/{s.meta.slug}</div>
+            <div className="text-sm text-gray-500">/p/{meta.slug}</div>
 
             <div className="text-center">
               <Link
-                href={`/p/${s.meta.slug}`}
+                href={`/p/${meta.slug}`}
                 className="inline-block bg-blue-600 text-white px-3 py-1 rounded-md hover:bg-blue-700 transition text-sm"
               >
                 Visit
