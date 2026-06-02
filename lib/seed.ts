@@ -7,6 +7,7 @@ import { dummyNewsData } from "../data/seed-data-news";
 import { dummySiteData } from "../data/seed-data-sites";
 import { dummySiteMetaData } from "../data/seed-data-site-metas";
 import { dummySiteNewsData } from "../data/seed-data-site-news";
+import { dummySiteSocialLinks } from "../data/seed-data-site-social-links";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -112,6 +113,21 @@ async function runSeed() {
   const siteNewsIds = siteNews.map((n) => n.id);
   console.log("✅ site news created:", siteNewsIds);
 
+  // =========================
+  // 6. Site Social Links
+  // =========================
+  const { data: siteSocialLinks, error: siteSocialLinksError } =
+    await supabase.from("t_site_social_links")
+      .insert(dummySiteSocialLinks(sitesIds))
+      .select();
+
+  if (siteSocialLinksError || !siteSocialLinks) {
+    console.error("❌ siteSocialLinks insert error:", siteSocialLinksError);
+    return;
+  }
+
+  const siteSocialLinksIds = siteSocialLinks.map((n) => n.id);
+  console.log("✅ site social links created:", siteSocialLinksIds); 
   console.log("🚀 Seed completed!");
 }
 
