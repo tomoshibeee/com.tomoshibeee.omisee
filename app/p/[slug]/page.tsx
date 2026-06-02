@@ -1,5 +1,7 @@
 import { sites } from "@/lib/data";
 
+import { getSiteIdBySlug } from "@/services/siteService";
+
 import Template1 from "@/components/templates/Template1";
 // import Template2 from "@/components/templates/Template2";
 
@@ -15,9 +17,13 @@ export default async function Page({
     // template2: Template2,
   };
 
+  const siteId = await getSiteIdBySlug(slug);
+  console.log("🚦Site ID for slug:", slug, siteId);
+  // TODO : design a better error page
+  if (!siteId) return <div>Site Not Found</div>;
+
   const site = sites.find((s) => s.meta.slug === slug);
   // console.log("Found site for slug:", slug, site);
-
   if (!site) return <div>Not Found</div>;
 
   const Template = templateMap[site.layout.template];
