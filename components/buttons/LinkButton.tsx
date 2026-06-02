@@ -1,4 +1,4 @@
-import { SNSItem } from "@/types/socialLink";
+import { SocialLink } from "@/types/socialLink";
 
 import {
   FaTwitter,
@@ -20,7 +20,7 @@ function LinkButton({
   item,
   className,
 }: {
-  item: SNSItem;
+  item: SocialLink;
   className?: string;
 }) {
   const SIZE = 20;
@@ -40,7 +40,7 @@ function LinkButton({
   );
 }
 
-export function LinkButtonHeader({ item }: { item: SNSItem }) {
+export function LinkButtonHeader({ item }: { item: SocialLink }) {
   const COLOR = "gray";
   return (
     <LinkButton
@@ -50,7 +50,7 @@ export function LinkButtonHeader({ item }: { item: SNSItem }) {
   );
 }
 
-export function LinkButtonFooter({ item }: { item: SNSItem }) {
+export function LinkButtonFooter({ item }: { item: SocialLink }) {
   const COLOR = "gray";
   return (
     <LinkButton

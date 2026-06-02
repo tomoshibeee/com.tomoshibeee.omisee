@@ -5,7 +5,7 @@ import { SocialLink } from "./socialLink";
 
 export type SiteData = {
   meta: MetaData;
-  navigation: {
+  navigation?: {
     menu?: MenuItem[];
   };
   layout: {

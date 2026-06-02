@@ -1,9 +1,9 @@
 import { supabase } from "@/lib/supabase";
 
 import { SiteData } from "@/types/site";
+import { SocialLink } from "@/types/socialLink";
 import { MenuItem } from "@/types/menu";
 import { Section } from "@/features/section/types";
-
 
 import { Site } from "@/models/site";
 import { SiteMeta } from "@/models/siteMeta";
@@ -130,10 +130,17 @@ export async function getSiteData(siteId: string): Promise<SiteData> {
       bldg: meta.building,
       access: meta.access,
     },
-    navigation: site?.navigation ?? {},
+    navigation: {
+      menu: site?.navigation ?? []
+    } as { menu?: MenuItem[] },
     layout: {
       sections: [] as Section[], // TODO : sectionsテーブルを作成してデータを取得する形に変更予定
     },
+    socialLinks: socialLinks.map((l): SocialLink => ({
+      type: l.type,
+      url: l.url,
+      orderBy: l.display_order,
+    })),
   } as SiteData;
 }
 

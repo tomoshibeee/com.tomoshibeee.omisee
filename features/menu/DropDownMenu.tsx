@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef } from "react";
-import { SiteData } from "@/types/site";
 import { MenuItem } from "@/types/menu";
 
 import { useState, useEffect } from "react";
