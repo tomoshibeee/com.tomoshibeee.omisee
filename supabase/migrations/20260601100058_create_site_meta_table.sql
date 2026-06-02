@@ -11,7 +11,6 @@ create table public.t_site_metas (
     address text,
     building text,
     access text,
-    -- todo: t_social_links
     created_at timestamptz not null default now (),
     updated_at timestamptz not null default now ()
 );

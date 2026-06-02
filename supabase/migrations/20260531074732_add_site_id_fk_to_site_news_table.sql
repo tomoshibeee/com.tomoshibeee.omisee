@@ -1,1 +1,0 @@
-alter table public.t_site_news add constraint t_site_news_site_id_fkey foreign key (site_id) references public.t_sites (id) on delete cascade;
