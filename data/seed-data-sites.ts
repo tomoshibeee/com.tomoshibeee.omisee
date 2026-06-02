@@ -31,15 +31,15 @@ export function dummySiteData(): Site[] {
       ]
     },
     {
-      "menu": [
-        { label: "教会について", href: "#about" },
-        { label: "礼拝", href: "#service" },
+      menu: [
+        { label: "店舗情報", href: "#about" },
+        { label: "フェアトレードの歴史", href: "#story" },
         { label: "アクセス", href: "#access" },
         { label: "お問い合わせ", href: "#contact" }
       ]
     },
     {
-      "menu": [
+      menu: [
         {
           label: "店舗情報", href: "#about", "priority": 1, children: [
             { label: "当店のビジョン", href: "#vision", "priority": 1 },
