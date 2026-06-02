@@ -6,7 +6,7 @@ import { MenuItem } from "@/types/menu";
 
 import { useState, useEffect } from "react";
 
-export function DropDownMenu({ site }: { site: SiteData }) {
+export function DropDownMenu({ menu }: { menu: MenuItem[] }) {
   const menuRef = useRef<HTMLDivElement>(null);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
@@ -27,7 +27,7 @@ export function DropDownMenu({ site }: { site: SiteData }) {
 
   return (
     <div ref={menuRef} className="flex items-center gap-6">
-      {site.navigation.menu?.map((m: MenuItem, i: number) => (
+      {menu.map((m: MenuItem, i: number) => (
         <div key={`${m.label}-${i}`} className="relative">
           <button
             onClick={() => toggle(i)}

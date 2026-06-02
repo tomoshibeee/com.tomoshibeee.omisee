@@ -5,13 +5,13 @@ import { SectionData } from "@/features/section/types";
 import { SiteData } from "@/types/site";
 
 export default function Template(site : SiteData) {
-  console.log("🚦Rendering Template with site:", site);
-  const rawSections = site?.layout?.sections;
-  const blocks = site?.layout?.blocks ?? [];
-  const sections =
-    Array.isArray(rawSections) && rawSections.length
-      ? rawSections
-      : [{ id: "content", type: "content", blocks }];
+  // console.log("🚦Rendering Template with site:", site);
+  // const rawSections = site?.layout?.sections;
+  // const blocks = site?.layout?.blocks ?? [];
+  // const sections =
+  //   Array.isArray(rawSections) && rawSections.length
+  //     ? rawSections
+  //     : [{ id: "content", type: "content", blocks }];
 
   return (
     <div>

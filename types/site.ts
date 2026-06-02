@@ -1,6 +1,7 @@
 import { Section } from "@/features/section/types";
 import { MetaData } from "./meta";
 import { MenuItem } from "./menu";
+import { SocialLink } from "./socialLink";
 
 export type SiteData = {
   meta: MetaData;
@@ -10,4 +11,5 @@ export type SiteData = {
   layout: {
     sections: Section[];
   };
+  socialLinks?: SocialLink[];
 };

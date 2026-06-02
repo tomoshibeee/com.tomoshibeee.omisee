@@ -1,4 +1,4 @@
-import { SNSItem } from "@/types/sns";
+import { SNSItem } from "@/types/socialLink";
 
 import {
   FaTwitter,

@@ -1,6 +1,6 @@
 import { LinkButtonFooter } from "@/components/buttons/LinkButton";
 import { ShareButtonFooter } from "../buttons/ShareButton";
-import { SNSItem } from "@/types/sns";
+import { SNSItem } from "@/types/socialLink";
 import { SiteData } from "@/types/site";
 
 import { FaEnvelope, FaLocationDot, FaPhone } from "react-icons/fa6";

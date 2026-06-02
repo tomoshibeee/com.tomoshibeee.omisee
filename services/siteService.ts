@@ -32,7 +32,7 @@ export async function getSiteMetas() {
 export async function getSiteIdBySlug(slug: string) {
   const { data, error } = await supabase
     .from("t_site_metas")
-    .select("id")
+    .select("site_id")
     .eq("slug", slug)
     .maybeSingle();
 
@@ -41,7 +41,7 @@ export async function getSiteIdBySlug(slug: string) {
     throw error;
   }
 
-  return data?.id || "";
+  return data?.site_id || "";
 }
 
 async function getaSite(siteId: string): Promise<Site> {
@@ -63,7 +63,7 @@ async function getSiteMeta(siteId: string): Promise<SiteMeta> {
   const { data, error } = await supabase
     .from("t_site_metas")
     .select("*")
-    .eq("id", siteId)
+    .eq("site_id", siteId)
     .maybeSingle();
 
   if (error) {
@@ -111,6 +111,13 @@ export async function getSiteData(siteId: string): Promise<SiteData> {
     getSiteNews(siteId),
     getSiteSocialLinks(siteId),
   ]);
+
+  console.log("🚦🚦🚦[Debug] [getSiteData] site:", site);
+  if (!site) {
+    console.error(`🚦Site with ID "${siteId}" not found.`);
+  } else {
+    console.log("🚦[Debug] meta:", meta);
+  }
 
   return {
     meta: {
