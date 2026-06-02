@@ -23,14 +23,12 @@ export function PrimaryNavigation({ site }: { site: SiteData }) {
           <LinkButtonHeader key={`${item.type}-${i}`} item={item} />
         ))}
       </div>
-      {/*
 
       <div className="mx-2 h-5 w-px bg-slate-300" />
 
       <div className="pl-2">
         <ShareButtonHeader />
       </div>
-      */}
     </nav>
   );
 }
