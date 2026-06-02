@@ -1,5 +1,5 @@
 import { randomUUID } from "crypto";
-import { SiteMetas } from "../models/siteMetas";
+import { SiteMeta } from "../models/siteMeta";
 
 export function dummySiteMetaData(siteIds: string[]) {
     const now = new Date().toISOString();
@@ -53,5 +53,5 @@ export function dummySiteMetaData(siteIds: string[]) {
             ...dummySiteMetas[i % dummySiteMetas.length],
             site_id: siteId
         };
-    }) as SiteMetas[];
+    }) as SiteMeta[];
 }

@@ -1,4 +1,4 @@
-export type SiteMetas = {
+export type SiteMeta = {
     id: string;
     site_id: string;
     slug: string;
