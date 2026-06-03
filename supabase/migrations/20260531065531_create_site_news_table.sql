@@ -10,3 +10,5 @@ create table public.t_site_news (
     created_at timestamptz not null default now (),
     updated_at timestamptz not null default now ()
 );
+
+create index idx_site_news_site_id on public.t_site_news (site_id);

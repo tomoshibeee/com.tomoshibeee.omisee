@@ -7,3 +7,5 @@ create table public.t_site_social_links (
     created_at timestamptz not null default now (),
     updated_at timestamptz not null default now ()
 );
+
+create index idx_site_social_links_site_id on public.t_site_social_links (site_id);

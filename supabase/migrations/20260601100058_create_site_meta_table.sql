@@ -14,3 +14,5 @@ create table public.t_site_metas (
     created_at timestamptz not null default now (),
     updated_at timestamptz not null default now ()
 );
+
+create index idx_site_metas_site_id on public.t_site_metas (site_id);
