@@ -129,6 +129,7 @@ export async function getSiteData(siteId: string): Promise<SiteData> {
       address: meta.address,
       bldg: meta.building,
       access: meta.access,
+      description: site?.description,
     },
     navigation: {
       menu: site?.navigation ?? []

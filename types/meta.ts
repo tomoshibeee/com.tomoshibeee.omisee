@@ -7,4 +7,5 @@ export type MetaData = {
   address: string;
   bldg?: string;
   access: string;
+  description?: string;
 };

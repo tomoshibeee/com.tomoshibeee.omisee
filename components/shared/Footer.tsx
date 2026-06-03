@@ -6,9 +6,9 @@ import { SiteData } from "@/types/site";
 import { FaEnvelope, FaLocationDot, FaPhone } from "react-icons/fa6";
 
 export default function Footer({ site }: { site: SiteData }) {
-  const sortedSocialLinks = site.socialLinks
-    ? [...site.socialLinks].sort((a, b) => a.orderBy - b.orderBy)
-    : undefined;
+  const sortedSocialLinks = [...(site.socialLinks ?? [])].sort(
+    (a, b) => a.orderBy - b.orderBy,
+  );
   return (
     <footer className="w-full border-t border-slate-200 bg-slate-950 px-6 pt-14 text-sm text-slate-300">
       <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr_1.2fr]">
@@ -18,15 +18,14 @@ export default function Footer({ site }: { site: SiteData }) {
             {site.meta.name}
           </h2>
           <p className="mt-4 leading-7 text-slate-400">
-            礼拝、集会、アクセス、お問い合わせについての情報をまとめています。
+            {site.meta.description || "ここに説明文が入ります。"}
           </p>
 
           {sortedSocialLinks && sortedSocialLinks?.length > 0 && (
             <div className="mt-5 flex items-center gap-2">
-              {sortedSocialLinks
-                .map((item: SocialLink, i: number) => (
-                  <LinkButtonFooter key={`${item.type}-${i}`} item={item} />
-                ))}
+              {sortedSocialLinks.map((item: SocialLink, i: number) => (
+                <LinkButtonFooter key={`${item.type}-${i}`} item={item} />
+              ))}
 
               {/* Share */}
               <ShareButtonFooter />
@@ -35,35 +34,18 @@ export default function Footer({ site }: { site: SiteData }) {
         </div>
 
         <div>
-          <h3 className="font-semibold text-white">教会について</h3>
-          <ul className="mt-4 space-y-2">
-            <li>
-              <a href="#about" className="transition hover:text-white">
-                教会案内
-              </a>
-            </li>
-            <li>
-              <a href="#about" className="transition hover:text-white">
-                牧師紹介
-              </a>
-            </li>
-            <li>
-              <a href="#service" className="transition hover:text-white">
-                礼拝案内
-              </a>
-            </li>
-            <li>
-              <a href="#contact" className="transition hover:text-white">
-                お問い合わせ
-              </a>
-            </li>
+          <h3 className="font-semibold text-white">営業時間</h3>
+          <ul>
+            <li>月曜日〜金曜日：9:00 - 18:00</li>
+            <li>土曜日：10:00 - 17:00</li>
+            <li>日曜日：定休日</li>
           </ul>
         </div>
 
         <div>
           <h3 className="font-semibold text-white">サイトマップ</h3>
           <ul className="mt-4 space-y-2">
-            {/* {site.navigation.menu?.map((m, i) => (
+            {site.navigation?.menu?.map((m, i) => (
               <li key={i}>
                 <a href={m.href ?? "#"} className="transition hover:text-white">
                   {m.label}
@@ -83,7 +65,7 @@ export default function Footer({ site }: { site: SiteData }) {
                   </ul>
                 )}
               </li>
-            ))} */}
+            ))}
           </ul>
         </div>
 
