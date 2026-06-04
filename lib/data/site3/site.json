@@ -1,10 +1,16 @@
 {
+  "site_id": 3,
   "navigation": {
     "menu": [
-      { "label": "店舗情報", "href": "#about",  "priority": 1 , "children": [
-        { "label": "当店のビジョン", "href": "#vision", "priority": 1 },
-        { "label": "店長挨拶", "href": "#greeting", "priority": 2 }
-      ] },
+      {
+        "label": "店舗情報",
+        "href": "#about",
+        "priority": 1,
+        "children": [
+          { "label": "当店のビジョン", "href": "#vision", "priority": 1 },
+          { "label": "店長挨拶", "href": "#greeting", "priority": 2 }
+        ]
+      },
       { "label": "オンラインストア", "href": "#service", "priority": 2 },
       { "label": "アクセス", "href": "#access", "priority": 3 },
       { "label": "お問い合わせ", "href": "#contact", "priority": 4 }

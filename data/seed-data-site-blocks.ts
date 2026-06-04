@@ -1,46 +1,44 @@
 import { randomUUID } from "crypto";
-import { SiteMeta } from "@/models/siteMeta";
 import { SiteSection } from "@/models/siteSection";
-// import { BlockType } from "@/models/siteBlock";
 
+import site1 from "@/lib/data/site1/site.json";
+import site2 from "@/lib/data/site2/site.json";
+import site3 from "@/lib/data/site3/site.json";
 
 export function dummySiteBlockModelData(
-    metas: SiteMeta[],
-    sections: SiteSection[]) {
+    siteIds: string[],
+    insertedSections: SiteSection[]
+) {
     const now = new Date().toISOString();
 
-    const siteMetas = Array.from(
-        new Map(
-            metas.map(m => [m.site_id, { siteId: m.site_id, slug: m.slug }])
-        ).values()
-    );
-    // (site_id, section_section_type, display_order)でデータを作成していく
-    const siteSectionMap = sections.map((s, i) => {
-        return {
-            site_id: s.site_id,
-            // slug(目視確認用)
-            slug: "",
-            section_id: s.id,
-            section_type: s.type,
-            display_order: 1
-        }
-    })
-    console.log("siteSectionMap", siteSectionMap);
-    const blocks = sections.map((s, i) => {
-        return {
-            id: randomUUID(),
-            // siteId: s.site_id,
-            section_id: s.id,
-            display_order: i,
-            type: "hero",   // TODO : →(section_id, display_order)で可変。後で変更。
-            variant: "",    // TODO : →(section_id, display_order)で可変。後で変更。
-            data: {},
-            created_at: now,
-            updated_at: now,
-        }
-    });
+    const sectionList = [site1, site2, site3];
 
-    // console.log(blocks);
+    const blocks = sectionList.flatMap((siteJson, siteIndex) => {
+        return siteJson.layout.sections.flatMap((sectionJson, sectionIndex) => {
+
+            const section = insertedSections.find(
+                s =>
+                    s.site_id === siteIds[siteIndex] &&
+                    s.type === sectionJson.type &&
+                    s.display_order === sectionIndex
+            );
+
+            if (!section) {
+                throw new Error("section not found");
+            }
+
+                return sectionJson.blocks.map((block, blockIndex) => ({
+                id: randomUUID(),
+                section_id: section.id, // ←ここ🔥
+                type: block.type,
+                    variant: "variant" in block ? (block as any).variant ?? null : null,
+                data: block.data ?? {},
+                display_order: blockIndex,
+                created_at: now,
+                updated_at: now,
+            }));
+        });
+    });
 
     return blocks;
 }

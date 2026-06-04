@@ -90,13 +90,13 @@ async function runSeed() {
     return;
   }
 
-  const sitesIds = sites.map((n) => n.id);
-  console.log("✅ sites created:", sitesIds);
+  const siteIds = sites.map((n) => n.id);
+  console.log("✅ sites created:", siteIds);
 
   // =========================
   // 4. Site Metas
   // =========================
-  const dummySiteMetasModelData = dummySiteMetaModelData(sitesIds);
+  const dummySiteMetasModelData = dummySiteMetaModelData(siteIds);
   const { data: siteMetas, error: siteMetasError } = await supabase
     .from("t_site_metas")
     .insert(dummySiteMetasModelData)
@@ -112,7 +112,7 @@ async function runSeed() {
   // =========================
   // 5. Site News
   // =========================
-  const siteNewsRows = dummySiteNewsModelData(sitesIds);
+  const siteNewsRows = dummySiteNewsModelData(siteIds);
   const { data: siteNews, error: siteNewsError } =
     await supabase.from("t_site_news")
       .insert(siteNewsRows)
@@ -131,7 +131,7 @@ async function runSeed() {
   // =========================
   const { data: siteSocialLinks, error: siteSocialLinksError } =
     await supabase.from("t_site_social_links")
-      .insert(dummySiteSocialLinkModelData(sitesIds))
+      .insert(dummySiteSocialLinkModelData(siteIds))
       .select();
 
   if (siteSocialLinksError || !siteSocialLinks) {
@@ -145,7 +145,7 @@ async function runSeed() {
   // =========================
   // 7. Site Sections
   // =========================
-  const siteSectionModelData = await dummySiteSectionModelData();
+  const siteSectionModelData = dummySiteSectionModelData(siteIds);
   const { data: siteSections, error: siteSectionsError } =
     await supabase.from("t_sections")
       .insert(siteSectionModelData)
@@ -157,12 +157,15 @@ async function runSeed() {
   }
 
   const siteSectionsIds = siteSections.map((n) => n.id);
-  console.log("✅✨✨✨ site sections created:", siteSectionsIds);
+  console.log("✅ site sections created:", siteSectionsIds);
 
   // =========================
   // 8. Site Blocks
   // =========================
-  const siteBlockModelData = dummySiteBlockModelData(dummySiteMetasModelData, siteSectionModelData);
+  const siteBlockModelData = dummySiteBlockModelData(
+    siteIds,
+    siteSectionModelData
+  );
   const { data: siteBlocks, error: siteBlocksError } =
     await supabase.from("t_blocks")
       .insert(siteBlockModelData)
