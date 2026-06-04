@@ -1,6 +1,6 @@
 export type Site = {
     id: string;     
-    no: number;
+    site_no: number;
     name: string;
     description: string | null;
     navigation: object;

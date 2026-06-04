@@ -2,14 +2,14 @@ import "dotenv/config";
 
 import { createClient } from "@supabase/supabase-js";
 
-import { dummySocialTypeData } from "../data/seed-data-social-types";
-import { dummyNewsData } from "../data/seed-data-news";
-import { dummySiteData } from "../data/seed-data-sites";
-import { dummySiteMetaData } from "../data/seed-data-site-metas";
-import { dummySiteNewsData } from "../data/seed-data-site-news";
-import { dummySiteSocialLinkData } from "../data/seed-data-site-social-links";
-import { dummySiteSectionData } from "../data/seed-data-site-sections";
-import { dummySiteBlockData } from "../data/seed-data-site-blocks";
+import { dummySocialTypeModelData } from "../data/seed-data-social-types";
+import { dummyNewsModelData } from "../data/seed-data-news";
+import { dummySiteModelData } from "../data/seed-data-sites";
+import { dummySiteMetaModelData } from "../data/seed-data-site-metas";
+import { dummySiteNewsModelData } from "../data/seed-data-site-news";
+import { dummySiteSocialLinkModelData } from "../data/seed-data-site-social-links";
+import { dummySiteSectionModelData } from "../data/seed-data-site-sections";
+import { dummySiteBlockModelData } from "../data/seed-data-site-blocks";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -48,7 +48,7 @@ async function runSeed() {
   // =========================
   const { data: socialTypes, error: socialTypesError } = await supabase
     .from("m_social_types")
-    .insert(dummySocialTypeData())
+    .insert(dummySocialTypeModelData())
     .select()
     ;
 
@@ -66,7 +66,7 @@ async function runSeed() {
   // =========================
   const { data: news, error: newsError } = await supabase
     .from("t_news")
-    .insert(dummyNewsData())
+    .insert(dummyNewsModelData())
     .select()
     ;
 
@@ -83,7 +83,7 @@ async function runSeed() {
   // =========================
   const { data: sites, error: sitesError } = await supabase
     .from("t_sites")
-    .insert(dummySiteData())
+    .insert(dummySiteModelData())
     .select();
   if (sitesError || !sites) {
     console.error("❌ sites insert error:", sitesError);
@@ -98,7 +98,7 @@ async function runSeed() {
   // =========================
   const { data: siteMetas, error: siteMetasError } = await supabase
     .from("t_site_metas")
-    .insert(dummySiteMetaData(sitesIds))
+    .insert(dummySiteMetaModelData(sitesIds))
     .select();
   if (siteMetasError || !siteMetas) {
     console.error("❌ siteMetas insert error:", siteMetasError);
@@ -111,7 +111,7 @@ async function runSeed() {
   // =========================
   // 5. Site News
   // =========================
-  const siteNewsRows = dummySiteNewsData(sitesIds);
+  const siteNewsRows = dummySiteNewsModelData(sitesIds);
   const { data: siteNews, error: siteNewsError } =
     await supabase.from("t_site_news")
       .insert(siteNewsRows)
@@ -130,7 +130,7 @@ async function runSeed() {
   // =========================
   const { data: siteSocialLinks, error: siteSocialLinksError } =
     await supabase.from("t_site_social_links")
-      .insert(dummySiteSocialLinkData(sitesIds))
+      .insert(dummySiteSocialLinkModelData(sitesIds))
       .select();
 
   if (siteSocialLinksError || !siteSocialLinks) {
@@ -144,10 +144,10 @@ async function runSeed() {
   // =========================
   // 7. Site Sections
   // =========================
-  // const siteSectionData = dummySiteSectionData();
+  // const siteSectionModelData = dummySiteSectionModelData();
   // const { data: siteSections, error: siteSectionsError } =
   //   await supabase.from("t_sections")
-  //     .insert(siteSectionData)
+  //     .insert(siteSectionModelData)
   //     .select();
 
   // if (siteSectionsError || !siteSections) {
@@ -161,10 +161,10 @@ async function runSeed() {
   // =========================
   // 8. Site Blocks
   // =========================
-  // const siteBlockData = dummySiteBlockData(siteSectionData);
+  // const siteBlockModelData = dummySiteBlockModelData(siteSectionModelData);
   // const { data: siteBlocks, error: siteBlocksError } =
   //   await supabase.from("t_blocks")
-  //     .insert(siteBlockData)
+  //     .insert(siteBlockModelData)
   //     .select();
 
   // if (siteBlocksError || !siteBlocks) {

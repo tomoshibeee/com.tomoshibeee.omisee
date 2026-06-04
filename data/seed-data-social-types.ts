@@ -12,7 +12,7 @@ function getRandomDate(): string {
     return new Date(randomTime).toISOString();
 }
 
-export function dummySocialTypeData(): SocialType[] {
+export function dummySocialTypeModelData(): SocialType[] {
     return [
         {
             id: "facebook",

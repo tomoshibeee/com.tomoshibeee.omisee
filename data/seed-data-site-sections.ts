@@ -1,7 +1,7 @@
 import { randomUUID } from "crypto";
 import { getSiteId } from "@/services/siteService";
 
-export function dummySiteSectionData() {
+export function dummySiteSectionModelData() {
     // const now = new Date().toISOString();
 
     

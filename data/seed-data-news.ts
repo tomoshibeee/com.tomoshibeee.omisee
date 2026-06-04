@@ -12,7 +12,7 @@ function getRandomDate(): string {
   return new Date(randomTime).toISOString();
 }
 
-export function dummyNewsData(): News[] {
+export function dummyNewsModelData(): News[] {
   return [
     {
       title: "システムメンテナンスのお知らせ",

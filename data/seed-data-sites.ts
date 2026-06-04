@@ -1,7 +1,7 @@
 import { randomUUID } from "crypto";
 import { Site } from "../models/site";
 
-export function dummySiteData(): Site[] {
+export function dummySiteModelData(): Site[] {
   const navigations = [
     [
       {
@@ -70,8 +70,8 @@ export function dummySiteData(): Site[] {
     },
     {
       id: randomUUID(),
-      name: "人宿55メガネ",
       site_no: 3,
+      name: "人宿55メガネ",
       description: "人宿55メガネの公式サイトです。静岡人宿町を中心にスタイリッシュで大人なメガネを作っています。お得な情報もまとめてお送りします。",
       navigation: navigations[2],
       created_at: new Date().toISOString(),

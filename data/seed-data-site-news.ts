@@ -13,7 +13,7 @@ function getRandomDate(): string {
   return new Date(randomTime).toISOString();
 }
 
-export function dummySiteNewsData(siteIds: string[]) {
+export function dummySiteNewsModelData(siteIds: string[]) {
   const now = new Date().toISOString();
 
   return siteIds.flatMap(siteId =>

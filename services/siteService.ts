@@ -138,7 +138,7 @@ export async function getSiteData(siteId: string): Promise<SiteData> {
   return {
     meta: {
       site_id: site.id,
-      site_no: site.no,
+      site_no: site.site_no,
       slug: meta.slug,
       name: meta.name,
       tel: meta.tel,
