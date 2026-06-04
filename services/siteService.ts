@@ -4,6 +4,7 @@ import { SiteData } from "@/types/site";
 import { SectionData } from "@/features/section/types"
 import { SocialLink } from "@/types/socialLink";
 import { MenuItem } from "@/types/menu";
+import { NewsBlockType } from "@/features/block/news/types"
 
 import { Site } from "@/models/site";
 import { SiteMeta } from "@/models/siteMeta";
@@ -123,7 +124,6 @@ async function getSiteSocialLinks(siteId: string): Promise<SiteSocialLink[]> {
   return data;
 }
 
-
 export async function getSiteData(siteId: string): Promise<SiteData> {
   const [site, meta, news, socialLinks, sections] = await Promise.all([
     getaSite(siteId),
@@ -142,6 +142,20 @@ export async function getSiteData(siteId: string): Promise<SiteData> {
       } as SectionData;
     })
   );
+  const newsData = news.map((n) => {
+    return {
+      id: n.id,
+      type: "news",
+      data: {
+        title: n.title,
+        content: n.content ?? "",
+        eventDate: n.event_date,
+        publishedAt: n.published_at,
+        doc: n.doc,
+        youtube: n.youtube
+      }
+    } as NewsBlockType;
+  });
   return {
     meta: {
       site_id: site.id,
@@ -167,7 +181,7 @@ export async function getSiteData(siteId: string): Promise<SiteData> {
       url: l.url,
       orderBy: l.display_order,
     })),
-    news: news
+    news: newsData,
   } as SiteData;
 }
 

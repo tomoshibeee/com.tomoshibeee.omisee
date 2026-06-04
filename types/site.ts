@@ -2,6 +2,7 @@ import { Section } from "@/features/section/types";
 import { MetaData } from "./meta";
 import { MenuItem } from "./menu";
 import { SocialLink } from "./socialLink";
+import { NewsBlockType } from "@/features/block";
 
 export type SiteData = {
   meta: MetaData;
@@ -12,4 +13,5 @@ export type SiteData = {
     sections: Section[];
   };
   socialLinks?: SocialLink[];
+  news : NewsBlockType[];
 };

@@ -1,8 +1,3 @@
-// TODO : DBからお知らせを取得するようにする
-import news1 from "@/lib/data/site1/news.json";
-import news2 from "@/lib/data/site2/news.json";
-import news3 from "@/lib/data/site3/news.json";  
-
 import { NewsBlockData } from "@/features/block";
 import {
   FaArrowRight,
@@ -11,37 +6,14 @@ import {
   FaYoutube,
 } from "react-icons/fa6";
 
-type NewsGroup = {
-  id: string;
-  items: NewsItem[];
-};
-
-// TODO : DBからお知らせを取得するようにする
-export const NEWS_LIST : NewsGroup[] = [
-  { id: "news1", items: news1 },
-  { id: "news2", items: news2 },
-  { id: "news3", items: news3 },
-];
-
-type NewsItem = {
-  title: string;
-  content?: string;
-  eventDate: string;
-  publishedAt: string;
-  doc?: string;
-  youtube?: string;
-};
-
 const formatDate = (date: string) => {
   const [year, month, day] = date.split("-");
   if (!year || !month || !day) return date;
   return `${year}.${month}.${day}`;
 };
 
-export default function NewsBlock({ source, limit }: NewsBlockData) {
-  const data = NEWS_LIST.find((news) => news.id === source);
-
-  if (data === undefined) {
+export default function NewsBlock({ data, limit }: NewsBlockData) {
+  if (!data || data.length === 0) {
     return (
       <div className="bg-white px-6 py-14">
         <div className="mx-auto max-w-5xl rounded-lg bg-red-50 p-6 text-red-700 shadow-sm">
@@ -53,7 +25,7 @@ export default function NewsBlock({ source, limit }: NewsBlockData) {
 
   const now = new Date();
 
-  const sortedItems = [...data.items]
+  const sortedItems = data
     .filter((item) => new Date(item.publishedAt) <= now)
     .sort(
       (a, b) =>

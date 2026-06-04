@@ -1,6 +1,10 @@
 export type NewsBlockData = {
-  source: string;
-  limit?: number;
+  title: string;
+  content?: string;
+  eventDate: string;
+  publishedAt: string;
+  doc?: string;
+  youtube?: string;
 };
 
 export type NewsBlockType = {
