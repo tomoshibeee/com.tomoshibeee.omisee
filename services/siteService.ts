@@ -132,31 +132,45 @@ export async function getSiteData(siteId: string): Promise<SiteData> {
     getSiteSocialLinks(siteId),
     getSiteSections(siteId)
   ]);
+  const newsItems = news.map(n => {
+    return {
+
+      news_id: n.id,
+      title: n.title,
+      content: n.content ?? "",
+      eventDate: n.event_date,
+      publishedAt: n.published_at,
+      doc: n.doc,
+      youtube: n.youtube
+    }
+  });
+
   const sectionData = await Promise.all(
     sections.map(async (s) => {
       const blocks = await getSiteBlocks(s.id);
+
+      const blocksWithNews =
+        s.type === "news"
+          ? [
+            {
+              id: s.id,
+              type: "news",
+              variant: "",
+              data: {
+                items: newsItems
+              }
+            }
+          ]
+          : blocks;
+
       return {
         id: s.id,
         type: s.type,
-        blocks: blocks
-      } as SectionData;
+        blocks: blocksWithNews
+      };
     })
   );
-  const newsData = news.map((n) => {
-    return {
-      id: n.id,
-      type: "news",
-      data: {
-        title: n.title,
-        content: n.content ?? "",
-        eventDate: n.event_date,
-        publishedAt: n.published_at,
-        doc: n.doc,
-        youtube: n.youtube
-      }
-    } as NewsBlockType;
-  });
-  return {
+  const ret = {
     meta: {
       site_id: site.id,
       site_no: site.site_no,
@@ -181,8 +195,9 @@ export async function getSiteData(siteId: string): Promise<SiteData> {
       url: l.url,
       orderBy: l.display_order,
     })),
-    news: newsData,
-  } as SiteData;
+  };
+
+  return ret as SiteData;
 }
 
 

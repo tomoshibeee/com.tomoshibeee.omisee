@@ -6,14 +6,11 @@ import {
   FaYoutube,
 } from "react-icons/fa6";
 
-const formatDate = (date: string) => {
-  const [year, month, day] = date.split("-");
-  if (!year || !month || !day) return date;
-  return `${year}.${month}.${day}`;
-};
+import { formatDate } from "@/utils/date/formatDate";
 
-export default function NewsBlock({ data, limit }: NewsBlockData) {
-  if (!data || data.length === 0) {
+export default function NewsBlock(data: NewsBlockData, limit: number = 5) {
+  console.log("✨✨✨data.items✨✨✨", data.items);
+  if (!data) {
     return (
       <div className="bg-white px-6 py-14">
         <div className="mx-auto max-w-5xl rounded-lg bg-red-50 p-6 text-red-700 shadow-sm">
@@ -25,16 +22,18 @@ export default function NewsBlock({ data, limit }: NewsBlockData) {
 
   const now = new Date();
 
-  const sortedItems = data
-    .filter((item) => new Date(item.publishedAt) <= now)
+  const sortedItems = data.items
+    // .filter((item) => new Date(item.publishedAt) <= now)
     .sort(
       (a, b) =>
         new Date(b.eventDate ?? b.publishedAt).getTime() -
         new Date(a.eventDate ?? a.publishedAt).getTime(),
     );
+  console.log("✨✨✨sortedItems", sortedItems);
 
   const displayedItems =
     limit !== undefined ? sortedItems.slice(0, limit) : sortedItems;
+  console.log("✨✨✨displayedItems", displayedItems);
 
   return (
     <div className="bg-slate-50 px-6 py-14 text-gray-800">
@@ -50,7 +49,7 @@ export default function NewsBlock({ data, limit }: NewsBlockData) {
         </div>
 
         <div className="grid gap-4">
-          {displayedItems.map((item: NewsItem, index) => {
+          {displayedItems.map((item, index) => {
             const isLong = item.content && item.content.length > 60;
 
             return (
