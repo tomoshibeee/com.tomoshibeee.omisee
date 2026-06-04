@@ -176,8 +176,8 @@ async function runSeed() {
     return;
   }
 
-  const siteBlocksIds = siteSections.map((n) => n.id);
-  console.log("✅ site sections created:", siteBlocksIds);
+  const siteBlocksIds = siteBlocks.map((n) => n.id);
+  console.log("✅ site blocks created:", siteBlocksIds);
 
   console.log("🚀 Seed completed!");
 }

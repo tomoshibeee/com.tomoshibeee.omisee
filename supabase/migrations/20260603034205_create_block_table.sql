@@ -2,7 +2,7 @@ create table public.t_blocks (
     id uuid primary key default gen_random_uuid (),
     section_id uuid not null references public.t_sections (id) on delete cascade,
     type text not null,
-    variant text not null default 'single',
+    variant text default '',
     data jsonb,
     display_order int not null default 0,
     created_at timestamptz not null default now (),
