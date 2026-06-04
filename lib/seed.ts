@@ -144,19 +144,19 @@ async function runSeed() {
   // =========================
   // 7. Site Sections
   // =========================
-  // const siteSectionModelData = dummySiteSectionModelData();
-  // const { data: siteSections, error: siteSectionsError } =
-  //   await supabase.from("t_sections")
-  //     .insert(siteSectionModelData)
-  //     .select();
+  const siteSectionModelData = await dummySiteSectionModelData();
+  const { data: siteSections, error: siteSectionsError } =
+    await supabase.from("t_sections")
+      .insert(siteSectionModelData)
+      .select();
 
-  // if (siteSectionsError || !siteSections) {
-  //   console.error("❌ siteSections insert error:", siteSectionsError);
-  //   return;
-  // }
+  if (siteSectionsError || !siteSections) {
+    console.error("❌ siteSections insert error:", siteSectionsError);
+    return;
+  }
 
-  // const siteSectionsIds = siteSections.map((n) => n.id);
-  // console.log("✅ site sections created:", siteSectionsIds);
+  const siteSectionsIds = siteSections.map((n) => n.id);
+  console.log("✅ site sections created:", siteSectionsIds);
 
   // =========================
   // 8. Site Blocks

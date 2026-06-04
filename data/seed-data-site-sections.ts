@@ -1,26 +1,39 @@
 import { randomUUID } from "crypto";
-import { getSiteId } from "@/services/siteService";
+import { getSiteIdBySlug } from "@/services/siteService";
 
-export function dummySiteSectionModelData() {
-    // const now = new Date().toISOString();
+export async function dummySiteSectionModelData() {
+    const now = new Date().toISOString();
 
-    
-    // const siteIds = [
-    //     getSiteId(1),
-    //     getSiteId(2),
-    //     getSiteId(3)
-    // ];
+    const siteIds = await Promise.all([
+        getSiteIdBySlug("shizuoka-jonan-church"),
+        getSiteIdBySlug("organic-apple-store"),
+        getSiteIdBySlug("hitoyado-55-megane"),
+    ]);
 
-    // return siteIds.flatMap((siteId) => {
-    //     return types.map((type, i) => {
-    //         return {
-    //             id: randomUUID(),
-    //             site_id: siteId,
-    //             type: type,
-    //             display_order: i,
-    //             created_at: now,
-    //             updated_at: now,
-    //         };
-    //     });
-    // });
+    siteIds.forEach((id, i) => {
+        if (!id) {
+            throw new Error(`siteId not found at index ${i}`);
+        }
+    });
+
+    console.log(siteIds);
+
+    const sites = [
+        { siteId: siteIds[0], sectionTypes: ["hero", "news", "about", "service", "access", "contact"] },
+        { siteId: siteIds[1], sectionTypes: ["hero", "news", "about", "service", "access", "contact"] },
+        { siteId: siteIds[2], sectionTypes: ["hero", "news", "about", "service", "access", "contact"] },
+    ];
+
+    return sites.flatMap((site) => {
+        return site.sectionTypes.map((type, i) => {
+            return {
+                id: randomUUID(),
+                site_id: site.siteId,
+                type: type,
+                display_order: i,
+                created_at: now,
+                updated_at: now,
+            };
+        });
+    });
 }
