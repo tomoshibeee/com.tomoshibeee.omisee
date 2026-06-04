@@ -7,12 +7,16 @@ import news1 from "@/lib/data/site1/news.json";
 import news2 from "@/lib/data/site2/news.json";
 import news3 from "@/lib/data/site3/news.json";
 
-import sns1 from "@/lib/data/site1/social-accounts.json";
-import sns2 from "@/lib/data/site2/social-accounts.json";
-import sns3 from "@/lib/data/site3/social-accounts.json";
+import socialAccountList1 from "@/lib/data/site1/social-accounts.json";
+import socialAccountList2 from "@/lib/data/site2/social-accounts.json";
+import socialAccountList3 from "@/lib/data/site3/social-accounts.json";
 
-export const sites = [site1, site2, site3];
+export const dummySites = [site1, site2, site3];
 
-export const news = [news1, news2, news3];
+export const dummySiteNews = [news1, news2, news3];
 
-export const sns = [sns1, sns2, sns3];
+export const dummySiteSocialAccountLists = [
+    socialAccountList1, 
+    socialAccountList2, 
+    socialAccountList3
+];

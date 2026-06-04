@@ -1,14 +1,12 @@
 import { randomUUID } from "crypto";
 import { SiteSection, SectionType } from "@/models/siteSection";
 
-import site1 from "@/lib/data/site1/site.json";
-import site2 from "@/lib/data/site2/site.json";
-import site3 from "@/lib/data/site3/site.json";
+import {dummySites} from "@/lib/data";
 
 export function dummySiteSectionModelData(siteIds: string[]): SiteSection[] {
     const now = new Date().toISOString();
 
-    const sectionList = [site1, site2, site3];
+    const sectionList = dummySites;
     
     return sectionList.flatMap((siteJson, siteIndex) => {
         const siteId = siteIds[siteIndex];

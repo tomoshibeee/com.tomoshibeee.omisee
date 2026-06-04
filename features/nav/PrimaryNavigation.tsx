@@ -3,7 +3,6 @@ import { DropDownMenu } from "../menu/DropDownMenu";
 import { LinkButtonHeader } from "@/components/buttons/LinkButton";
 import { ShareButtonHeader } from "@/components/buttons/ShareButton";
 import { SiteData } from "@/types/site";
-import { sns } from "@/lib/data";
 
 export function PrimaryNavigation({ site }: { site: SiteData }) {
   const sortedSocialLinks = site?.socialLinks?.sort(
