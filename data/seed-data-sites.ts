@@ -52,7 +52,7 @@ export function dummySiteData(): Site[] {
   return [
     {
       id: randomUUID(),
-      no: 1,
+      site_no: 1,
       name: "静岡城南教会",
       description: "静岡城南教会の公式サイトです。新しい方も信徒の皆さんも、ここで礼拝やイベントの情報をまとめてお送りします。",
       navigation: navigations[0],
@@ -61,7 +61,7 @@ export function dummySiteData(): Site[] {
     },
     {
       id: randomUUID(),
-      no: 2,
+      site_no: 2,
       name: "オーガニック・アップル・ストア",
       description: "静岡駿府町にあるフェアトレードの雑貨屋さん、『オーガニック・アップル・ストア』の公式サイトです。お得な情報をまとめてお送りします。",
       navigation: navigations[1],
@@ -71,7 +71,7 @@ export function dummySiteData(): Site[] {
     {
       id: randomUUID(),
       name: "人宿55メガネ",
-      no: 3,
+      site_no: 3,
       description: "人宿55メガネの公式サイトです。静岡人宿町を中心にスタイリッシュで大人なメガネを作っています。お得な情報もまとめてお送りします。",
       navigation: navigations[2],
       created_at: new Date().toISOString(),
