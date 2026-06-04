@@ -9,7 +9,9 @@ import { Site } from "@/models/site";
 import { SiteMeta } from "@/models/siteMeta";
 import { SiteNews } from "@/models/siteNews";
 import { SiteSocialLink } from "@/models/siteSocialLink";
-import { SiteSection } from "@/models/siteSection";
+
+import { getSiteSections } from "@/services/siteSectionService";
+import { getSiteBlocks } from "@/services/siteBlockService";
 
 export async function getSites() {
   const { data, error } = await supabase.from("t_sites").select("*");
@@ -121,19 +123,6 @@ async function getSiteSocialLinks(siteId: string): Promise<SiteSocialLink[]> {
   return data;
 }
 
-async function getSiteSections(siteId: string): Promise<SiteSection[]> {
-  const { data, error } = await supabase
-    .from("t_sections")
-    .select("*")
-    .eq("site_id", siteId);
-
-  if (error) {
-    console.error(`Error fetching sections for site ID "${siteId}":`, error);
-    throw error;
-  }
-
-  return data;
-}
 
 export async function getSiteData(siteId: string): Promise<SiteData> {
   const [site, meta, news, socialLinks, sections] = await Promise.all([
@@ -143,13 +132,16 @@ export async function getSiteData(siteId: string): Promise<SiteData> {
     getSiteSocialLinks(siteId),
     getSiteSections(siteId)
   ]);
-  const sectionData = sections.map((s, i) => {
-    return {
-      id: s.id,
-      type: s.type,
-      blocks: [] // TODO: ブロック投入
-    } as SectionData
-  })
+  const sectionData = await Promise.all(
+    sections.map(async (s) => {
+      const blocks = await getSiteBlocks(s.id);
+      return {
+        id: s.id,
+        type: s.type,
+        blocks: blocks
+      } as SectionData;
+    })
+  );
   return {
     meta: {
       site_id: site.id,
@@ -175,6 +167,7 @@ export async function getSiteData(siteId: string): Promise<SiteData> {
       url: l.url,
       orderBy: l.display_order,
     })),
+    news: news
   } as SiteData;
 }
 
