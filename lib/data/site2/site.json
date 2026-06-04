@@ -1,8 +1,27 @@
 {
   "navigation": {
     "menu": [
-      { "label": "教会について", "href": "#about" },
-      { "label": "礼拝", "href": "#service" },
+      {
+        "label": "お店について",
+        "children": [
+          { "label": "コンセプト", "href": "#about" },
+          { "label": "こだわりの生産者", "href": "#farmers" }
+        ]
+      },
+      {
+        "label": "商品紹介",
+        "children": [
+          { "label": "野菜・果物", "href": "#products" },
+          { "label": "加工食品", "href": "#products" }
+        ]
+      },
+      {
+        "label": "お知らせ",
+        "children": [
+          { "label": "入荷情報", "href": "#news" },
+          { "label": "イベント", "href": "#events" }
+        ]
+      },
       { "label": "アクセス", "href": "#access" },
       { "label": "お問い合わせ", "href": "#contact" }
     ]
@@ -15,34 +34,22 @@
         "type": "hero",
         "blocks": [
           {
-            "id": "hero-carousel",
+            "id": "hero-simple",
             "type": "hero",
-            "variant": "carousel",
+            "variant": "single",
             "data": {
-              "title": "誰にでも開かれた教会へ",
-              "message": "ようこそ！",
+              "title": "静岡・駿府町の小さなオーガニックショップ「オーガニック・アップル」",
               "images": [
-                {
-                  "url": "https://picsum.photos/id/1018/1600/900",
-                  "alt": "Hero Image 1"
-                },
-                {
-                  "url": "https://picsum.photos/id/1015/1600/900",
-                  "alt": "Hero Image 2"
-                },
-                {
-                  "url": "https://picsum.photos/id/1019/1600/900",
-                  "alt": "Hero Image 3"
-                }
+                { "url": "https://picsum.photos/1200/600", "alt": "オーガニックショップ外観イメージ" }
               ]
             }
           },
           {
-            "id": "hero-cta",
+            "id": "cta-main",
             "type": "cta",
             "data": {
               "buttons": [
-                { "label": "礼拝に参加する", "href": "#info" },
+                { "label": "今週の入荷を見る", "href": "#news" },
                 { "label": "お問い合わせ", "href": "#contact" }
               ]
             }
@@ -54,14 +61,39 @@
         "type": "about",
         "blocks": [
           {
-            "id": "greeting-main",
-            "type": "greeting",
+            "id": "about-main",
+            "type": "text",
             "data": {
-              "name": "横浜太郎",
-              "role": "主任牧師",
-              "image": "https://i.pravatar.cc/150?img=3",
-              "bio": "横浜生まれ。神学校卒業後、国内外の教会で牧師として奉仕。2020年より現職。",
-              "message": "横浜教会の主任牧師を務めています。皆さんとお会いできるのを楽しみにしています！"
+              "title": "からだにやさしい日常を、静岡から",
+              "content": "オーガニック・アップルは、静岡市駿府町にある小さなオーガニック食品店です。全国の契約農家から届く野菜や果物、添加物を抑えた加工食品を中心に、日々の食卓を豊かにする商品を取り扱っています。"
+            }
+          }
+        ]
+      },
+      {
+        "id": "products",
+        "type": "service",
+        "blocks": [
+          {
+            "id": "products-list",
+            "type": "service",
+            "data": {
+              "items": [
+                {
+                  "id": "item1",
+                  "title": "有機野菜セット",
+                  "time": "毎週入荷",
+                  "location": "静岡・契約農家直送",
+                  "comment": "季節ごとの野菜をバランスよく詰め合わせています"
+                },
+                {
+                  "id": "item2",
+                  "title": "無添加ジュース",
+                  "time": "常時販売",
+                  "location": "国内加工",
+                  "comment": "果物そのままの甘さを生かしたストレートジュース"
+                }
+              ]
             }
           }
         ]
@@ -74,43 +106,8 @@
             "id": "news-main",
             "type": "news",
             "data": {
-              "source": "news2",
-              "limit": 5
-            }
-          }
-        ]
-      },
-      {
-        "id": "service",
-        "type": "service",
-        "blocks": [
-          {
-            "id": "service-info1",
-            "type": "service",
-            "data": {
-              "items": [
-                {
-                  "id": "service1",
-                  "title": "日曜礼拝",
-                  "time": "日曜10:00〜",
-                  "location": "本堂",
-                  "comment": "カジュアルな服装でお越しいただけます"
-                },
-                {
-                  "id": "service2",
-                  "title": "聖書勉強会",
-                  "time": "水曜10:00〜",
-                  "location": "教室",
-                  "comment": "初心者歓迎！聖書の基礎から学べます"
-                },
-                {
-                  "id": "service3",
-                  "title": "青年委員会",
-                  "time": "木曜10:00〜",
-                  "location": "教室",
-                  "comment": "高校生〜30代の若者が集まる活動的なグループです"
-                }
-              ]
+              "source": "news1",
+              "limit": 3
             }
           }
         ]
@@ -134,7 +131,7 @@
             "id": "contact-main",
             "type": "contact",
             "data": {
-              "description": "見学、礼拝、各集会についてのご質問をお待ちしています。"
+              "description": "商品や仕入れについてのご相談もお気軽にお問い合わせください。"
             }
           }
         ]

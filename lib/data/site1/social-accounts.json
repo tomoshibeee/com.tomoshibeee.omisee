@@ -1,7 +1,7 @@
 [
-  { "type": "facebook", "url": "#", "priority": 3 },
-  { "type": "x", "url": "#", "priority": 1 },
-  { "type": "instagram", "url": "#", "priority": 2 },
-  { "type": "youtube", "url": "#", "priority": 4 },
-  { "type": "note", "url": "#", "priority": 5 }
+  { "type": "facebook", "url": "https://facebook.com/shizuoka-jonan-church", "priority": 2 },
+  { "type": "x", "url": "https://x.com/jonanchurch_shizuoka", "priority": 3 },
+  { "type": "instagram", "url": "https://instagram.com/shizuoka_jonan_church", "priority": 1 },
+  { "type": "youtube", "url": "https://www.youtube.com/@jonanchurch-shizuoka", "priority": 4 },
+  { "type": "note", "url": "https://note.com/shizuoka_jonan_church", "priority": 5 }
 ]

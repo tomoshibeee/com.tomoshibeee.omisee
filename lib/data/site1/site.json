@@ -11,15 +11,15 @@
       {
         "label": "礼拝案内",
         "children": [
-          { "label": "礼拝", "href": "#service" },
-          { "label": "イベント情報", "href": "#events" }
+          { "label": "礼拝について", "href": "#service" },
+          { "label": "年間行事", "href": "#events" }
         ]
       },
       {
         "label": "活動紹介",
         "children": [
-          { "label": "ボランティア", "href": "#volunteer" },
-          { "label": "地域交流", "href": "#community" }
+          { "label": "ボランティア活動", "href": "#volunteer" },
+          { "label": "地域とのつながり", "href": "#community" }
         ]
       },
       { "label": "アクセス", "href": "#access" },
@@ -38,9 +38,9 @@
             "type": "hero",
             "variant": "single",
             "data": {
-              "title": "東京の下町に佇む小さな教会",
+              "title": "静岡の街角にある、小さなあたたかな教会",
               "images": [
-                { "url": "https://picsum.photos/1200/600", "alt": "Hero Image" }
+                { "url": "https://picsum.photos/1200/600", "alt": "教会外観イメージ" }
               ]
             }
           },
@@ -49,7 +49,7 @@
             "type": "cta",
             "data": {
               "buttons": [
-                { "label": "礼拝動画", "href": "#info" },
+                { "label": "礼拝を見る", "href": "#service" },
                 { "label": "お問い合わせ", "href": "#contact" }
               ]
             }
@@ -78,11 +78,11 @@
             "id": "greeting-main",
             "type": "greeting",
             "data": {
-              "name": "東京太郎",
+              "name": "静岡太郎",
               "role": "主任牧師",
               "image": "https://i.pravatar.cc/150",
-              "bio": "東京生まれ。神学校卒業後、国内外の教会で牧師として奉仕。2020年より現職。",
-              "message": "東京教会の主任牧師を務めています。皆さんとお会いできるのを楽しみにしています！"
+              "bio": "静岡市出身。神学校卒業後、国内外の教会で奉仕を重ね、現在は静岡の地域教会にて牧会に従事。",
+              "message": "この教会が、誰にとっても安心して立ち寄れる場所であるように願っています。初めての方もぜひお気軽にお越しください。"
             }
           }
         ]
@@ -99,17 +99,17 @@
                 {
                   "id": "service1",
                   "title": "日曜礼拝",
-                  "time": "日曜10:00〜",
-                  "location": "本堂",
-                  "comment": "カジュアルな服装でお越しいただけます",
+                  "time": "毎週日曜 10:30〜",
+                  "location": "礼拝堂",
+                  "comment": "どなたでも自由に参加できます。初めての方も歓迎です",
                   "link": "#news"
                 },
                 {
                   "id": "service2",
-                  "title": "聖書勉強会",
-                  "time": "水曜10:00〜",
-                  "location": "教室",
-                  "comment": "どなたでも参加できます"
+                  "title": "聖書の学び会",
+                  "time": "水曜 10:00〜",
+                  "location": "集会室",
+                  "comment": "聖書を初めて読む方も安心して参加できます"
                 }
               ]
             }
@@ -135,7 +135,7 @@
             "id": "contact-main",
             "type": "contact",
             "data": {
-              "description": "初めての方、礼拝や集会について知りたい方も、お気軽にご連絡ください。"
+              "description": "教会についてのご質問や見学のご希望など、お気軽にお問い合わせください。"
             }
           }
         ]

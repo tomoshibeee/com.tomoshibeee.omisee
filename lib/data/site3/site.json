@@ -2,17 +2,28 @@
   "navigation": {
     "menu": [
       {
-        "label": "店舗情報",
-        "href": "#about",
-        "priority": 1,
+        "label": "人宿55メガネについて",
         "children": [
-          { "label": "当店のビジョン", "href": "#vision", "priority": 1 },
-          { "label": "店長挨拶", "href": "#greeting", "priority": 2 }
+          { "label": "コンセプト", "href": "#about" },
+          { "label": "スタッフ紹介", "href": "#staff" }
         ]
       },
-      { "label": "オンラインストア", "href": "#service", "priority": 2 },
-      { "label": "アクセス", "href": "#access", "priority": 3 },
-      { "label": "お問い合わせ", "href": "#contact", "priority": 4 }
+      {
+        "label": "サービス",
+        "children": [
+          { "label": "視力測定", "href": "#service" },
+          { "label": "レンズ・フレーム", "href": "#products" }
+        ]
+      },
+      {
+        "label": "お知らせ",
+        "children": [
+          { "label": "入荷情報", "href": "#news" },
+          { "label": "キャンペーン", "href": "#events" }
+        ]
+      },
+      { "label": "アクセス", "href": "#access" },
+      { "label": "お問い合わせ", "href": "#contact" }
     ]
   },
   "layout": {
@@ -23,26 +34,22 @@
         "type": "hero",
         "blocks": [
           {
-            "id": "hero-carousel",
+            "id": "hero-main",
             "type": "hero",
-            "variant": "carousel",
+            "variant": "single",
             "data": {
-              "title": "どんな人も見える世界へ",
-              "message": "眼鏡一筋50年。あなたにぴったりの一本を見つけます。",
+              "title": "人宿町で、自分に合う“見え方”を。",
               "images": [
-                {
-                  "url": "https://picsum.photos/id/64/1600/900",
-                  "alt": "Hero Image 1"
-                }
+                { "url": "https://picsum.photos/1200/600", "alt": "メガネショップ店内イメージ" }
               ]
             }
           },
           {
-            "id": "hero-cta",
+            "id": "cta-main",
             "type": "cta",
             "data": {
               "buttons": [
-                { "label": "オンライン予約", "href": "#booking" },
+                { "label": "視力チェック予約", "href": "#service" },
                 { "label": "お問い合わせ", "href": "#contact" }
               ]
             }
@@ -54,14 +61,39 @@
         "type": "about",
         "blocks": [
           {
-            "id": "greeting-main",
-            "type": "greeting",
+            "id": "about-text",
+            "type": "text",
             "data": {
-              "name": "静岡太郎",
-              "role": "社長兼店長",
-              "image": "https://i.pravatar.cc/150?img=3",
-              "bio": "静岡生まれ、静岡育ち。3代続く眼鏡店の家に生まれ、幼い頃から眼鏡に親しむ。大学卒業後、家業を継ぐために帰郷。2020年より現職。",
-              "message": "メガネは単なる視力矯正の道具ではなく、ファッションや自己表現の一部でもあります。お客様一人ひとりのライフスタイルや好みに合わせた最適なメガネ選びをお手伝いします。"
+              "title": "人宿町から、見える世界をもっと快適に",
+              "content": "人宿55メガネは静岡・人宿町にある小さなアイウェアショップです。単なる販売ではなく、一人ひとりの生活や仕事に合わせた“見え方の設計”を大切にしています。"
+            }
+          }
+        ]
+      },
+      {
+        "id": "service",
+        "type": "service",
+        "blocks": [
+          {
+            "id": "service-main",
+            "type": "service",
+            "data": {
+              "items": [
+                {
+                  "id": "svc1",
+                  "title": "視力測定・フィッティング",
+                  "time": "随時受付",
+                  "location": "店内",
+                  "comment": "日常・仕事・運転など用途に合わせて調整します"
+                },
+                {
+                  "id": "svc2",
+                  "title": "レンズ交換・調整",
+                  "time": "最短即日",
+                  "location": "工房",
+                  "comment": "既存フレームの調整・レンズ交換にも対応"
+                }
+              ]
             }
           }
         ]
@@ -74,29 +106,8 @@
             "id": "news-main",
             "type": "news",
             "data": {
-              "source": "news3",
-              "limit": 5
-            }
-          }
-        ]
-      },
-      {
-        "id": "service",
-        "type": "service",
-        "blocks": [
-          {
-            "id": "service-info1",
-            "type": "service",
-            "data": {
-              "items": [
-                {
-                  "id": "service1",
-                  "title": "ビジョンケア相談会",
-                  "time": "木曜14:00〜",
-                  "location": "本店舗",
-                  "comment": "メガネの相談に関わらず、iPadやスマホの見え方の相談も承ります。お気軽にご参加ください。"
-                }
-              ]
+              "source": "news1",
+              "limit": 3
             }
           }
         ]
@@ -106,7 +117,7 @@
         "type": "access",
         "blocks": [
           {
-            "id": "access-block",
+            "id": "access-main",
             "type": "access",
             "data": {}
           }
@@ -120,7 +131,7 @@
             "id": "contact-main",
             "type": "contact",
             "data": {
-              "description": "初めての方、商品やサービスについて知りたい方も、お気軽にご連絡ください。"
+              "description": "メガネ選び・視力相談など、お気軽にお問い合わせください。"
             }
           }
         ]
