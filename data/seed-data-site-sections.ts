@@ -1,7 +1,8 @@
 import { randomUUID } from "crypto";
 import { getSiteIdBySlug } from "@/services/siteService";
+import { SiteSection } from "@/models/siteSection";
 
-export async function dummySiteSectionModelData() {
+export async function dummySiteSectionModelData() : Promise<SiteSection[]> {
     const now = new Date().toISOString();
 
     const siteIds = await Promise.all([

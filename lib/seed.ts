@@ -96,9 +96,10 @@ async function runSeed() {
   // =========================
   // 4. Site Metas
   // =========================
+  const dummySiteMetasModelData = dummySiteMetaModelData(sitesIds);
   const { data: siteMetas, error: siteMetasError } = await supabase
     .from("t_site_metas")
-    .insert(dummySiteMetaModelData(sitesIds))
+    .insert(dummySiteMetasModelData)
     .select();
   if (siteMetasError || !siteMetas) {
     console.error("❌ siteMetas insert error:", siteMetasError);
@@ -156,24 +157,24 @@ async function runSeed() {
   }
 
   const siteSectionsIds = siteSections.map((n) => n.id);
-  console.log("✅ site sections created:", siteSectionsIds);
+  console.log("✅✨✨✨ site sections created:", siteSectionsIds);
 
   // =========================
   // 8. Site Blocks
   // =========================
-  // const siteBlockModelData = dummySiteBlockModelData(siteSectionModelData);
-  // const { data: siteBlocks, error: siteBlocksError } =
-  //   await supabase.from("t_blocks")
-  //     .insert(siteBlockModelData)
-  //     .select();
+  const siteBlockModelData = dummySiteBlockModelData(dummySiteMetasModelData, siteSectionModelData);
+  const { data: siteBlocks, error: siteBlocksError } =
+    await supabasse.from("t_blocks")
+      .insert(siteBlockModelData)
+      .select();
 
-  // if (siteBlocksError || !siteBlocks) {
-  //   console.error("❌ siteBlocks insert error:", siteBlocksError);
-  //   return;
-  // }
+  if (siteBlocksError || !siteBlocks) {
+    console.error("❌ siteBlocks insert error:", siteBlocksError);
+    return;
+  }
 
-  // const siteBlocksIds = siteSections.map((n) => n.id);
-  // console.log("✅ site sections created:", siteBlocksIds);
+  const siteBlocksIds = siteSections.map((n) => n.id);
+  console.log("✅ site sections created:", siteBlocksIds);
 
   console.log("🚀 Seed completed!");
 }
