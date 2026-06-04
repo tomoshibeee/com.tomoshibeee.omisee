@@ -10,8 +10,8 @@ export function PrimaryNavigation({ site }: { site: SiteData }) {
   ) as SocialLink[];
   const headerSocialLinks = sortedSocialLinks.slice(0, 2);
 
-  console.log("🚦[Debug] PrimaryNavigation received site:", site);
-  console.log("🚦[Debug] PrimaryNavigation site.navigation:", site.navigation);
+  // console.log("🚦[Debug] PrimaryNavigation received site:", site);
+  // console.log("🚦[Debug] PrimaryNavigation site.navigation:", site.navigation);
 
   return (
     <nav className="hidden md:flex items-center gap-6">

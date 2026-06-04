@@ -1,14 +1,15 @@
 import { supabase } from "@/lib/supabase";
 
 import { SiteData } from "@/types/site";
+import { SectionData } from "@/features/section/types"
 import { SocialLink } from "@/types/socialLink";
 import { MenuItem } from "@/types/menu";
-import { Section } from "@/features/section/types";
 
 import { Site } from "@/models/site";
 import { SiteMeta } from "@/models/siteMeta";
 import { SiteNews } from "@/models/siteNews";
 import { SiteSocialLink } from "@/models/siteSocialLink";
+import { SiteSection } from "@/models/siteSection";
 
 export async function getSites() {
   const { data, error } = await supabase.from("t_sites").select("*");
@@ -120,21 +121,35 @@ async function getSiteSocialLinks(siteId: string): Promise<SiteSocialLink[]> {
   return data;
 }
 
+async function getSiteSections(siteId: string): Promise<SiteSection[]> {
+  const { data, error } = await supabase
+    .from("t_sections")
+    .select("*")
+    .eq("site_id", siteId);
+
+  if (error) {
+    console.error(`Error fetching sections for site ID "${siteId}":`, error);
+    throw error;
+  }
+
+  return data;
+}
+
 export async function getSiteData(siteId: string): Promise<SiteData> {
-  const [site, meta, news, socialLinks] = await Promise.all([
+  const [site, meta, news, socialLinks, sections] = await Promise.all([
     getaSite(siteId),
     getSiteMeta(siteId),
     getSiteNews(siteId),
     getSiteSocialLinks(siteId),
+    getSiteSections(siteId)
   ]);
-
-  console.log("🚦🚦🚦[Debug] [getSiteData] site:", site);
-  if (!site) {
-    console.error(`🚦Site with ID "${siteId}" not found.`);
-  } else {
-    console.log("🚦[Debug] meta:", meta);
-  }
-
+  const sectionData = sections.map((s, i) => {
+    return {
+      id: s.id,
+      type: s.type,
+      blocks: [] // TODO: ブロック投入
+    } as SectionData
+  })
   return {
     meta: {
       site_id: site.id,
@@ -153,7 +168,7 @@ export async function getSiteData(siteId: string): Promise<SiteData> {
       menu: site?.navigation ?? []
     } as { menu?: MenuItem[] },
     layout: {
-      sections: [] as Section[], // TODO : sectionsテーブルを作成してデータを取得する形に変更予定
+      sections: sectionData as SectionData[],
     },
     socialLinks: socialLinks.map((l): SocialLink => ({
       type: l.type,
