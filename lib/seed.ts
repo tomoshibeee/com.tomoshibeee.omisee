@@ -23,9 +23,11 @@ async function runSeed() {
   // =========================
   // todo : delete all tables only on development environment
   const tables = [
-    "m_social_types",
-    "t_sections",
     "t_site_news",
+    "t_blocks",
+    "t_sections",
+    "t_site_social_links",
+    "m_social_types",
     "t_site_metas",
     "t_sites",
     "t_news",
