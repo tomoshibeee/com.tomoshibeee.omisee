@@ -7,8 +7,9 @@ import { dummyNewsData } from "../data/seed-data-news";
 import { dummySiteData } from "../data/seed-data-sites";
 import { dummySiteMetaData } from "../data/seed-data-site-metas";
 import { dummySiteNewsData } from "../data/seed-data-site-news";
-import { dummySiteSocialLinks } from "../data/seed-data-site-social-links";
-import { dummySectionsData } from "../data/seed-data-site-sections";
+import { dummySiteSocialLinkData } from "../data/seed-data-site-social-links";
+import { dummySiteSectionData } from "../data/seed-data-site-sections";
+import { dummySiteBlockData } from "../data/seed-data-site-blocks";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -22,11 +23,11 @@ async function runSeed() {
   // =========================
   // todo : delete all tables only on development environment
   const tables = [
-    "m_social_types", 
+    "m_social_types",
     "t_sections",
-    "t_site_news", 
-    "t_site_metas", 
-    "t_sites", 
+    "t_site_news",
+    "t_site_metas",
+    "t_sites",
     "t_news",
   ];
   for (const table of tables) {
@@ -127,7 +128,7 @@ async function runSeed() {
   // =========================
   const { data: siteSocialLinks, error: siteSocialLinksError } =
     await supabase.from("t_site_social_links")
-      .insert(dummySiteSocialLinks(sitesIds))
+      .insert(dummySiteSocialLinkData(sitesIds))
       .select();
 
   if (siteSocialLinksError || !siteSocialLinks) {
@@ -136,24 +137,44 @@ async function runSeed() {
   }
 
   const siteSocialLinksIds = siteSocialLinks.map((n) => n.id);
-  console.log("✅ site social links created:", siteSocialLinksIds); 
-  console.log("🚀 Seed completed!");
+  console.log("✅ site social links created:", siteSocialLinksIds);
 
   // =========================
   // 7. Site Sections
   // =========================
-  const { data: siteSections, error: siteSectionsError } =
-    await supabase.from("t_sections")
-      .insert(dummySectionsData(sitesIds))
-      .select();
+  // const siteSectionData = dummySiteSectionData();
+  // const { data: siteSections, error: siteSectionsError } =
+  //   await supabase.from("t_sections")
+  //     .insert(siteSectionData)
+  //     .select();
 
-  if (siteSectionsError || !siteSections) {
-    console.error("❌ siteSections insert error:", siteSectionsError);
-    return;
-  }
+  // if (siteSectionsError || !siteSections) {
+  //   console.error("❌ siteSections insert error:", siteSectionsError);
+  //   return;
+  // }
 
-  const siteSectionsIds = siteSections.map((n) => n.id);
-  console.log("✅ site sections created:", siteSectionsIds);
+  // const siteSectionsIds = siteSections.map((n) => n.id);
+  // console.log("✅ site sections created:", siteSectionsIds);
+
+  // =========================
+  // 8. Site Blocks
+  // =========================
+  // const siteBlockData = dummySiteBlockData(siteSectionData);
+  // const { data: siteBlocks, error: siteBlocksError } =
+  //   await supabase.from("t_blocks")
+  //     .insert(siteBlockData)
+  //     .select();
+
+  // if (siteBlocksError || !siteBlocks) {
+  //   console.error("❌ siteBlocks insert error:", siteBlocksError);
+  //   return;
+  // }
+
+  // const siteBlocksIds = siteSections.map((n) => n.id);
+  // console.log("✅ site sections created:", siteBlocksIds);
+
+  console.log("🚀 Seed completed!");
 }
+
 
 runSeed();

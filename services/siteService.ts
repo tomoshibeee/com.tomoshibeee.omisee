@@ -44,6 +44,22 @@ export async function getSiteIdBySlug(slug: string) {
   return data?.site_id || "";
 }
 
+export async function getSiteId(no: number) {
+  const { data, error } = await supabase
+    .from("t_site_metas")
+    .select("site_id")
+    .eq("site_no", no)
+    .maybeSingle();
+
+  if (error) {
+    console.error(`Error fetching site for no "${no}":`, error);
+    throw error;
+  }
+
+  return data?.site_id || "";
+}
+
+
 async function getaSite(siteId: string): Promise<Site> {
   const { data, error } = await supabase
     .from("t_sites")
@@ -121,6 +137,8 @@ export async function getSiteData(siteId: string): Promise<SiteData> {
 
   return {
     meta: {
+      site_id: site.id,
+      site_no: site.no,
       slug: meta.slug,
       name: meta.name,
       tel: meta.tel,

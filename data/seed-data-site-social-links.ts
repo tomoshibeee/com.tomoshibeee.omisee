@@ -1,7 +1,7 @@
 import { randomUUID } from "crypto";
 import { SiteSocialLink } from "../models/siteSocialLink";
 
-export function dummySiteSocialLinks(siteIds: string[]) {
+export function dummySiteSocialLinkData(siteIds: string[]) {
     const now = new Date().toISOString();
 
     const dummySiteSocialLinks = [
