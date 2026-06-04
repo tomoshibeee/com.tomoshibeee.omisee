@@ -164,7 +164,7 @@ async function runSeed() {
   // =========================
   const siteBlockModelData = dummySiteBlockModelData(dummySiteMetasModelData, siteSectionModelData);
   const { data: siteBlocks, error: siteBlocksError } =
-    await supabasse.from("t_blocks")
+    await supabase.from("t_blocks")
       .insert(siteBlockModelData)
       .select();
 

@@ -1,5 +1,9 @@
 import { randomUUID } from "crypto";
-import { SiteNews } from "../models/siteNews";
+
+import news1 from "@/lib/data/site1/news.json";
+import news2 from "@/lib/data/site2/news.json";
+import news3 from "@/lib/data/site3/news.json";
+const newsJson = [news1, news2, news3];
 
 // 過去1年のランダム日付を生成
 function getRandomDate(): string {
@@ -16,19 +20,21 @@ function getRandomDate(): string {
 export function dummySiteNewsModelData(siteIds: string[]) {
   const now = new Date().toISOString();
 
-  return siteIds.flatMap(siteId =>
-    Array.from({ length: 3 }).map((_, i) => ({
-      id: randomUUID(),
-      site_id: siteId,
-      title: `site-${siteId}news-${i + 1}`,
-      content:
-        "これはサイトニュースのサンプルコンテンツです。サイトIDに紐づくニュースの内容をここに記載します。",
-      doc: null,
-      youtube: null,
-      published_at: getRandomDate(),
-      event_date: getRandomDate(),
-      created_at: now,
-      updated_at: now,
-    }))
-  );
+  return newsJson.flatMap((siteNews, i) => {
+    return siteNews.map((n, j) => {
+      return {
+        id: randomUUID(),
+        site_id: siteIds[i],
+        title: n.title,
+        content:n.content,
+        doc: n.doc,
+        youtube: n.youtube,
+        published_at: getRandomDate(),
+        event_date: getRandomDate(),
+        created_at: now,
+        updated_at: now,
+      }
+
+    })
+  });
 }

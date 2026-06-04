@@ -1,16 +1,4 @@
 {
-  "meta": {
-    "slug": "akiyama-glasses",
-    "name": "秋山メガネ",
-    "tel": "045-123-4567",
-    "email": "info@akiyama-glasses.com",
-    "postalCode": "421-1234",
-    "address": "静岡県静岡市駿河区呉服町1-2-3",
-    "bldg": "秋山ビル1F",
-    "access": "駅から徒歩5分",
-    "message": "unused",
-    "sns": 3
-  },
   "navigation": {
     "menu": [
       { "label": "店舗情報", "href": "#about",  "priority": 1 , "children": [
