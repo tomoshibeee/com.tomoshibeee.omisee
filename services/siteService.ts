@@ -134,7 +134,6 @@ export async function getSiteData(siteId: string): Promise<SiteData> {
   ]);
   const newsItems = news.map(n => {
     return {
-
       news_id: n.id,
       title: n.title,
       content: n.content ?? "",
@@ -182,7 +181,7 @@ export async function getSiteData(siteId: string): Promise<SiteData> {
       address: meta.address,
       bldg: meta.building,
       access: meta.access,
-      description: site?.description,
+      description: meta.description,
     },
     navigation: {
       menu: site?.navigation ?? []

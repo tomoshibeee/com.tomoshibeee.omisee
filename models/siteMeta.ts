@@ -9,6 +9,7 @@ export type SiteMeta = {
     address: string;
     building: string;
     access: string;
+    description: string | null;
     created_at: string;
     updated_at: string;
 };

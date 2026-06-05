@@ -54,7 +54,6 @@ export function dummySiteModelData(): Site[] {
     return {
       id: randomUUID(),
       site_no: 1,
-      description: "",
       navigation: navigations[i],
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
