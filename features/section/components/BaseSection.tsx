@@ -6,7 +6,6 @@ import BlockRenderer from "@/features/block/BlockRenderer";
 export default function BaseSection({
   section,
   meta,
-  news,
 }: {
   section: SectionData;
   meta: MetaData;

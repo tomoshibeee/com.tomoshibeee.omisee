@@ -1,5 +1,3 @@
-import { sites } from "@/lib/data";
-
 import { getSiteIdBySlug } from "@/services/siteService";
 import { getSiteData } from "@/services/siteService";
 
