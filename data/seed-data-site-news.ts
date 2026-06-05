@@ -1,9 +1,6 @@
 import { randomUUID } from "crypto";
 
-import news1 from "@/lib/data/site1/news.json";
-import news2 from "@/lib/data/site2/news.json";
-import news3 from "@/lib/data/site3/news.json";
-const newsJson = [news1, news2, news3];
+import { dummySiteNews } from "@/lib/data";
 
 // 過去1年のランダム日付を生成
 function getRandomDate(): string {
@@ -20,13 +17,13 @@ function getRandomDate(): string {
 export function dummySiteNewsModelData(siteIds: string[]) {
   const now = new Date().toISOString();
 
-  return newsJson.flatMap((siteNews, i) => {
+  return dummySiteNews.flatMap((siteNews, i) => {
     return siteNews.map((n, j) => {
       return {
         id: randomUUID(),
         site_id: siteIds[i],
         title: n.title,
-        content:n.content,
+        content: n.content,
         doc: n.doc,
         youtube: n.youtube,
         published_at: getRandomDate(),
@@ -34,7 +31,6 @@ export function dummySiteNewsModelData(siteIds: string[]) {
         created_at: now,
         updated_at: now,
       }
-
     })
   });
 }

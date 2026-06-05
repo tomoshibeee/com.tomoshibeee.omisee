@@ -1,15 +1,9 @@
 import { randomUUID } from "crypto";
-import { SiteSocialLink } from "../models/siteSocialLink";
-import socialLink1 from "@/lib/data/site1/social-accounts.json";
-import socialLink2 from "@/lib/data/site2/social-accounts.json";
-import socialLink3 from "@/lib/data/site3/social-accounts.json";
-
+import { dummySiteSocialAccountLists } from "@/lib/data";
 export function dummySiteSocialLinkModelData(siteIds: string[]) {
     const now = new Date().toISOString();
 
-    const socialLinkList = [socialLink1, socialLink2, socialLink3];
-
-    return socialLinkList.flatMap((s, i) => {
+    return dummySiteSocialAccountLists.flatMap((s, i) => {
         return s.map((a) => {
             return {
                 id: randomUUID(),
