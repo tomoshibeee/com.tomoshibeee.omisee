@@ -1,18 +1,8 @@
 import { randomUUID } from "crypto";
 
+import { getRandomDate } from "@/utils/date/getRandomDate";
+
 import { dummySiteNews } from "@/lib/data";
-
-// 過去1年のランダム日付を生成
-function getRandomDate(): string {
-  const now = new Date();
-  const past = new Date();
-  past.setFullYear(now.getFullYear() - 1);
-
-  const randomTime =
-    past.getTime() + Math.random() * (now.getTime() - past.getTime());
-
-  return new Date(randomTime).toISOString();
-}
 
 export function dummySiteNewsModelData(siteIds: string[]) {
   const now = new Date().toISOString();
