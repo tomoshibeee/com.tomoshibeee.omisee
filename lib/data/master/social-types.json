@@ -1,0 +1,44 @@
+[
+  {
+    "id": "facebook",
+    "label": "Facebook",
+    "icon": "https://cdn-icons-png.flaticon.com/512/733/733547.png",
+    "created_at": "RANDOM_DATE"
+  },
+  {
+    "id": "x",
+    "label": "X (旧Twitter)",
+    "icon": "https://cdn-icons-png.flaticon.com/512/733/733579.png",
+    "created_at": "RANDOM_DATE"
+  },
+  {
+    "id": "instagram",
+    "label": "Instagram",
+    "icon": "https://cdn-icons-png.flaticon.com/512/733/733558.png",
+    "created_at": "RANDOM_DATE"
+  },
+  {
+    "id": "line",
+    "label": "LINE",
+    "icon": "https://cdn-icons-png.flaticon.com/512/733/733561.png",
+    "created_at": "RANDOM_DATE"
+  },
+  {
+    "id": "youtube",
+    "label": "YouTube",
+    "icon": "https://cdn-icons-png.flaticon.com/512/733/733646.png",
+    "created_at": "RANDOM_DATE"
+  },
+  {
+    "id": "tiktok",
+    "label": "TikTok",
+    "icon": "https://cdn-icons-png.flaticon.com/512/733/733635.png",
+    "created_at": "RANDOM_DATE"
+  },
+  {
+    "id": "note",
+    "label": "Note",
+    "icon": "https://cdn-icons-png.flaticon.com/512/733/733579.png",
+    "created_at": "RANDOM_DATE"
+  }
+]

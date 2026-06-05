@@ -11,9 +11,13 @@ import news1 from "@/lib/data/site1/news.json";
 import news2 from "@/lib/data/site2/news.json";
 import news3 from "@/lib/data/site3/news.json";
 
+import socialTypes from "@/lib/data/master/social-types.json";
+
 import socialAccountList1 from "@/lib/data/site1/social-accounts.json";
 import socialAccountList2 from "@/lib/data/site2/social-accounts.json";
 import socialAccountList3 from "@/lib/data/site3/social-accounts.json";
+
+export const dummySocialTypes = socialTypes;
 
 export const dummySites = [site1, site2, site3];
 
