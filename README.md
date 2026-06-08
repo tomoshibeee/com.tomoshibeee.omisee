@@ -1,6 +1,6 @@
-# 🌿 Church1
+# 🌿 omisee
 
-Church1 is a lightweight one-page platform for small shops and communities.
+omisee is a lightweight one-page platform for small shops and communities.
 
 It enables individuals, small businesses, and churches to create a simple yet trustworthy online presence — without the complexity of traditional website builders.
 
@@ -10,7 +10,7 @@ It enables individuals, small businesses, and churches to create a simple yet tr
 
 **"One page. One place."**
 
-Church1 helps you create your own **maison** — a small, personal place on the internet.
+omisee helps you create your own **maison** — a small, personal place on the internet.
 
 A maison is:
 
@@ -178,17 +178,27 @@ Deploy easily using Vercel:
 
 ### Local development (Docker)
 
+- start Docker 
+
 ```bash
-supabase start
+$ supabase start
+$ npm run build
 ```
 
 ---
 
 ### Environment variables
 
-```env
+```.env
 NEXT_PUBLIC_SUPABASE_URL=<SUPABASE_URL>
 NEXT_PUBLIC_SUPABASE_ANON_KEY=<SUPABASE_ANON_KEY from supabase start>
+DATABASE_URL=postgresql://postgres:postgres@127.0.0.1:54322/postgres
+```
+
+```.env
+NEXT_PUBLIC_ENV=dev
+NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:54321 
+NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_xxx_yyy
 DATABASE_URL=postgresql://postgres:postgres@127.0.0.1:54322/postgres
 ```
 
@@ -196,7 +206,7 @@ DATABASE_URL=postgresql://postgres:postgres@127.0.0.1:54322/postgres
 
 ## 🗄 Database Design
 
-Church1 uses Supabase (PostgreSQL) as its backend.
+omisee uses Supabase (PostgreSQL) as its backend.
 
 ### t_site (sites / maisons)
 
@@ -278,6 +288,6 @@ $ supabase db reset
 
 ## 🔑 Summary
 
-Church1 is not just a link-in-bio tool.
+omisee is not just a link-in-bio tool.
 
 It is a **small but real place on the internet** — your own **maison**.
