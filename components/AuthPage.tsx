@@ -1,24 +1,52 @@
+"use client";
+
+import {supabase} from "@/lib/supabase";
+import { useState } from "react";
 import "./AuthPage.css";
 
 export default function AuthPage() {
+  const [mode, setMode] = useState("login");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async () => {
+    if (mode === "login") {
+      await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+    } else {
+      await supabase.auth.signUp({
+        email,
+        password,
+      });
+    }
+  };
   return (
     <div className="container">
       <div className="left">
         <div className="form">
           <h1>omiseeへようこそ</h1>
-
-          <button className="google">
-            Googleで続ける
-          </button>
-
+          <h2>{mode === "login" ? "ログイン" : "アカウント作成"}</h2>
+          <button className="google">Googleで続ける</button>
           <div className="divider">または</div>
-
-          <input placeholder="メールアドレス" />
-          <input type="password" placeholder="パスワード" />
-
-          <button className="primary">
-            ログイン
+          <input
+            placeholder="メール"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="パスワード"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button onClick={handleSubmit}>
+            {mode === "login" ? "ログイン" : "登録"}
           </button>
+          <p onClick={() => setMode(mode === "login" ? "signup" : "login")}>
+            {mode === "login" ? "アカウント作成はこちら" : "ログインはこちら"}
+          </p>
         </div>
       </div>
 
