@@ -1,6 +1,6 @@
 "use client";
 
-import {supabase} from "@/lib/supabase";
+import { supabase } from "@/lib/supabase";
 import { useState } from "react";
 import "./AuthPage.css";
 
@@ -11,17 +11,32 @@ export default function AuthPage() {
 
   const handleSubmit = async () => {
     if (mode === "login") {
-      await supabase.auth.signInWithPassword({
+      const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
+
+      if (error) {
+        alert("失敗: " + error.message);
+        return;
+      }
+
+      alert("ログイン成功！");
     } else {
-      await supabase.auth.signUp({
+      const { data, error } = await supabase.auth.signUp({
         email,
         password,
       });
+
+      if (error) {
+        alert("失敗: " + error.message);
+        return;
+      }
+
+      alert("登録成功！（メール確認してね）");
     }
   };
+  
   return (
     <div className="container">
       <div className="left">
