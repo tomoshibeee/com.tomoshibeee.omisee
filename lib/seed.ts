@@ -2,7 +2,6 @@ import "dotenv/config";
 
 import { createClient } from "@supabase/supabase-js";
 
-import { dummySocialTypeModelData } from "../data/seed-data-social-types";
 import { dummyNewsModelData } from "../data/seed-data-news";
 import { dummySiteModelData } from "../data/seed-data-sites";
 import { dummySiteMetaModelData } from "../data/seed-data-site-metas";
@@ -27,7 +26,6 @@ async function runSeed() {
     "t_blocks",
     "t_sections",
     "t_site_social_links",
-    "m_social_types",
     "t_site_metas",
     "t_sites",
     "t_news",
@@ -44,25 +42,7 @@ async function runSeed() {
   }
 
   // =========================
-  // 1. Social Types 作成
-  // =========================
-  const { data: socialTypes, error: socialTypesError } = await supabase
-    .from("m_social_types")
-    .insert(dummySocialTypeModelData())
-    .select()
-    ;
-
-  if (socialTypesError || !socialTypes) {
-    console.error("❌ socialTypes insert error:", socialTypesError);
-    return;
-  }
-
-  const socialTypesIds = socialTypes.map(n => n.id);
-  console.log("✅ socialTypes created:", socialTypesIds);
-
-
-  // =========================
-  // 2. News作成
+  // 1. News作成
   // =========================
   const { data: news, error: newsError } = await supabase
     .from("t_news")
@@ -79,7 +59,7 @@ async function runSeed() {
   console.log("✅ news created:", newsIds);
 
   // =========================
-  // 3. Sites
+  // 2. Sites
   // =========================
   const { data: sites, error: sitesError } = await supabase
     .from("t_sites")
@@ -94,7 +74,7 @@ async function runSeed() {
   console.log("✅ sites created:", siteIds);
 
   // =========================
-  // 4. Site Metas
+  // 3. Site Metas
   // =========================
   const dummySiteMetasModelData = dummySiteMetaModelData(siteIds);
   const { data: siteMetas, error: siteMetasError } = await supabase
@@ -110,7 +90,7 @@ async function runSeed() {
   console.log("✅ site metas created:", siteMetasIds);
 
   // =========================
-  // 5. Site News
+  // 4. Site News
   // =========================
   const siteNewsRows = dummySiteNewsModelData(siteIds);
   const { data: siteNews, error: siteNewsError } =
@@ -127,7 +107,7 @@ async function runSeed() {
   console.log("✅ site news created:", siteNewsIds);
 
   // =========================
-  // 6. Site Social Links
+  // 5. Site Social Links
   // =========================
   const { data: siteSocialLinks, error: siteSocialLinksError } =
     await supabase.from("t_site_social_links")
@@ -143,7 +123,7 @@ async function runSeed() {
   console.log("✅ site social links created:", siteSocialLinksIds);
 
   // =========================
-  // 7. Site Sections
+  // 6. Site Sections
   // =========================
   const siteSectionModelData = dummySiteSectionModelData(siteIds);
   const { data: siteSections, error: siteSectionsError } =
@@ -160,7 +140,7 @@ async function runSeed() {
   console.log("✅ site sections created:", siteSectionsIds);
 
   // =========================
-  // 8. Site Blocks
+  // 7. Site Blocks
   // =========================
   const siteBlockModelData = dummySiteBlockModelData(
     siteIds,
