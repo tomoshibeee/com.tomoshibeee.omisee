@@ -16,6 +16,15 @@ const supabase = createClient(
 );
 
 async function runSeed() {
+  const env = process.env.NODE_ENV || "dev";
+
+  console.log("🚦URL:", process.env.NEXT_PUBLIC_SUPABASE_URL);
+  console.log("🚦ENV:", env);
+
+  if (env === "production") {
+    throw new Error("❌ Do NOT run seed in production");
+  }
+
   console.log("🌱 Seeding started...");
   // =========================
   // 0. Clear existing data
