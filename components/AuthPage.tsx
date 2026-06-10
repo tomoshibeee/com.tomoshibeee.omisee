@@ -1,13 +1,19 @@
 "use client";
 
 import { supabase } from "@/lib/supabase";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+
 import "./AuthPage.css";
 
 export default function AuthPage() {
-  const [mode, setMode] = useState("login");
+  const pathname = usePathname();
+  const [mode, setMode] = useState(pathname == "login" ? "login" : "signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const router = useRouter();
 
   const handleSubmit = async () => {
     if (mode === "login") {
@@ -20,6 +26,20 @@ export default function AuthPage() {
         alert("失敗: " + error.message);
         return;
       }
+      // // ユーザーのデータ確認
+      // const { data: sites } = await supabase
+      //   .from("t_sites")
+      //   .select("*")
+      //   .eq("user_id", data.user.id);
+
+      // if (!sites || sites.length === 0) {
+      //   router.push("/onboarding");
+      // } else {
+      //   router.push("/dashboard");
+      // }
+
+      console.log(data.user.email);
+      router.push("/dashboard");
 
       alert("ログイン成功！");
     } else {
@@ -33,17 +53,25 @@ export default function AuthPage() {
         return;
       }
 
-      alert("登録成功！（メール確認してね）");
+      router.push("/onboard");
     }
   };
-  
+
+  const signInWithGoogle = async () => {
+    await supabase.auth.signInWithOAuth({
+      provider: "google",
+    });
+  };
+
   return (
     <div className="container">
       <div className="left">
         <div className="form">
           <h1>omiseeへようこそ</h1>
           <h2>{mode === "login" ? "ログイン" : "アカウント作成"}</h2>
-          <button className="google">Googleで続ける</button>
+          <button className="google" onClick={signInWithGoogle}>
+            Googleで続ける
+          </button>
           <div className="divider">または</div>
           <input
             placeholder="メール"
