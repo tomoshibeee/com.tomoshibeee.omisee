@@ -114,6 +114,11 @@ You should now be able to:
 
 ---
 
+## 🚀 Setup
+See [docs/setup.md](docs/setup.md)
+
+## 🌍 Deployment
+See [docs/deploy.md](docs/deploy.md)
 
 ## 🧱 Core Structure (MVP)
 
