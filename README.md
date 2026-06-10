@@ -4,13 +4,11 @@ omisee is a lightweight one-page platform for small shops and communities.
 
 It enables individuals, small businesses, and churches to create a simple yet trustworthy online presence — without the complexity of traditional website builders.
 
----
-
 ## 🧭 Concept
 
 **"One page. One place."**
 
-omisee helps you create your own **maison** — a small, personal place on the internet.
+omisee helps you create your own **omise(maison)** — a small, personal place on the internet.
 
 A maison is:
 
@@ -27,6 +25,95 @@ A maison is:
 * Churches (treated as one “site”)
 
 ---
+
+## 🚀 Quick Start
+
+Follow these steps to run omisee locally.
+
+---
+
+### 1. Create a Supabase project
+
+* Create a new project in Supabase
+* Go to **Project Settings → API**
+* Copy:
+
+```
+NEXT_PUBLIC_SUPABASE_URL
+NEXT_PUBLIC_SUPABASE_ANON_KEY
+```
+
+---
+
+### 2. Create `.env`
+
+Create a file in the project root:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
+NEXT_PUBLIC_ENV=dev
+```
+
+---
+
+### 3. Install dependencies
+
+```bash
+npm install
+```
+
+---
+
+### 4. Run the app
+
+```bash
+npm run dev
+```
+
+Open:
+
+```
+http://localhost:3000
+```
+
+---
+
+### 5. (Optional) Enable Google Login
+
+1. Create OAuth credentials in Google Cloud
+2. Add this redirect URL:
+
+```
+https://YOUR_PROJECT_ID.supabase.co/auth/v1/callback
+```
+
+3. In Supabase:
+
+* Authentication → Providers → Google
+* Enable and paste Client ID / Secret
+
+---
+
+### 6. (Optional) Seed data
+
+```bash
+npm run seed
+```
+
+---
+
+## ✅ Done
+
+You should now be able to:
+
+* Open the app locally
+* Connect to Supabase
+* Start building your page
+
+
+---
+
 
 ## 🧱 Core Structure (MVP)
 
@@ -95,45 +182,6 @@ The goal is to enable a single page to be created, edited, and publicly accessib
 
 ---
 
-## 🧭 Roadmap
-
-### 🟢 Ver1 — Public Site (MVP)
-
-**Goal:** A single page can be created and viewed publicly.
-
-* `/p/:slug` public page
-* Block-based rendering system
-* Simple CMS input
-* Google authentication (basic)
-
-✔ Ver1 is complete when:
-
-* A site can be created
-* Content can be edited via CMS
-* Public page is accessible via URL
-
----
-
-### 🟡 Ver2 — Management System
-
-**Goal:** Make the system usable for daily operations.
-
-* `/dashboard` admin panel
-* Site management
-* Navigation refinement
-* Roles (admin / editor)
-
----
-
-### 🔵 Ver3 — SaaS Platform
-
-**Goal:** Scale into a multi-tenant SaaS product.
-
-* Multi-tenant architecture
-* SEO optimization
-* Analytics integration
-* Billing / subscription system
-* UI/UX improvements
 
 ---
 
