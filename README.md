@@ -28,6 +28,10 @@ A maison is:
 
 ## 🚀 Quick Start
 
+This diagram shows how to run omisee locally with Supabase and Google Auth.
+
+![omisee architecture](docs/architecture.png)
+
 Follow these steps to run omisee locally.
 
 ---
