@@ -9,7 +9,7 @@ export type NewsBlockType = {
 };
 
 export type NewsItem = {
-  news_id: string,
+  id: string,
   title: string;
   content?: string;
   eventDate: string;
