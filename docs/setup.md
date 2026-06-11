@@ -9,7 +9,7 @@ This guide explains how to fully set up omisee.
 You can run omisee in two ways:
 
 * **Option A (Recommended): Supabase Cloud**
-* **Option B: Supabase Local (Docker)**
+* Option B: Supabase Local (Docker)　❌ Google Auth
 
 If you're unsure, use **Option A**.
 
@@ -50,7 +50,20 @@ npm install
 
 ---
 
-## 4. Run the app
+## 4. Migration
+
+To manage database schema, we use Supabase CLI.
+
+```bash
+npm install -g supabase
+supabase login
+supabase link --project-ref YOUR_PROJECT_REF
+supabase db push
+```
+
+---
+
+## 5. Run the app
 
 ```bash
 npm run dev
@@ -64,7 +77,7 @@ http://localhost:3000
 
 ---
 
-## 5. (Optional) Enable Google Login
+## 6. (Optional) Enable Google Login
 
 ### Step 1: Create OAuth in Google Cloud
 
@@ -85,7 +98,7 @@ https://YOUR_PROJECT_ID.supabase.co/auth/v1/callback
 
 ---
 
-## 6. (Optional) Seed data
+## 7. (Optional) Seed data
 
 ```bash
 npm run seed
