@@ -1,3 +1,4 @@
+import { LayoutVariant } from "@/types/layout";
 import { LinkButtonFooter } from "@/components/buttons/LinkButton";
 import { ShareButtonFooter } from "../buttons/ShareButton";
 import { SocialLink } from "@/types/socialLink";
@@ -5,13 +6,29 @@ import { SiteData } from "@/types/site";
 
 import { FaEnvelope, FaLocationDot, FaPhone } from "react-icons/fa6";
 
-export default function Footer({ site }: { site: SiteData }) {
+type FooterProps = {
+  variant?: LayoutVariant;
+  site?: SiteData;
+};
+
+export default function Footer({ variant = "site", site }: FooterProps) {
+  const baseClass =
+    "w-full border-t border-slate-200 bg-slate-950 px-6 pt-14 text-sm text-slate-300";
+
+  if (variant === "dashboard") {
+    return <footer className={baseClass}>Dashboard</footer>;
+  }
+
+  if (!site) return null;
+
   const sortedSocialLinks = [...(site.socialLinks ?? [])].sort(
-    (a, b) => a.orderBy - b.orderBy,
+    (a, b) => a.orderBy - b.orderBy
   );
+
   return (
-    <footer className="w-full border-t border-slate-200 bg-slate-950 px-6 pt-14 text-sm text-slate-300">
+    <footer className={baseClass}>
       <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr_1.2fr]">
+        {/* Info */}
         <div>
           <p className="text-sm font-semibold text-blue-300">Church</p>
           <h2 className="mt-2 text-2xl font-bold text-white">
@@ -21,18 +38,17 @@ export default function Footer({ site }: { site: SiteData }) {
             {site.meta.description || "ここに説明文が入ります。"}
           </p>
 
-          {sortedSocialLinks && sortedSocialLinks?.length > 0 && (
+          {sortedSocialLinks.length > 0 && (
             <div className="mt-5 flex items-center gap-2">
-              {sortedSocialLinks.map((item: SocialLink, i: number) => (
-                <LinkButtonFooter key={`${item.type}-${i}`} item={item} />
+              {sortedSocialLinks.map((item: SocialLink) => (
+                <LinkButtonFooter key={item.id} item={item} />
               ))}
-
-              {/* Share */}
               <ShareButtonFooter />
             </div>
           )}
         </div>
 
+        {/* Business Hours */}
         <div>
           <h3 className="font-semibold text-white">営業時間</h3>
           <ul>
@@ -42,18 +58,20 @@ export default function Footer({ site }: { site: SiteData }) {
           </ul>
         </div>
 
+        {/* Sitemap */}
         <div>
           <h3 className="font-semibold text-white">サイトマップ</h3>
           <ul className="mt-4 space-y-2">
-            {site.navigation?.menu?.map((m, i) => (
-              <li key={i}>
+            {site.navigation?.menu?.map((m) => (
+              <li key={m.label}>
                 <a href={m.href ?? "#"} className="transition hover:text-white">
                   {m.label}
                 </a>
-                {m.children && m.children.length > 0 && (
+
+                {m.children?.length > 0 && (
                   <ul className="mt-2 space-y-2 border-l border-white/10 pl-3 text-slate-400">
-                    {m.children.map((c, j) => (
-                      <li key={j}>
+                    {m.children.map((c) => (
+                      <li key={c.label}>
                         <a
                           href={c.href ?? "#"}
                           className="transition hover:text-white"
@@ -69,6 +87,7 @@ export default function Footer({ site }: { site: SiteData }) {
           </ul>
         </div>
 
+        {/* Contact */}
         <div>
           <h3 className="font-semibold text-white">お問い合わせ</h3>
           <ul className="mt-4 space-y-3">
@@ -90,28 +109,35 @@ export default function Footer({ site }: { site: SiteData }) {
                 )}
               </span>
             </li>
-            <li>
-              <a
-                href={`tel:${site.meta.tel}`}
-                className="flex items-center gap-3 transition hover:text-white"
-              >
-                <FaPhone className="shrink-0 text-blue-300" />
-                <span>{site.meta.tel}</span>
-              </a>
-            </li>
-            <li>
-              <a
-                href={`mailto:${site.meta.email}`}
-                className="flex items-center gap-3 transition hover:text-white"
-              >
-                <FaEnvelope className="shrink-0 text-blue-300" />
-                <span>{site.meta.email}</span>
-              </a>
-            </li>
+
+            {site.meta.tel && (
+              <li>
+                <a
+                  href={`tel:${site.meta.tel}`}
+                  className="flex items-center gap-3 transition hover:text-white"
+                >
+                  <FaPhone className="shrink-0 text-blue-300" />
+                  <span>{site.meta.tel}</span>
+                </a>
+              </li>
+            )}
+
+            {site.meta.email && (
+              <li>
+                <a
+                  href={`mailto:${site.meta.email}`}
+                  className="flex items-center gap-3 transition hover:text-white"
+                >
+                  <FaEnvelope className="shrink-0 text-blue-300" />
+                  <span>{site.meta.email}</span>
+                </a>
+              </li>
+            )}
           </ul>
         </div>
       </div>
 
+      {/* Bottom */}
       <div className="mx-auto mt-12 flex max-w-5xl flex-col gap-3 border-t border-white/10 py-6 text-slate-500 md:flex-row md:items-center md:justify-between">
         <p>
           &copy; {new Date().getFullYear()} {site.meta.name}. All rights
