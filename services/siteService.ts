@@ -6,10 +6,9 @@ import { MenuItem } from "@/types/menu";
 
 import { Site } from "@/models/site";
 import { SiteMeta } from "@/models/siteMeta";
-import { GlobalNews } from "@/models/globalNews";
-import { SiteNews } from "@/models/siteNews";
 import { SiteSocialLink } from "@/models/siteSocialLink";
 
+import { toMetaData } from "@/services/siteMetaService";
 import { getSiteSections } from "@/services/siteSectionService";
 import { getSiteBlocks } from "@/services/siteBlockService";
 import { getSiteNews } from "@/services/siteNewsService";
@@ -156,19 +155,7 @@ export async function getSiteData(siteId: string): Promise<SiteData> {
     })
   );
   const ret = {
-    meta: {
-      site_id: site.id,
-      site_no: site.site_no,
-      slug: meta.slug,
-      name: meta.name,
-      tel: meta.tel,
-      email: meta.email,
-      postalCode: meta.postal_code,
-      address: meta.address,
-      bldg: meta.building,
-      access: meta.access,
-      description: meta.description,
-    },
+    meta: toMetaData(site, meta),
     navigation: {
       menu: site?.navigation ?? []
     } as { menu?: MenuItem[] },
