@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { MenuItem } from "@/types/menu";
+import { MenuItem } from "@/types/siteMenu";
 
 import { useState, useEffect } from "react";
 

@@ -2,7 +2,7 @@ import { supabase } from "@/lib/supabase";
 
 import { SiteData } from "@/types/site";
 import { SectionData } from "@/features/section/types"
-import { MenuItem } from "@/types/menu";
+import { MenuItem } from "@/types/siteMenu";
 
 import { Site } from "@/models/site";
 import { SectionType } from "@/models/siteSection";
