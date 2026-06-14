@@ -4,6 +4,15 @@ import { Site } from "@/models/site";
 import { SiteMeta } from "@/models/siteMeta";
 import { MetaData } from "@/types/meta";
 
+export async function getSiteMetas() {
+  const { data, error } = await supabase.from("t_site_metas").select("*");
+  if (error) {
+    console.error("Error fetching site metas:", error);
+    throw error;
+  }
+  return data;
+}
+
 export async function getSiteMeta(siteId: string): Promise<SiteMeta> {
   const { data, error } = await supabase
     .from("t_site_metas")

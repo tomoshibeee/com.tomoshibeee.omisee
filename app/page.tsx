@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { NewsCard } from "@/components/news/NewsCard";
 
-import { getSiteMetas } from "@/services/siteService";
+import { getSiteMetas } from "@/services/siteMetaService";
 import { getGlobalNews, toGlobalNewsItems } from "@/services/globalNewsService";
 
 export default async function Page() {

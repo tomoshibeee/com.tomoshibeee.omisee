@@ -5,12 +5,14 @@ import { SectionData } from "@/features/section/types"
 import { MenuItem } from "@/types/menu";
 
 import { Site } from "@/models/site";
+import { SectionType } from "@/models/siteSection";
 
 import { getSiteMeta, toMetaData } from "@/services/siteMetaService";
 import { getSiteSections } from "@/services/siteSectionService";
 import { getSiteBlocks } from "@/services/siteBlockService";
-import { getSiteNews } from "@/services/siteNewsService";
-import { getGlobalNews } from "@/services/globalNewsService";
+import { getSiteNews, toSiteNewsItems } from "@/services/siteNewsService";
+import { getGlobalNews, toGlobalNewsItems } from "@/services/globalNewsService";
+import { getSiteSocialLinks } from "@/services/siteSocialLinkService";
 
 export async function getSites() {
   const { data, error } = await supabase.from("t_sites").select("*");
@@ -22,14 +24,6 @@ export async function getSites() {
   return data;
 }
 
-export async function getSiteMetas() {
-  const { data, error } = await supabase.from("t_site_metas").select("*");
-  if (error) {
-    console.error("Error fetching site metas:", error);
-    throw error;
-  }
-  return data;
-}
 
 export async function getSiteIdBySlug(slug: string) {
   const { data, error } = await supabase
@@ -77,21 +71,6 @@ async function getSite(siteId: string): Promise<Site> {
   return data;
 }
 
-
-async function getSiteSocialLinks(siteId: string): Promise<SiteSocialLink[]> {
-  const { data, error } = await supabase
-    .from("t_site_social_links")
-    .select("*")
-    .eq("site_id", siteId);
-
-  if (error) {
-    console.error(`Error fetching social links for site ID "${siteId}":`, error);
-    throw error;
-  }
-
-  return data;
-}
-
 export async function getSiteData(siteId: string): Promise<SiteData> {
   const [site, meta, globalNews, siteNews, socialLinks, sections] = await Promise.all([
     getSite(siteId),
@@ -101,40 +80,43 @@ export async function getSiteData(siteId: string): Promise<SiteData> {
     getSiteSocialLinks(siteId),
     getSiteSections(siteId)
   ]);
-  const siteNewsItems = siteNews.map(n => {
-    return {
-      news_id: n.id,
-      title: n.title,
-      content: n.content ?? "",
-      eventDate: n.event_date,
-      publishedAt: n.published_at,
-      doc: n.doc,
-      youtube: n.youtube
-    }
-  });
+  const siteNewsItems = toSiteNewsItems(siteNews);
+  const globalNewsItems = toGlobalNewsItems(globalNews);
 
   const sectionData = await Promise.all(
     sections.map(async (s) => {
       const blocks = await getSiteBlocks(s.id);
-
-      const blocksWithSiteNews =
-        s.type === "site_news"
-          ? [
-            {
-              id: s.id,
-              type: "site_news",
-              variant: "",
-              data: {
-                items: siteNewsItems
-              }
+      let blocksWithNews = [];
+      if (s.type === "site_news") {
+        blocksWithNews = [
+          {
+            id: s.id,
+            type: "site_news",
+            variant: "",
+            data: {
+              items: siteNewsItems
             }
-          ]
-          : blocks;
+          }
+        ];
+      } else if (s.type == "global_news") {
+        blocksWithNews = [
+          {
+            id: s.id,
+            type: "global_news",
+            variant: "",
+            data: {
+              items: globalNewsItems
+            }
+          }
+        ];
+      } else {
+        blocksWithNews = blocks;
+      }
 
       return {
         id: s.id,
         type: s.type,
-        blocks: blocksWithSiteNews
+        blocks: blocksWithNews
       };
     })
   );
