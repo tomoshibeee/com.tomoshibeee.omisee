@@ -2,9 +2,7 @@ import { supabase } from "@/lib/supabase";
 
 import { SiteData } from "@/types/site";
 import { SectionData } from "@/features/section/types"
-import { SocialLink } from "@/types/socialLink";
 import { MenuItem } from "@/types/menu";
-import { NewsBlockType } from "@/features/block/news/types"
 
 import { Site } from "@/models/site";
 import { SiteMeta } from "@/models/siteMeta";
@@ -189,10 +187,14 @@ export async function getSiteData(siteId: string): Promise<SiteData> {
     layout: {
       sections: sectionData as SectionData[],
     },
-    socialLinks: socialLinks.map((l): SocialLink => ({
+    socialLinks: socialLinks.map((l): SiteSocialLink => ({
+      id: l.id,
+      site_id: l.site_id,
       type: l.type,
       url: l.url,
-      orderBy: l.display_order,
+      display_order: l.display_order,
+      created_at: l.created_at,
+      updated_at: l.updated_at,
     })),
   };
 

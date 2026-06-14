@@ -1,4 +1,4 @@
-import { SocialLink } from "@/types/socialLink";
+import { SiteSocialLink } from "@/models/siteSocialLink";
 import { DropDownMenu } from "../menu/DropDownMenu";
 import { LinkButtonHeader } from "@/components/buttons/LinkButton";
 import { ShareButtonHeader } from "@/components/buttons/ShareButton";
@@ -6,8 +6,8 @@ import { SiteData } from "@/types/site";
 
 export function PrimaryNavigation({ site }: { site: SiteData }) {
   const sortedSocialLinks = site?.socialLinks?.sort(
-    (a, b) => a.orderBy - b.orderBy,
-  ) as SocialLink[];
+    (a, b) => a.display_order - b.display_order,
+  ) as SiteSocialLink[];
   const headerSocialLinks = sortedSocialLinks.slice(0, 2);
 
   // console.log("🚦[Debug] PrimaryNavigation received site:", site);
@@ -20,7 +20,7 @@ export function PrimaryNavigation({ site }: { site: SiteData }) {
       <div className="mx-2 h-5 w-px bg-slate-300" />
 
       <div className="flex items-center gap-2 pl-2">
-        {headerSocialLinks.map((item: SocialLink, i: number) => (
+        {headerSocialLinks.map((item: SiteSocialLink, i: number) => (
           <LinkButtonHeader key={`${item.type}-${i}`} item={item} />
         ))}
       </div>

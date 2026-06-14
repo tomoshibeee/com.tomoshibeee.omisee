@@ -1,7 +1,7 @@
 import { LayoutVariant } from "@/types/layout";
 import { LinkButtonFooter } from "@/components/buttons/LinkButton";
 import { ShareButtonFooter } from "../buttons/ShareButton";
-import { SocialLink } from "@/types/socialLink";
+import { SiteSocialLink } from "@/models/siteSocialLink";
 import { SiteData } from "@/types/site";
 
 import { FaEnvelope, FaLocationDot, FaPhone } from "react-icons/fa6";
@@ -22,7 +22,7 @@ export default function Footer({ variant = "site", site }: FooterProps) {
   if (!site) return null;
 
   const sortedSocialLinks = [...(site.socialLinks ?? [])].sort(
-    (a, b) => a.orderBy - b.orderBy
+    (a, b) => a.display_order - b.display_order
   );
 
   return (
@@ -40,7 +40,7 @@ export default function Footer({ variant = "site", site }: FooterProps) {
 
           {sortedSocialLinks.length > 0 && (
             <div className="mt-5 flex items-center gap-2">
-              {sortedSocialLinks.map((item: SocialLink) => (
+              {sortedSocialLinks.map((item: SiteSocialLink, i : number) => (
                 <LinkButtonFooter key={item.id} item={item} />
               ))}
               <ShareButtonFooter />
@@ -68,7 +68,7 @@ export default function Footer({ variant = "site", site }: FooterProps) {
                   {m.label}
                 </a>
 
-                {m.children?.length > 0 && (
+                {m.children && m.children.length > 0 && (
                   <ul className="mt-2 space-y-2 border-l border-white/10 pl-3 text-slate-400">
                     {m.children.map((c) => (
                       <li key={c.label}>
