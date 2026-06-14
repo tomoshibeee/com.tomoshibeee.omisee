@@ -5,10 +5,9 @@ import { SectionData } from "@/features/section/types"
 import { MenuItem } from "@/types/menu";
 
 import { Site } from "@/models/site";
-import { SiteMeta } from "@/models/siteMeta";
 import { SiteSocialLink } from "@/models/siteSocialLink";
 
-import { toMetaData } from "@/services/siteMetaService";
+import { getSiteMeta, toMetaData } from "@/services/siteMetaService";
 import { getSiteSections } from "@/services/siteSectionService";
 import { getSiteBlocks } from "@/services/siteBlockService";
 import { getSiteNews } from "@/services/siteNewsService";
@@ -79,20 +78,6 @@ async function getaSite(siteId: string): Promise<Site> {
   return data;
 }
 
-async function getSiteMeta(siteId: string): Promise<SiteMeta> {
-  const { data, error } = await supabase
-    .from("t_site_metas")
-    .select("*")
-    .eq("site_id", siteId)
-    .maybeSingle();
-
-  if (error) {
-    console.error(`Error fetching site meta for site ID "${siteId}":`, error);
-    throw error;
-  }
-
-  return data;
-}
 
 async function getSiteSocialLinks(siteId: string): Promise<SiteSocialLink[]> {
   const { data, error } = await supabase
