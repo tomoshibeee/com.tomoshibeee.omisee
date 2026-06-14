@@ -1,7 +1,7 @@
-import { News } from "../models/news";
+import { GlobalNews } from "../models/globalNews";
 import { getRandomDate } from "@/utils/date/getRandomDate";
 
-export function dummyNewsModelData(): News[] {
+export function dummyNewsModelData(): GlobalNews[] {
   return [
     {
       title: "システムメンテナンスのお知らせ",

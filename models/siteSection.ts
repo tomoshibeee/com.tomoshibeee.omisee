@@ -1,5 +1,5 @@
 export type SiteSection = {
-    id: string;     
+    id: string;
     site_id: string;
     type: SectionType;
     display_order: number;
@@ -7,4 +7,12 @@ export type SiteSection = {
     updated_at: string;
 };
 
-export type SectionType = "hero" | "products" | "news" | "about" | "service" | "access" | "contact";
+export type SectionType = 
+    "hero" | 
+    "products" | 
+    "site_news" | 
+    "global_news" | 
+    "about" | 
+    "service" | 
+    "access" | 
+    "contact";

@@ -99,12 +99,12 @@
         ]
       },
       {
-        "id": "news",
-        "type": "news",
+        "id": "site_news",
+        "type": "site_news",
         "blocks": [
           {
             "id": "news-main",
-            "type": "news",
+            "type": "site_news",
             "data": {
               "source": "news1",
               "limit": 3

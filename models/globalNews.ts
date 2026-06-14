@@ -1,4 +1,4 @@
-export type News = {
+export type GlobalNews = {
   id?: string;
   title: string;
   content: string | null;

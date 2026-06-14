@@ -19,7 +19,7 @@ export type Section =
     }
   | {
       id: string;
-      type: "news";
+      type: "site_news";
       blocks: Block[];
     }
   | {

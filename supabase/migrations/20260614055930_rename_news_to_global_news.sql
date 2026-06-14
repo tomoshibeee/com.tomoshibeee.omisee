@@ -1,0 +1,1 @@
+alter table t_news rename to t_global_news;

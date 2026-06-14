@@ -9,4 +9,4 @@ export type SiteBlock = {
     updated_at: string;
 };
 
-export type BlockType = "hero" | "products" | "news" | "about" | "service" | "access" | "contact";
+export type BlockType = "hero" | "products" | "site_news" | "about" | "service" | "access" | "contact";

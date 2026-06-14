@@ -6,11 +6,14 @@ import { MenuItem } from "@/types/menu";
 
 import { Site } from "@/models/site";
 import { SiteMeta } from "@/models/siteMeta";
+import { GlobalNews } from "@/models/globalNews";
 import { SiteNews } from "@/models/siteNews";
 import { SiteSocialLink } from "@/models/siteSocialLink";
 
 import { getSiteSections } from "@/services/siteSectionService";
 import { getSiteBlocks } from "@/services/siteBlockService";
+import { getSiteNews } from "@/services/siteNewsService";
+import { getGlobalNews } from "@/services/globalNewsService";
 
 export async function getSites() {
   const { data, error } = await supabase.from("t_sites").select("*");
@@ -92,22 +95,6 @@ async function getSiteMeta(siteId: string): Promise<SiteMeta> {
   return data;
 }
 
-async function getSiteNews(siteId: string): Promise<SiteNews[]> {
-  const { data, error } = await supabase
-    .from("t_site_news")
-    .select("*")
-    .eq("site_id", siteId)
-    .order("published_at", { ascending: false })
-    .limit(5);
-
-  if (error) {
-    console.error(`Error fetching news for site ID "${siteId}":`, error);
-    throw error;
-  }
-
-  return data;
-}
-
 async function getSiteSocialLinks(siteId: string): Promise<SiteSocialLink[]> {
   const { data, error } = await supabase
     .from("t_site_social_links")
@@ -123,14 +110,15 @@ async function getSiteSocialLinks(siteId: string): Promise<SiteSocialLink[]> {
 }
 
 export async function getSiteData(siteId: string): Promise<SiteData> {
-  const [site, meta, news, socialLinks, sections] = await Promise.all([
+  const [site, meta, globalNews, siteNews, socialLinks, sections] = await Promise.all([
     getaSite(siteId),
     getSiteMeta(siteId),
+    getGlobalNews(),
     getSiteNews(siteId),
     getSiteSocialLinks(siteId),
     getSiteSections(siteId)
   ]);
-  const newsItems = news.map(n => {
+  const siteNewsItems = siteNews.map(n => {
     return {
       news_id: n.id,
       title: n.title,
@@ -146,15 +134,15 @@ export async function getSiteData(siteId: string): Promise<SiteData> {
     sections.map(async (s) => {
       const blocks = await getSiteBlocks(s.id);
 
-      const blocksWithNews =
-        s.type === "news"
+      const blocksWithSiteNews =
+        s.type === "site_news"
           ? [
             {
               id: s.id,
               type: "news",
               variant: "",
               data: {
-                items: newsItems
+                items: siteNewsItems
               }
             }
           ]
@@ -163,7 +151,7 @@ export async function getSiteData(siteId: string): Promise<SiteData> {
       return {
         id: s.id,
         type: s.type,
-        blocks: blocksWithNews
+        blocks: blocksWithSiteNews
       };
     })
   );

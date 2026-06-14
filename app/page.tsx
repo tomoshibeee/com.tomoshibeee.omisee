@@ -1,16 +1,15 @@
 import Link from "next/link";
 
-import { News } from "@/models/news";
-
+import { GlobalNews } from "@/models/globalNews";
 import { NewsCard } from "@/components/news/NewsCard";
 import { NewsItem } from "@/features/block/news/types";
 
 import { getSiteMetas } from "@/services/siteService";
-import { getLatestNews } from "@/services/newsService";
+import { getGlobalNews } from "@/services/globalNewsService";
 
 export default async function Page() {
   const siteMetas = await getSiteMetas();
-  const news = await getLatestNews();
+  const news = await getGlobalNews();
 
   return (
     <main className="w-full px-4 py-10 space-y-12">
@@ -24,7 +23,7 @@ export default async function Page() {
         <h2 className="text-xl font-semibold mb-4">Latest News</h2>
 
         <div className="space-y-3">
-          {news?.map((item: News, index: number) => {
+          {news?.map((item: GlobalNews, index: number) => {
             const key = `news-${index}-${item.id}`;
             const newsItem: NewsItem = {
               id: item.id ?? "",

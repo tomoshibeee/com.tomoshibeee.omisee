@@ -37,7 +37,7 @@ async function runSeed() {
     "t_site_social_links",
     "t_site_metas",
     "t_sites",
-    "t_news",
+    "t_global_news",
   ];
   for (const table of tables) {
     const { error } =
@@ -54,7 +54,7 @@ async function runSeed() {
   // 1. News作成
   // =========================
   const { data: news, error: newsError } = await supabase
-    .from("t_news")
+    .from("t_global_news")
     .insert(dummyNewsModelData())
     .select()
     ;
