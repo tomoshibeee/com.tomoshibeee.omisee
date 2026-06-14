@@ -1,39 +1,8 @@
 import { Block } from "@/features/block";
+import { SectionType } from "@/models/siteSection";
 
-export type SectionData = {
+export type Section = {
   id: string;
-  type: string;
+  type: SectionType;
   blocks: Block[];
 };
-
-export type Section =
-  | {
-      id: string;
-      type: "hero";
-      blocks: Block[];
-    }
-  | {
-      id: string;
-      type: "about";
-      blocks: Block[];
-    }
-  | {
-      id: string;
-      type: "site_news";
-      blocks: Block[];
-    }
-  | {
-      id: string;
-      type: "service";
-      blocks: Block[];
-    }
-  | {
-      id: string;
-      type: "access";
-      blocks: Block[];
-    }
-  | {
-      id: string;
-      type: "contact";
-      blocks: Block[];
-    };
