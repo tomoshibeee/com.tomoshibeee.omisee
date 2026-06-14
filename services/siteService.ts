@@ -86,33 +86,38 @@ export async function getSiteData(siteId: string): Promise<SiteData> {
   const sectionData = await Promise.all(
     sections.map(async (s) => {
       const blocks = await getSiteBlocks(s.id);
-      let blocksWithNews = [];
-      if (s.type === "site_news") {
-        blocksWithNews = [
-          {
-            id: s.id,
-            type: "site_news",
-            variant: "",
-            data: {
-              items: siteNewsItems
-            }
-          }
-        ];
-      } else if (s.type == "global_news") {
-        blocksWithNews = [
-          {
-            id: s.id,
-            type: "global_news",
-            variant: "",
-            data: {
-              items: globalNewsItems
-            }
-          }
-        ];
-      } else {
-        blocksWithNews = blocks;
-      }
+      let blocksWithNews;
 
+      switch (s.type) {
+        case "site_news":
+          blocksWithNews = [
+            {
+              id: s.id,
+              type: "news",
+              variant: "",
+              data: {
+                items: siteNewsItems,
+              },
+            },
+          ];
+          break;
+
+        case "global_news":
+          blocksWithNews = [
+            {
+              id: s.id,
+              type: "news",
+              variant: "",
+              data: {
+                items: globalNewsItems,
+              },
+            },
+          ];
+          break;
+
+        default:
+          blocksWithNews = blocks;
+      }
       return {
         id: s.id,
         type: s.type,

@@ -4,7 +4,7 @@ export type NewsBlockData = {
 
 export type NewsBlockType = {
   id?: string;
-  type: "site_news";
+  type: "news";
   data: NewsBlockData;
 };
 

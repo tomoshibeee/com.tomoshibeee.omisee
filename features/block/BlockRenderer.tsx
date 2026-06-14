@@ -25,7 +25,7 @@ interface Props {
 }
 type BlockRendererMap = {
   hero: (block: HeroBlockType) => JSX.Element;
-  site_news: (block: NewsBlockType) => JSX.Element;
+  news: (block: NewsBlockType) => JSX.Element;
   greeting: (block: GreetingBlockType) => JSX.Element;
   access: (block: AccessBlockType, meta: MetaData) => JSX.Element;
   cta: (block: CtaBlockType) => JSX.Element;
@@ -43,8 +43,8 @@ const blockRegistry: BlockRendererMap = {
     );
   },
 
-  site_news: (block) => {
-    if (block.type !== "site_news") return {} as JSX.Element;
+  news: (block) => {
+    if (block.type !== "news") return {} as JSX.Element;
     return <NewsBlock {...block.data} />;
   },
 
