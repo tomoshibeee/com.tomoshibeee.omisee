@@ -1,15 +1,14 @@
 import Link from "next/link";
 
-import { GlobalNews } from "@/models/globalNews";
 import { NewsCard } from "@/components/news/NewsCard";
-import { NewsItem } from "@/features/block/news/types";
 
 import { getSiteMetas } from "@/services/siteService";
-import { getGlobalNews } from "@/services/globalNewsService";
+import { getGlobalNews, toGlobalNewsItems } from "@/services/globalNewsService";
 
 export default async function Page() {
   const siteMetas = await getSiteMetas();
   const news = await getGlobalNews();
+  const globalNewsItems = toGlobalNewsItems(news);
 
   return (
     <main className="w-full px-4 py-10 space-y-12">
@@ -23,17 +22,9 @@ export default async function Page() {
         <h2 className="text-xl font-semibold mb-4">Latest News</h2>
 
         <div className="space-y-3">
-          {news?.map((item: GlobalNews, index: number) => {
-            const key = `news-${index}-${item.id}`;
-            const newsItem: NewsItem = {
-              id: item.id ?? "",
-              title: item.title,
-              content: item.content ?? "",
-              eventDate: item.event_date,
-              publishedAt: item.published_at,
-            };
-            return <NewsCard key={key} item={newsItem} />;
-          })}
+          {globalNewsItems.map((n, i) => (
+            <NewsCard key={n.id ?? `global_news_${i}`} item={n} />
+          ))}{" "}
         </div>
       </section>
       {/* Sites */}

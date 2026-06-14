@@ -139,7 +139,7 @@ export async function getSiteData(siteId: string): Promise<SiteData> {
           ? [
             {
               id: s.id,
-              type: "news",
+              type: "site_news",
               variant: "",
               data: {
                 items: siteNewsItems

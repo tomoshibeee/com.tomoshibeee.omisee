@@ -1,5 +1,7 @@
 import { supabase } from "@/lib/supabase";
 
+import { NewsItem } from "@/features/block/news/types";
+
 import { SiteNews } from "@/models/siteNews";
 
 export async function getSiteNews(siteId: string): Promise<SiteNews[]> {
@@ -18,11 +20,12 @@ export async function getSiteNews(siteId: string): Promise<SiteNews[]> {
     return data;
 }
 
-export async function toSiteNewsItems(siteNews: SiteNews[]) {
+export function toSiteNewsItems(siteNews: SiteNews[]): NewsItem[] {
     return siteNews.map((n) => ({
         id: n.id,
         title: n.title,
         content: n.content ?? "",
+        eventDate: n.event_date,
         publishedAt: n.published_at,
     }));
 

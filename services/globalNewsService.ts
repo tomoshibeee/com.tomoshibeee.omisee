@@ -1,5 +1,7 @@
 import { supabase } from "@/lib/supabase";
 
+import { NewsItem } from "@/features/block/news/types";
+
 import { GlobalNews } from "@/models/globalNews";
 
 export async function getGlobalNews(): Promise<GlobalNews[]> {
@@ -18,11 +20,12 @@ export async function getGlobalNews(): Promise<GlobalNews[]> {
   return data;
 }
 
-export function toGlobalNewsItems(globalNews: GlobalNews[]) {
+export function toGlobalNewsItems(globalNews: GlobalNews[]): NewsItem[] {
   return globalNews.map((n) => ({
-    id: n.id,
+    id: n.id ?? "",
     title: n.title,
     content: n.content ?? "",
+    eventDate: n.event_date,
     publishedAt: n.published_at,
   }));
 }
