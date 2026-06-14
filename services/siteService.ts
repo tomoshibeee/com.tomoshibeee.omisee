@@ -5,13 +5,13 @@ import { SectionData } from "@/features/section/types"
 import { MenuItem } from "@/types/menu";
 
 import { Site } from "@/models/site";
-import { SiteSocialLink } from "@/models/siteSocialLink";
 
 import { getSiteMeta, toMetaData } from "@/services/siteMetaService";
 import { getSiteSections } from "@/services/siteSectionService";
 import { getSiteBlocks } from "@/services/siteBlockService";
 import { getSiteNews } from "@/services/siteNewsService";
 import { getGlobalNews } from "@/services/globalNewsService";
+import { toSiteSocialLinkData } from "./siteSocialLinkService";
 
 export async function getSites() {
   const { data, error } = await supabase.from("t_sites").select("*");
@@ -147,15 +147,7 @@ export async function getSiteData(siteId: string): Promise<SiteData> {
     layout: {
       sections: sectionData as SectionData[],
     },
-    socialLinks: socialLinks.map((l): SiteSocialLink => ({
-      id: l.id,
-      site_id: l.site_id,
-      type: l.type,
-      url: l.url,
-      display_order: l.display_order,
-      created_at: l.created_at,
-      updated_at: l.updated_at,
-    })),
+    socialLinks: socialLinks.map(l => toSiteSocialLinkData()),
   };
 
   return ret as SiteData;
