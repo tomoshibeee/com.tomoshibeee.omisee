@@ -1,5 +1,5 @@
 import { Section as SectionUI } from "@/features/section/types";
-import { MetaData } from "./meta";
+import { MetaData } from "./siteMeta";
 import { MenuItem } from "./menu";
 import { SiteSocialLink } from "@/models/siteSocialLink";
 

@@ -2,7 +2,7 @@ import { FaLocationDot, FaTrain } from "react-icons/fa6";
 
 import MapBlock from "./MapEmbed";
 
-import { MetaData } from "@/types/meta";
+import { MetaData } from "@/types/siteMeta";
 
 export default function AccessBlock(meta: MetaData) {
   const mapAddress = [meta.postalCode && `〒${meta.postalCode}`, meta.address, meta.bldg]

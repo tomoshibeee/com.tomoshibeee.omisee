@@ -1,4 +1,4 @@
-import { MetaData } from "@/types/meta";
+import { MetaData } from "@/types/siteMeta";
 import { SectionData } from "@/features/section/types";
 import { NewsBlockData } from "@/features/block/news/types";
 import BlockRenderer from "@/features/block/BlockRenderer";

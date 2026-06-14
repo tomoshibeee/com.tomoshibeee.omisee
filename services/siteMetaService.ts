@@ -2,7 +2,7 @@ import { supabase } from "@/lib/supabase";
 
 import { Site } from "@/models/site";
 import { SiteMeta } from "@/models/siteMeta";
-import { MetaData } from "@/types/meta";
+import { MetaData } from "@/types/siteMeta";
 
 export async function getSiteMetas() {
   const { data, error } = await supabase.from("t_site_metas").select("*");

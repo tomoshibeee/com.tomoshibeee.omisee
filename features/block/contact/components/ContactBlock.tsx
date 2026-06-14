@@ -1,7 +1,7 @@
 import { FaPhone, FaEnvelope, FaLocationDot } from "react-icons/fa6";
 
 import { ContactBlockData } from "@/features/block";
-import { MetaData } from "@/types/meta";
+import { MetaData } from "@/types/siteMeta";
 import ContactForm from "./ContactForm";
 
 type Props = ContactBlockData & {

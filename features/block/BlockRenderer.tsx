@@ -8,7 +8,7 @@ import AccessBlock from "@/features/block/access/components/AccessBlock";
 import CtaBlock from "@/features/block/cta/components/CtaBlock";
 import ContactBlock from "./contact/components/ContactBlock";
 
-import { MetaData } from "@/types/meta";
+import { MetaData } from "@/types/siteMeta";
 import {
   Block,
   HeroBlockType,
