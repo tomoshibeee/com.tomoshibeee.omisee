@@ -11,7 +11,6 @@ import { getSiteSections } from "@/services/siteSectionService";
 import { getSiteBlocks } from "@/services/siteBlockService";
 import { getSiteNews } from "@/services/siteNewsService";
 import { getGlobalNews } from "@/services/globalNewsService";
-import { toSiteSocialLinkData } from "./siteSocialLinkService";
 
 export async function getSites() {
   const { data, error } = await supabase.from("t_sites").select("*");
@@ -147,7 +146,7 @@ export async function getSiteData(siteId: string): Promise<SiteData> {
     layout: {
       sections: sectionData as SectionData[],
     },
-    socialLinks: socialLinks.map(l => toSiteSocialLinkData()),
+    socialLinks: socialLinks,
   };
 
   return ret as SiteData;
