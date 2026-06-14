@@ -63,7 +63,7 @@ export async function getSiteId(no: number) {
 }
 
 
-async function getaSite(siteId: string): Promise<Site> {
+async function getSite(siteId: string): Promise<Site> {
   const { data, error } = await supabase
     .from("t_sites")
     .select("*")
@@ -95,7 +95,7 @@ async function getSiteSocialLinks(siteId: string): Promise<SiteSocialLink[]> {
 
 export async function getSiteData(siteId: string): Promise<SiteData> {
   const [site, meta, globalNews, siteNews, socialLinks, sections] = await Promise.all([
-    getaSite(siteId),
+    getSite(siteId),
     getSiteMeta(siteId),
     getGlobalNews(),
     getSiteNews(siteId),
