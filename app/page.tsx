@@ -1,8 +1,5 @@
 import Link from "next/link";
 
-import { redirect } from "next/navigation";
-import { getSession } from "@/lib/auth"; // 仮
-
 import { News } from "@/models/news";
 
 import { NewsCard } from "@/components/news/NewsCard";
@@ -12,12 +9,6 @@ import { getSiteMetas } from "@/services/siteService";
 import { getLatestNews } from "@/services/newsService";
 
 export default async function Page() {
-  const session = await getSession();
-
-  if (!session) {
-    redirect("/login");
-  }
-
   const siteMetas = await getSiteMetas();
   const news = await getLatestNews();
 
@@ -36,7 +27,7 @@ export default async function Page() {
           {news?.map((item: News, index: number) => {
             const key = `news-${index}-${item.id}`;
             const newsItem: NewsItem = {
-              id : item.id ?? "",
+              id: item.id ?? "",
               title: item.title,
               content: item.content ?? "",
               eventDate: item.event_date,
