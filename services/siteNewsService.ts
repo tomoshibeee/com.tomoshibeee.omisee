@@ -20,13 +20,17 @@ export async function getSiteNews(siteId: string): Promise<SiteNews[]> {
     return data;
 }
 
-export function toSiteNewsItems(siteNews: SiteNews[]): NewsItem[] {
-    return siteNews.map((n) => ({
+export function toSiteNewsItem(n: SiteNews): NewsItem {
+    return {
         id: n.id,
         title: n.title,
         content: n.content ?? "",
         eventDate: n.event_date,
         publishedAt: n.published_at,
-    }));
+    };
+}
+
+export function toSiteNewsItems(siteNews: SiteNews[]): NewsItem[] {
+    return siteNews.map(n => toSiteNewsItem(n));
 
 }

@@ -20,12 +20,16 @@ export async function getGlobalNews(): Promise<GlobalNews[]> {
   return data;
 }
 
-export function toGlobalNewsItems(globalNews: GlobalNews[]): NewsItem[] {
-  return globalNews.map((n) => ({
+export function toGlobalNewsItem(n: GlobalNews): NewsItem {
+  return {
     id: n.id ?? "",
     title: n.title,
     content: n.content ?? "",
     eventDate: n.event_date,
     publishedAt: n.published_at,
-  }));
+  };
+}
+
+export function toGlobalNewsItems(globalNews: GlobalNews[]): NewsItem[] {
+  return globalNews.map(n => toGlobalNewsItem(n));
 }
