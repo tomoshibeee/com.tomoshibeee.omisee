@@ -1,4 +1,4 @@
 import { MenuItem } from "./siteMenu";
-export type Navigation = {
+export type SiteNavigation = {
     menu?: MenuItem[];
 };

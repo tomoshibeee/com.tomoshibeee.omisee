@@ -1,4 +1,4 @@
-import { Section as SectionUI } from "@/features/section/types";
+import { SectionData } from "@/features/section/types";
 import { MetaData } from "./siteMeta";
 import { MenuItem } from "./siteMenu";
 import { SiteSocialLink } from "@/models/siteSocialLink";
@@ -9,7 +9,7 @@ export type SiteData = {
     menu?: MenuItem[];
   };
   layout: {
-    sections: SectionUI[];
+    sections: SectionData[];
   };
   socialLinks?: SiteSocialLink[];
 };
