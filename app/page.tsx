@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { NewsCard } from "@/components/news/NewsCard";
+import { SiteLink } from "@/components/siteLink/SiteLink";
 
 import { getSiteMetas } from "@/services/siteMetaService";
 import { getGlobalNews, toGlobalNewsItems } from "@/services/globalNewsService";
@@ -32,27 +33,8 @@ export default async function Page() {
         <h2 className="text-xl font-semibold mb-4">Available Sites</h2>
 
         <div className="grid md:grid-cols-2 gap-4">
-          {siteMetas.map((meta) => (
-            <Link
-              key={meta.slug}
-              href={`/p/${meta.slug}`}
-              className="block border rounded-xl p-4 hover:shadow-md hover:-translate-y-0.5 transition bg-white"
-            >
-              <div className="space-y-2">
-                {/* タイトル */}
-                <p className="font-semibold text-lg">{meta.name}</p>
-
-                {/* スラッグ */}
-                <p className="text-sm text-gray-500">/p/{meta.slug}</p>
-
-                {/* CTA */}
-                <div className="pt-2">
-                  <span className="text-sm text-blue-600 font-medium hover:underline">
-                    Visit →
-                  </span>
-                </div>
-              </div>
-            </Link>
+          {siteMetas.map((m) => (
+            <SiteLink {...m} key={m.site_id} />
           ))}
         </div>
       </section>
