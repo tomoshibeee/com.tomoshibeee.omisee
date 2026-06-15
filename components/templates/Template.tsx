@@ -4,7 +4,11 @@ import BaseSection from "@/features/section/components/BaseSection";
 import { SectionData } from "@/features/section/types";
 import { SiteData } from "@/types/site";
 
-export default function Template(site: SiteData) {
+type TemplateProps = SiteData & {
+  edit?: boolean;
+};
+
+export default function Template({ edit = false, ...site }: TemplateProps) {
   const sections = site?.layout?.sections;
   return (
     <div>
