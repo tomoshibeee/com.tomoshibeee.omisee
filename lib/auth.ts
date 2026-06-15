@@ -1,19 +1,26 @@
+import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
 export async function getSession() {
-    // パターン①（シンプルJWT / cookie型）
     const cookieStore = await cookies();
-    const token = cookieStore.get("auth_token")?.value;
 
-    if (!token) return null;
+    const supabase = createServerClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+        {
+            cookies: {
+                get(name) {
+                    return cookieStore.get(name)?.value;
+                },
+                set() { },
+                remove() { },
+            },
+        }
+    );
 
-    // TODO : ユーザ情報取得
-    return {
-        user: {
-            id: "user_123",
-            name: "Shoko",
-        },
-    };
-    // TODO : パターン②（DBセッション型）
-    // TODO : パターン③（Supabase使う場合）
+    const {
+        data: { session },
+    } = await supabase.auth.getSession();
+
+    return session;
 }

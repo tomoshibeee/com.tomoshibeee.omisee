@@ -58,8 +58,13 @@ export default function AuthPage() {
   };
 
   const signInWithGoogle = async () => {
+    const origin = window.location.origin;
+
     await supabase.auth.signInWithOAuth({
       provider: "google",
+      options: {
+        redirectTo: `${origin}/dashboard`,
+      },
     });
   };
 

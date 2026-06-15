@@ -12,6 +12,7 @@ export default async function Page() {
 
   const siteMetas = await getSiteMetas();
 
+  console.log("🚦🚦🚦session🚦🚦🚦", session);
   if (!session) {
     redirect("/login");
   }
