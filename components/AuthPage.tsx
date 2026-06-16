@@ -1,6 +1,6 @@
 "use client";
 
-import { supabase } from "@/lib/supabase";
+import { supabase, type Provider } from "@/lib/supabase";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -59,13 +59,14 @@ export default function AuthPage() {
 
   const signInWithGoogle = async () => {
     const origin = window.location.origin;
-
+    const provider = 'google' as Provider;
     await supabase.auth.signInWithOAuth({
-      provider: "google",
+      provider,
       options: {
-        redirectTo: `${origin}/dashboard`,
+        redirectTo: `${origin}/auth/callback`,
       },
     });
+    console.log(`${origin}/auth/callback`);
   };
 
   return (
