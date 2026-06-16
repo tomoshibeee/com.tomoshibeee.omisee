@@ -1,36 +1,51 @@
-import { NextResponse } from 'next/server'
-
-// The client you created from the Server-Side Auth instructions
-import { supabase } from '@/lib/supabase'
+import { createServerClient, type CookieOptions } from "@supabase/ssr";
+import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
-  const { searchParams, origin } = new URL(request.url)
-  const code = searchParams.get('code')
-  // if "next" is in param, use it as the redirect URL
-  let next = searchParams.get('next') ?? '/'
-  if (!next.startsWith('/')) {
-    // if "next" is not a relative URL, use the default
-    next = '/'
-  }
-
-  console.log("🚦next🚦", next);
+  const { searchParams, origin } = new URL(request.url);
+  const code = searchParams.get("code");
+  // ログイン後に遷移させたいページ（例: /dashboard）
+  const next = searchParams.get("next") ?? "/dashboard";
 
   if (code) {
-    const { error } = await supabase.auth.exchangeCodeForSession(code)
-    if (!error) {
-      const forwardedHost = request.headers.get('x-forwarded-host') // original origin before load balancer
-      const isLocalEnv = process.env.NODE_ENV === 'development'
-      if (isLocalEnv) {
-        // we can be sure that there is no load balancer in between, so no need to watch for X-Forwarded-Host
-        return NextResponse.redirect(`${origin}${next}`)
-      } else if (forwardedHost) {
-        return NextResponse.redirect(`https://${forwardedHost}${next}`)
-      } else {
-        return NextResponse.redirect(`${origin}${next}`)
+    // 【修正ポイント】Next.js 15以降では cookies() は Promise を返すため await が必要です
+    const cookieStore = await cookies();
+    
+    const supabase = createServerClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      {
+        cookies: {
+          get(name: string) {
+            return cookieStore.get(name)?.value;
+          },
+          set(name: string, value: string, options: CookieOptions) {
+            try {
+              cookieStore.set({ name, value, ...options });
+            } catch (error) {
+              // サーバーコンポーネントから呼び出された場合の例外を無視
+            }
+          },
+          remove(name: string, options: CookieOptions) {
+            try {
+              cookieStore.set({ name, value: "", ...options });
+            } catch (error) {
+              // サーバーコンポーネントから呼び出された場合の例外を無視
+            }
+          },
+        },
       }
+    );
+
+    // 認可コードをセッション情報に交換し、クッキーに保存します
+    const { error } = await supabase.auth.exchangeCodeForSession(code);
+    
+    if (!error) {
+      return NextResponse.redirect(`${origin}${next}`);
     }
   }
 
-  // return the user to an error page with instructions
-  return NextResponse.redirect(`${origin}/auth/auth-code-error`)
+  // エラーが発生した場合は認証エラーページ（またはトップ）へ
+  return NextResponse.redirect(`${origin}/auth/auth-code-error`);
 }
