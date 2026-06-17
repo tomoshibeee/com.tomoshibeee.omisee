@@ -2,11 +2,10 @@ import Link from "next/link";
 
 import { SiteMeta } from "@/models/siteMeta";
 
-export function SiteLink(props: SiteMeta, key: string) {
+export function SiteLink(props: SiteMeta) {
   const { name, slug } = props;
   return (
     <Link
-      key={key}
       href={`/p/${slug}`}
       className="block border rounded-xl p-4 hover:shadow-md hover:-translate-y-0.5 transition bg-white"
     >
