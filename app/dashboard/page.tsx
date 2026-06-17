@@ -12,7 +12,7 @@ export default async function Page() {
   console.log("🚦🚦🚦session🚦🚦🚦", session);
 
   const siteMetas = await getSiteMetas();
-  console.log("🚦🚦🚦siteMetas🚦🚦🚦", siteMetas);
+  // console.log("🚦🚦🚦siteMetas🚦🚦🚦", siteMetas);
 
   // console.log("🚦🚦🚦session🚦🚦🚦", session);
   // if (!session) {
