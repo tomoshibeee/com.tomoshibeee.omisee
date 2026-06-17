@@ -2,20 +2,20 @@ import Link from "next/link";
 
 import { SiteMeta } from "@/models/siteMeta";
 
-export function SiteLink({ meta, key }: { meta: SiteMeta; key : string }) {
-  if (!meta) return null;
+export function SiteLink(props: SiteMeta, key: string) {
+  const { name, slug } = props;
   return (
     <Link
       key={key}
-      href={`/p/${meta.slug}`}
+      href={`/p/${slug}`}
       className="block border rounded-xl p-4 hover:shadow-md hover:-translate-y-0.5 transition bg-white"
     >
       <div className="space-y-2">
         {/* タイトル */}
-        <p className="font-semibold text-lg">{meta.name}</p>
+        <p className="font-semibold text-lg">{name}</p>
 
         {/* スラッグ */}
-        <p className="text-sm text-gray-500">/p/{meta.slug}</p>
+        <p className="text-sm text-gray-500">/p/{slug}</p>
 
         {/* CTA */}
         <div className="pt-2">
