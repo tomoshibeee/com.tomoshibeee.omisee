@@ -45,7 +45,7 @@ export default function NewsBlock(data: NewsBlockData, limit: number = 5) {
         <div className="grid gap-4">
           {displayedItems.map((item, index) => {
             const key = `news-${index}-${item.id}`;
-            return <NewsCard key={key} item={item} />;
+            return <NewsCard key={key} {...item} />;
           })}
         </div>
       </div>
