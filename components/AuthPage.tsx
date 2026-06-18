@@ -9,7 +9,8 @@ import "./AuthPage.css";
 
 export default function AuthPage() {
   const pathname = usePathname();
-  const [mode, setMode] = useState(pathname == "login" ? "login" : "signin");
+  // console.log("🚦pathname🚦", pathname);
+  const [mode, setMode] = useState(pathname == "/login" ? "login" : "signup");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -59,16 +60,21 @@ export default function AuthPage() {
 
   const signInWithGoogle = async () => {
     const origin = window.location.origin;
-    const provider = 'google' as Provider;
-    await supabase.auth.signInWithOAuth({
+    const provider = "google" as Provider;
+    const redirectTo = `${origin}/auth/callback`; // http://localhost:3000/auth/callback
+
+    const { data, error } = await supabase.auth.signInWithOAuth({
       provider,
       options: {
-        redirectTo: `${origin}/auth/callback`,
+        redirectTo: redirectTo,
+        // flowType: 'pkce' はエラーになるので削除します
       },
     });
-    console.log(`${origin}/auth/callback`);
-  };
 
+    if (error) {
+      console.error("OAuth error:", error.message);
+    }
+  };
   return (
     <div className="container">
       <div className="left">
