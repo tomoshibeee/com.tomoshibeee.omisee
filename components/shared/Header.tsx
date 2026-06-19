@@ -12,8 +12,7 @@ type Props = {
 
 export default function Header({ site }: Props) {
   const baseClass =
-    "w-full border-t border-slate-200 bg-slate-950 px-6 pt-14 text-sm text-slate-300";
-
+    "sticky top-0 z-50 flex h-14 items-center justify-between border-b border-slate-100 bg-white px-4 text-sm text-gray-800 tracking-tight shadow-sm";
   const pathname = usePathname();
 
   const isTop = pathname === "/";
