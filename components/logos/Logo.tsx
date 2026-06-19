@@ -1,6 +1,4 @@
-import { SiteData } from "@/types/site";
-
-export function Logo({ site }: { site: SiteData }) {
+export function Logo() {
   return (
     // TODO : ロゴ画像の表示
     // {site.meta.logoUrl ? (
