@@ -2,7 +2,6 @@
 import { usePathname } from "next/navigation";
 
 import { Logo } from "@/components/logos/Logo";
-import { LogoSite } from "@/components/logos/LogoSite";
 import { PrimaryNavigation } from "@/features/nav/PrimaryNavigation";
 import { MobileNavigation } from "@/features/nav/MobileNavigation";
 import { SiteData } from "@/types/site";
@@ -31,7 +30,7 @@ export default function Header({ site }: Props) {
     return (
       <header className={baseClass}>
         <Logo />
-        <div>ログインユーザー情報</div>
+        <PrimaryNavigation />
       </header>
     );
   }
@@ -40,7 +39,7 @@ export default function Header({ site }: Props) {
     <header className={baseClass}>
       {site && (
         <>
-          <LogoSite site={site} />
+          <Logo site={site} />
           <PrimaryNavigation site={site} />
           <MobileNavigation site={site} />
         </>

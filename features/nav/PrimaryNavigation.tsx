@@ -3,8 +3,25 @@ import { DropDownMenu } from "../menu/DropDownMenu";
 import { LinkButtonHeader } from "@/components/buttons/LinkButton";
 import { ShareButtonHeader } from "@/components/buttons/ShareButton";
 import { SiteData } from "@/types/site";
+import { MenuItem } from "@/types/siteMenu";
 
-export function PrimaryNavigation({ site }: { site: SiteData }) {
+type Props = {
+  site?: SiteData;
+};
+
+export function PrimaryNavigation(props: Props) {
+  const { site } = props;
+  if (!site) {
+    const menu: MenuItem[] = [
+      { label: "ユーザー情報", href: "", children: [] },
+    ];
+    return (
+      <nav className="hidden md:flex items-center gap-6">
+        <DropDownMenu menu={menu} />
+      </nav>
+    );
+  }
+
   const sortedSocialLinks = site?.socialLinks?.sort(
     (a, b) => a.display_order - b.display_order,
   ) as SiteSocialLink[];
