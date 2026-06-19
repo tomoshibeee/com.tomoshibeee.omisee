@@ -9,7 +9,7 @@ import { SiteLink } from "@/components/siteLink/SiteLink";
 
 export default async function Page() {
   const session = await getSession();
-  let userName = ""
+  let userName = "";
   if (session?.user) {
     userName =
       session.user.user_metadata?.full_name ||
@@ -28,7 +28,7 @@ export default async function Page() {
 
   return (
     <>
-      <Header variant="dashboard" />
+      <Header />
       <main style={{ padding: "20px" }}>
         <h1>omisee Dashboard Page</h1>
         <p>もしこの画面が見えていたら、ファイルの配置（URL）は正常です！</p>
@@ -44,7 +44,7 @@ export default async function Page() {
           </div>
         </section>
       </main>
-      <Footer variant="dashboard" />
+      <Footer />
     </>
   );
 }

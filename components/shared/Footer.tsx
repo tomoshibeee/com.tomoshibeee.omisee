@@ -1,4 +1,6 @@
-import { LayoutVariant } from "@/types/layout";
+"use client";
+
+import { usePathname } from "next/navigation";
 import { LinkButtonFooter } from "@/components/buttons/LinkButton";
 import { ShareButtonFooter } from "../buttons/ShareButton";
 import { SiteSocialLink } from "@/models/siteSocialLink";
@@ -6,23 +8,31 @@ import { SiteData } from "@/types/site";
 
 import { FaEnvelope, FaLocationDot, FaPhone } from "react-icons/fa6";
 
-type FooterProps = {
-  variant?: LayoutVariant;
+type Props = {
   site?: SiteData;
 };
 
-export default function Footer({ variant = "site", site }: FooterProps) {
+export default function Footer({ site }: Props) {
   const baseClass =
     "w-full border-t border-slate-200 bg-slate-950 px-6 pt-14 text-sm text-slate-300";
 
-  if (variant === "dashboard") {
-    return <footer className={baseClass}>Dashboard</footer>;
+  const pathname = usePathname();
+
+  const isTop = pathname === "/";
+  const isDashboard = pathname?.startsWith("/dashboard");
+
+  if (isTop) {
+    return <footer>Top Page Footer</footer>
+    ;
+  }
+  if (isDashboard) {
+    return <footer>Dashboard Footer</footer>;
   }
 
   if (!site) return null;
 
   const sortedSocialLinks = [...(site.socialLinks ?? [])].sort(
-    (a, b) => a.display_order - b.display_order
+    (a, b) => a.display_order - b.display_order,
   );
 
   return (
@@ -40,7 +50,7 @@ export default function Footer({ variant = "site", site }: FooterProps) {
 
           {sortedSocialLinks.length > 0 && (
             <div className="mt-5 flex items-center gap-2">
-              {sortedSocialLinks.map((item: SiteSocialLink, i : number) => (
+              {sortedSocialLinks.map((item: SiteSocialLink, i: number) => (
                 <LinkButtonFooter key={item.id} item={item} />
               ))}
               <ShareButtonFooter />

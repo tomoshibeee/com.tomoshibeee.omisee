@@ -1,20 +1,29 @@
+"use client";
+import { usePathname } from "next/navigation";
+
 import { Logo } from "@/components/logos/Logo";
-import { LayoutVariant } from "@/types/layout";
 import { PrimaryNavigation } from "@/features/nav/PrimaryNavigation";
 import { MobileNavigation } from "@/features/nav/MobileNavigation";
 import { SiteData } from "@/types/site";
 
-type HeaderProps = {
-  variant?: LayoutVariant;
+type Props = {
   site?: SiteData;
 };
 
-export default function Header({ variant = "site", site }: HeaderProps) {
+export default function Header({ site }: Props) {
   const baseClass =
-    "sticky top-0 z-50 flex h-14 items-center justify-between border-b border-slate-100 bg-white px-4 text-sm text-gray-800 tracking-tight shadow-sm";
+    "w-full border-t border-slate-200 bg-slate-950 px-6 pt-14 text-sm text-slate-300";
 
-  if (variant === "dashboard") {
-    return <header className={baseClass}>Dashboard</header>;
+  const pathname = usePathname();
+
+  const isTop = pathname === "/";
+  const isDashboard = pathname?.startsWith("/dashboard");
+
+  if (isTop) {
+    return <header className={baseClass}>Top Page Header</header>;
+  }
+  if (isDashboard) {
+    return <header>Dashboard Header</header>;
   }
 
   return (
