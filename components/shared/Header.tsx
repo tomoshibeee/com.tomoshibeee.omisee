@@ -23,7 +23,7 @@ export default function Header({ site }: Props) {
     return <header className={baseClass}>Top Page Header</header>;
   }
   if (isDashboard) {
-    return <header>Dashboard Header</header>;
+    return <header className={baseClass}>Dashboard Header</header>;
   }
 
   return (
