@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+
 import { getSession } from "@/lib/auth"; // TODO : 仮
 
 import { UserData } from "@/types/user";
@@ -8,6 +9,7 @@ import { getSiteMetas } from "@/services/siteMetaService";
 import Header from "@/components/shared/Header";
 import Footer from "@/components/shared/Footer";
 import { SiteLink } from "@/components/siteLink/SiteLink";
+import { NewsDrawer } from "@/features/panel/ NewsDrawer";
 
 export default async function Page() {
   const session = await getSession();
@@ -36,6 +38,7 @@ export default async function Page() {
         <h1>omisee Dashboard Page</h1>
         <p>もしこの画面が見えていたら、ファイルの配置（URL）は正常です！</p>
         <p>ユーザー名：{userName}</p>
+        <NewsDrawer/>
 
         <section>
           <h2 className="text-xl font-semibold mb-4">Available Sites</h2>
