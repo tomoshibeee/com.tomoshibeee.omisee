@@ -38,7 +38,7 @@ export function DropDownMenu(props: Props) {
         <div key={`${i}-${m.label}`} className="relative">
           <button
             onClick={() => {
-              if (onOpenNews) {
+              if (m.type == "news" && onOpenNews) {
                 onOpenNews();
               }
               toggle(i);

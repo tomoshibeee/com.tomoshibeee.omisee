@@ -3,5 +3,6 @@ export type MenuItem = {
   label: string;
   href?: string;
   icon?: string;
+  type?: "link" | "news";
   children?: MenuItem[];
 };

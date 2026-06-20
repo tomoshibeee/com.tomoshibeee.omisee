@@ -11,17 +11,16 @@ type Props = {
   onOpenNews?: () => void;
 };
 
-export function PrimaryNavigation( props: Props) {
-  const {site, user, onOpenNews} = props;
+export function PrimaryNavigation(props: Props) {
+  const { site, user, onOpenNews } = props;
   if (!site) {
     const menu: MenuItem[] = [
-      { label: "お知らせ", href: "", icon: "" }, // TODO: 全体のお知らせを表示
-      { label: user?.name ?? "", href: "", icon: user?.avator, children: [] },
+      { label: "お知らせ", type: "news" },
+      { label: user?.name ?? "", icon: user?.avator, children: [] },
     ];
-
     return (
       <nav className="hidden md:flex items-center gap-6">
-        <DropDownMenu menu={menu} onOpenNews={onOpenNews}/>
+        <DropDownMenu menu={menu} onOpenNews={onOpenNews} />
       </nav>
     );
   }
