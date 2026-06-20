@@ -41,8 +41,9 @@ export function DropDownMenu({ menu }: { menu: MenuItem[] }) {
             <Image
               src={m.icon ?? "/default-icon.png"}
               alt={m.label}
-              width={16}
-              height={16}
+              width={24}
+              height={24}
+              className="rounded-full"
             />
             <span>{m.label}</span>
           </button>
