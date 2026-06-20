@@ -12,7 +12,7 @@ export default function Template({ edit = false, ...site }: TemplateProps) {
   const sections = site?.layout?.sections;
   return (
     <div>
-      <Header {...site} />
+      <Header site={site} />
       {sections?.map((section: SectionData, sectionIndex: number) => (
         <BaseSection
           key={section.id ?? sectionIndex}

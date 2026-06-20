@@ -7,7 +7,13 @@ import { MenuItem } from "@/types/siteMenu";
 
 import { useState, useEffect } from "react";
 
-export function DropDownMenu({ menu }: { menu: MenuItem[] }) {
+type Props = {
+  menu: MenuItem[];
+  onOpenNews?: () => void;
+};
+
+export function DropDownMenu(props: Props) {
+  const { menu, onOpenNews } = props;
   const menuRef = useRef<HTMLDivElement>(null);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
@@ -29,9 +35,14 @@ export function DropDownMenu({ menu }: { menu: MenuItem[] }) {
   return (
     <div ref={menuRef} className="flex items-center gap-6">
       {menu.map((m: MenuItem, i: number) => (
-        <div key={`${m.label}-${i}`} className="relative">
+        <div key={`${i}-${m.label}`} className="relative">
           <button
-            onClick={() => toggle(i)}
+            onClick={() => {
+              if (onOpenNews) {
+                onOpenNews();
+              }
+              toggle(i);
+            }} 
             className={`flex items-center gap-2 px-2 py-2 text-sm transition-colors ${
               openIndex === i
                 ? "text-gray-900"

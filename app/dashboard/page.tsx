@@ -7,10 +7,10 @@ import { UserData } from "@/types/user";
 import { getSiteMetas } from "@/services/siteMetaService";
 import { getGlobalNews, toGlobalNewsItems } from "@/services/globalNewsService";
 
-import Header from "@/components/shared/Header";
 import Footer from "@/components/shared/Footer";
 import { SiteLink } from "@/components/siteLink/SiteLink";
-import { NewsDrawer } from "@/features/panel/ NewsDrawer";
+
+import { PageContainer } from "@/components/shared/PageContainer";
 
 export default async function Page() {
   const session = await getSession();
@@ -38,13 +38,12 @@ export default async function Page() {
 
   return (
     <>
-      <Header user={user} />
+      {/* 💡 ヘッダーとドロワーをセットにしたコンポーネントを呼び出す */}
+      <PageContainer user={user} newsItems={globalNewsItems} />
       <main style={{ padding: "20px" }}>
         <h1>omisee Dashboard Page</h1>
-        <NewsDrawer newsItems={globalNewsItems}/>
         <section>
           <h2 className="text-xl font-semibold mb-4">Available Sites</h2>
-          {/* これは表示されない */}
           <div className="grid md:grid-cols-2 gap-4">
             {siteMetas.map((m) => (
               <SiteLink {...m} key={m.site_id} />
@@ -52,7 +51,7 @@ export default async function Page() {
           </div>
         </section>
       </main>
-      <Footer />
+      <Footer />{" "}
     </>
   );
 }

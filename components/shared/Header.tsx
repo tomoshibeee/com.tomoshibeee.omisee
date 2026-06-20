@@ -10,10 +10,13 @@ import { UserData } from "@/types/user";
 
 type Props = {
   site?: SiteData;
-  user? : UserData;
+  user?: UserData;
+  onOpenNews?: () => void;
 };
 
-export default function Header({ site, user }: Props) {
+export default function Header(props: Props) {
+  const { site, user, onOpenNews } = props;
+  
   const pathname = usePathname();
 
   const isTop = pathname === "/";
@@ -34,7 +37,7 @@ export default function Header({ site, user }: Props) {
     return (
       <header className={baseClass}>
         <Logo />
-        <PrimaryNavigation user={user}/>
+        <PrimaryNavigation user={user} onOpenNews={onOpenNews} />
       </header>
     );
   }

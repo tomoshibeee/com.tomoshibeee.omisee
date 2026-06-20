@@ -9,10 +9,10 @@ import { formatDate } from "@/utils/date/formatDate";
 import { NewsItem } from "@/features/block/news/types";
 
 export function NewsCard(props: NewsItem) {
-  console.log("🚦🚦🚦props🚦🚦🚦", props);
+  // console.log("🚦🚦🚦props🚦🚦🚦", props);
   const { id, title, content, eventDate, publishedAt, doc, youtube } = props;
   const isLong = content && content.length > 60;
-  console.log("🚦🚦🚦date🚦🚦🚦", id, eventDate, publishedAt);
+  // console.log("🚦🚦🚦date🚦🚦🚦", id, eventDate, publishedAt);
   return (
     <article className="grid gap-5 rounded-lg bg-white p-5 shadow-sm transition hover:shadow-md md:grid-cols-[150px_1fr_auto]">
       <div className="flex items-center gap-3 text-sm font-semibold text-blue-600 md:items-start">
