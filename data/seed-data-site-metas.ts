@@ -19,6 +19,8 @@ export function dummySiteMetaModelData(siteIds: string[]) {
                 building: m.bldg,
                 access: m.access,
                 description: m.description,
+                background_image: m.background_image,
+                avatar: m.avatar,
                 created_at: now,
                 updated_at: now,
             } as SiteMeta;

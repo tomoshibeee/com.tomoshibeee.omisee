@@ -10,6 +10,8 @@ export type SiteMeta = {
     building: string;
     access: string;
     description: string | null;
+    background_image: string | null;
+    avatar: string | null;
     created_at: string;
     updated_at: string;
 };

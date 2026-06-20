@@ -7,5 +7,7 @@
   "address": "静岡県静岡市葵区人宿町2−5−5",
   "bldg": "人宿55ビル 1F",
   "access": "静岡駅から徒歩18分、人宿町商店街の中央付近。バス停「七間町」から徒歩5分",
-  "description": "人宿55メガネ（静岡・人宿町）のデモサイトです。"
+  "description": "人宿55メガネ（静岡・人宿町）のデモサイトです。",
+  "background_image": "https://picsum.photos/1200/600",
+  "avatar": "https://picsum.photos/1200/600"
 }

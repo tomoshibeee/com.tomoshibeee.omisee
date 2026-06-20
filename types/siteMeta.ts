@@ -7,6 +7,8 @@ export type MetaData = {
   email: string;
   postalCode?: string;
   address: string;
+  avatar: string;
+  background_image: string;
   bldg?: string;
   access: string;
   description?: string;

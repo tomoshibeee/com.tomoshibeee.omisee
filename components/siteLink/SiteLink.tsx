@@ -10,15 +10,10 @@ type Props = {
 };
 
 export function SiteLink(props: Props) {
-  const { meta, edit } = props;
-  console.log(meta);
-  // const { name, slug } = {}
-  const name = props.meta.name;
-  const slug = props.meta.slug;
-  const image = "https://picsum.photos/1200/600";
-  const avatar = "https://picsum.photos/1200/600";
+  const { meta, edit } = props
+  const { name, slug, background_image, avatar} = meta;
 
-  const siteImage = image ?? "/default-site-cover.png";
+  const siteImage = background_image ?? "/default-site-cover.png";
   const siteAvatar = avatar ?? "/default-icon.png";
 
   return (
