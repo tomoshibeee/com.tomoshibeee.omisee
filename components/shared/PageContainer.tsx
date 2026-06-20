@@ -1,6 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import {
+  useState,
+  //, useEffect
+} from "react";
 import Header from "@/components/shared/Header";
 import { NewsDrawer } from "@/features/panel/ NewsDrawer";
 import { NewsItem } from "@/features/block/news/types";
@@ -13,9 +16,9 @@ type Props = {
 
 export function PageContainer({ user, newsItems }: Props) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  useEffect(() => {
-    console.log("🚦🚦🚦isDrawerOpen🚦🚦🚦", isDrawerOpen);
-  }, []);
+  // useEffect(() => {
+  //   console.log("🚦🚦🚦isDrawerOpen🚦🚦🚦", isDrawerOpen);
+  // }, []);
 
   return (
     <>
