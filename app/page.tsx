@@ -13,7 +13,7 @@ export default async function Page() {
     <main className="w-full px-4 py-10 space-y-12">
       {/* タイトル */}
       <section>
-        <h1 className="text-3xl font-bold mb-2">Tomoshibeee Church1 SaaS</h1>
+        <h1 className="text-3xl font-bold mb-2">omisee</h1>
         <p className="text-gray-500">It works 🚀</p>
       </section>
       {/* Sites */}
