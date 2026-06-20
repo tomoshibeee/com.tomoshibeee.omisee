@@ -43,7 +43,7 @@ export function DropDownMenu({ menu }: { menu: MenuItem[] }) {
               alt={m.label}
               width={24}
               height={24}
-              className="rounded-full fixed bottom-0 left-0 w-full rounded-t-2xl bg-white"
+              className="rounded-full object-cover"
             />
             <span>{m.label}</span>
           </button>
