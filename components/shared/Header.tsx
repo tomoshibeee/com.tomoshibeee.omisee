@@ -26,6 +26,7 @@ export default function Header({ site, user }: Props) {
     return (
       <header className={baseClass}>
         <Logo />
+        <PrimaryNavigation />
       </header>
     );
   }
