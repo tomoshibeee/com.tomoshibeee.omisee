@@ -3,15 +3,18 @@ import { LinkButtonHeader } from "@/components/buttons/LinkButton";
 import { ShareButtonHeader } from "@/components/buttons/ShareButton";
 import { SiteData } from "@/types/site";
 import { MenuItem } from "@/types/siteMenu";
+import { UserData } from "@/types/user";
 
 type Props = {
   site?: SiteData;
+  user?: UserData;
 };
 
-export function PrimaryNavigation({ site }: Props) {
+export function PrimaryNavigation( props: Props) {
+  const {site, user} = props;
   if (!site) {
     const menu: MenuItem[] = [
-      { label: "TODO: sessionからとった名前", href: "", children: [] },
+      { label: user?.name ?? "", href: "", children: [] },
     ];
 
     return (

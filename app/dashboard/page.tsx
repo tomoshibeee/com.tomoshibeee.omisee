@@ -1,5 +1,7 @@
 import { redirect } from "next/navigation";
-import { getSession } from "@/lib/auth"; // 仮
+import { getSession } from "@/lib/auth"; // TODO : 仮
+
+import { UserData } from "@/types/user";
 
 import { getSiteMetas } from "@/services/siteMetaService";
 
@@ -26,9 +28,10 @@ export default async function Page() {
   }
   // console.log("🚦🚦🚦 ダッシュボードのレンダリングテスト 🚦🚦🚦");
 
+  const user : UserData = { name : userName };
   return (
     <>
-      <Header />
+      <Header user={user}/>
       <main style={{ padding: "20px" }}>
         <h1>omisee Dashboard Page</h1>
         <p>もしこの画面が見えていたら、ファイルの配置（URL）は正常です！</p>

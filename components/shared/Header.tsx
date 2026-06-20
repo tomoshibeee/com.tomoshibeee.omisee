@@ -1,16 +1,19 @@
 "use client";
+
 import { usePathname } from "next/navigation";
 
 import { Logo } from "@/components/logos/Logo";
 import { PrimaryNavigation } from "@/features/nav/PrimaryNavigation";
 import { MobileNavigation } from "@/features/nav/MobileNavigation";
 import { SiteData } from "@/types/site";
+import { UserData } from "@/types/user";
 
 type Props = {
   site?: SiteData;
+  user? : UserData;
 };
 
-export default function Header({ site }: Props) {
+export default function Header({ site, user }: Props) {
   const pathname = usePathname();
 
   const isTop = pathname === "/";
@@ -30,7 +33,7 @@ export default function Header({ site }: Props) {
     return (
       <header className={baseClass}>
         <Logo />
-        <PrimaryNavigation />
+        <PrimaryNavigation user={user}/>
       </header>
     );
   }
