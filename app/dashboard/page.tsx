@@ -29,7 +29,6 @@ export default async function Page() {
   if (!session) {
     redirect("/login");
   }
-  // console.log("🚦🚦🚦 ダッシュボードのレンダリングテスト 🚦🚦🚦");
 
   const user: UserData = { name: userName, avator: userAvatar };
 
@@ -38,10 +37,8 @@ export default async function Page() {
 
   return (
     <>
-      {/* 💡 ヘッダーとドロワーをセットにしたコンポーネントを呼び出す */}
       <PageContainer user={user} newsItems={globalNewsItems} />
       <main style={{ padding: "20px" }}>
-        <h1>omisee Dashboard Page</h1>
         <section>
           <h2 className="text-xl font-semibold mb-4">Available Sites</h2>
           <div className="grid md:grid-cols-2 gap-4">

@@ -16,7 +16,7 @@ type Props = {
 
 export default function Header(props: Props) {
   const { site, user, onOpenNews } = props;
-  
+
   const pathname = usePathname();
 
   const isTop = pathname === "/";
@@ -30,6 +30,7 @@ export default function Header(props: Props) {
       <header className={baseClass}>
         <Logo />
         <PrimaryNavigation />
+        <MobileNavigation />
       </header>
     );
   }
@@ -38,6 +39,7 @@ export default function Header(props: Props) {
       <header className={baseClass}>
         <Logo />
         <PrimaryNavigation user={user} onOpenNews={onOpenNews} />
+        <MobileNavigation  user={user} onOpenNews={onOpenNews}/>
       </header>
     );
   }
