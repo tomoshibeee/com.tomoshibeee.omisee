@@ -2,6 +2,8 @@
 import { NewsItem } from "@/features/block/news/types";
 import { NewsCard } from "@/components/news/NewsCard";
 
+import { IoIosCloseCircleOutline } from "react-icons/io";
+
 type Props = {
   newsItems: NewsItem[];
   open: boolean;
@@ -28,7 +30,7 @@ export function NewsDrawer({ newsItems, open, onClose }: Props) {
           className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded shadow absolute top-4 right-4 z-50 cursor-pointer"
           onClick={onClose}
         >
-          閉じる
+          <IoIosCloseCircleOutline />
         </button>
 
         <section className="p-6 font-bold text-black max-w-4xl mx-auto">
