@@ -43,7 +43,7 @@ export default async function Page() {
           <h2 className="text-xl font-semibold mb-4">Available Sites</h2>
           <div className="grid md:grid-cols-2 gap-4">
             {siteMetas.map((m) => (
-              <SiteLink {...m} key={m.site_id} />
+              <SiteLink key={m.site_id} meta={m} edit={true} />
             ))}
           </div>
         </section>

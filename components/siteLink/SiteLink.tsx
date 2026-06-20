@@ -4,8 +4,17 @@ import { FaArrowRight } from "react-icons/fa6";
 
 import { SiteMeta } from "@/models/siteMeta";
 
-export function SiteLink(props: SiteMeta) {
-  const { name, slug } = props;
+type Props = {
+  meta: SiteMeta;
+  edit?: boolean;
+};
+
+export function SiteLink(props: Props) {
+  const { meta, edit } = props;
+  console.log(meta);
+  // const { name, slug } = {}
+  const name = props.meta.name;
+  const slug = props.meta.slug;
   const image = "https://picsum.photos/1200/600";
   const avatar = "https://picsum.photos/1200/600";
 
@@ -18,7 +27,6 @@ export function SiteLink(props: SiteMeta) {
       // スマホは縦長(h-[320px])、PC(md:)は横長(h-[160px])のロー
       className="relative flex flex-col md:flex-row h-[320px] md:h-[160px] rounded-xl bg-white shadow-sm overflow-hidden border border-gray-100 transition duration-300 hover:shadow-lg hover:-translate-y-1 group"
     >
-      
       {/* 📸 1. 左側：お店の画像エリア */}
       {/* ここに relative を持たせ、中のアバターを「常にこのエリアの中心」に固定します */}
       <div className="relative h-1/2 md:h-full w-full md:w-2/5 bg-slate-100 overflow-hidden shrink-0">
@@ -47,11 +55,9 @@ export function SiteLink(props: SiteMeta) {
         </div>
       </div>
 
-
       {/* 📝 3. 右側：サイト名と情報エリア */}
       {/* アバターが完全に左側に収まったので、PC版の左余白（md:pl-6）を標準的なサイズにスッキリさせました */}
       <div className="flex flex-col md:flex-row flex-1 p-5 text-center md:text-left justify-between items-center bg-white border-t md:border-t-0 md:border-l border-gray-100">
-        
         {/* サイト名 */}
         <div className="space-y-1">
           <h3 className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-1">
@@ -61,10 +67,9 @@ export function SiteLink(props: SiteMeta) {
 
         {/* 下部の矢印ボタン */}
         <div className="flex justify-center items-center gap-1.5 text-sm font-semibold text-blue-600 group-hover:text-blue-700 pt-2 md:pt-0 shrink-0">
-          <span>サイトを見る</span>
+          <span>{edit ? "サイトを編集する" : "サイトを見る"}</span>
           <FaArrowRight className="text-xs transition transform group-hover:translate-x-1" />
         </div>
-
       </div>
     </Link>
   );

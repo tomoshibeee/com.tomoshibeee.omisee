@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 import { NewsCard } from "@/components/news/NewsCard";
 import { SiteLink } from "@/components/siteLink/SiteLink";
 
@@ -34,7 +32,7 @@ export default async function Page() {
 
         <div className="grid md:grid-cols-2 gap-4">
           {siteMetas.map((m) => (
-            <SiteLink {...m} key={m.site_id} />
+            <SiteLink meta={m} key={m.site_id} />
           ))}
         </div>
       </section>
