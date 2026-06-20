@@ -1,6 +1,8 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
+
 import { MenuItem } from "@/types/siteMenu";
 
 import { useState, useEffect } from "react";
@@ -30,15 +32,20 @@ export function DropDownMenu({ menu }: { menu: MenuItem[] }) {
         <div key={`${m.label}-${i}`} className="relative">
           <button
             onClick={() => toggle(i)}
-            className={`px-2 py-2 text-sm transition-colors ${
+            className={`flex items-center gap-2 px-2 py-2 text-sm transition-colors ${
               openIndex === i
                 ? "text-gray-900"
                 : "text-gray-600 hover:text-gray-900 hover:bg-slate-50"
             }`}
           >
-            {m.label}
+            <Image
+              src={m.icon ?? "/default-icon.png"}
+              alt={m.label}
+              width={16}
+              height={16}
+            />
+            <span>{m.label}</span>
           </button>
-
           {m.children && m.children.length > 0 && openIndex === i && (
             <div className="absolute left-0 top-full mt-2 w-[180px] border border-slate-100 bg-white shadow-sm">
               {m.children.map((c: MenuItem, j: number) => (

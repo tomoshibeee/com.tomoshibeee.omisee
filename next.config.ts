@@ -12,7 +12,9 @@ const nextConfig: NextConfig = {
         hostname: "picsum.photos",
       },
     ],
-  },
-};
+    domains: [
+      "lh3.googleusercontent.com",
+    ],
+  },};
 
 export default nextConfig;

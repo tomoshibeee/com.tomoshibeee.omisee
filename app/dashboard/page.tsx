@@ -12,13 +12,13 @@ import { SiteLink } from "@/components/siteLink/SiteLink";
 export default async function Page() {
   const session = await getSession();
   let userName = "";
+  let userAvatar = "";
   if (session?.user) {
     userName =
       session.user.user_metadata?.full_name ||
       session.user.user_metadata?.name ||
       session.user.email;
-
-    console.log("🚦ログインユーザー名:", userName);
+    userAvatar = session.user.user_metadata?.avatar_url;
   }
 
   const siteMetas = await getSiteMetas();
@@ -28,10 +28,10 @@ export default async function Page() {
   }
   // console.log("🚦🚦🚦 ダッシュボードのレンダリングテスト 🚦🚦🚦");
 
-  const user : UserData = { name : userName };
+  const user: UserData = { name: userName, avator: userAvatar };
   return (
     <>
-      <Header user={user}/>
+      <Header user={user} />
       <main style={{ padding: "20px" }}>
         <h1>omisee Dashboard Page</h1>
         <p>もしこの画面が見えていたら、ファイルの配置（URL）は正常です！</p>

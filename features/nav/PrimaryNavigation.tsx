@@ -14,7 +14,7 @@ export function PrimaryNavigation( props: Props) {
   const {site, user} = props;
   if (!site) {
     const menu: MenuItem[] = [
-      { label: user?.name ?? "", href: "", children: [] },
+      { label: user?.name ?? "", href: "", icon: user?.avator, children: [] },
     ];
 
     return (
