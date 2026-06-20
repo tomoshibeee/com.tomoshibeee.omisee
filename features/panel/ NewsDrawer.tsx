@@ -9,30 +9,38 @@ type Props = {
 };
 
 export function NewsDrawer({ newsItems, open, onClose }: Props) {
+  const baseDrawerClass = "fixed bottom-0 left-0 w-full max-h-[80vh] overflow-y-auto bg-slate-100 shadow-2xl transform transition-transform duration-300 z-50  block pb-10";
   const drawerClass = open
-    ? "fixed bottom-0 left-0 w-full max-h-[80vh] overflow-y-auto bg-slate-100 shadow-2xl transform transition-transform duration-300 z-50 translate-y-0 block pb-10"
-    : "fixed bottom-0 left-0 w-full max-h-[80vh] overflow-y-auto bg-slate-100 shadow-2xl transform transition-transform duration-300 z-50 translate-y-full block pb-10";
+    ? `${baseDrawerClass} translate-y-0`
+    : `${baseDrawerClass} translate-y-full`;
+
+    const baseOverlayClass = "fixed inset-0 bg-black/40 z-40";
+  const overlayClass = open
+    ? `${baseOverlayClass} transition-opacity duration-300 opacity-100 block`
+    : `${baseOverlayClass} transition-opacity duration-300 opacity-0 hidden`;
 
   return (
-    <div className={drawerClass}>
-      <button
-        className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded shadow absolute top-4 right-4 z-50 cursor-pointer"
-        onClick={onClose}
-      >
-        閉じる
-      </button>
+    <>
+      <div className={overlayClass} onClick={onClose} />
 
-      <section className="p-6 font-bold text-black max-w-4xl mx-auto">
-        <h2 className="text-xl font-bold mb-6 border-b pb-2 text-gray-800">
-          Latest News
-        </h2>
+      <div className={drawerClass}>
+        <button
+          className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded shadow absolute top-4 right-4 z-50 cursor-pointer"
+          onClick={onClose}
+        >
+          閉じる
+        </button>
 
-        <div className="space-y-4">
-          {newsItems.map((newsItem, i) => (
-            <NewsCard key={newsItem.id ?? `global_news_${i}`} {...newsItem} />
-          ))}
-        </div>
-      </section>
-    </div>
+        <section className="p-6 font-bold text-black max-w-4xl mx-auto">
+          <h2 className="text-xl font-bold mb-6 border-b pb-2 text-gray-800">Latest News</h2>
+          
+          <div className="space-y-4">
+            {newsItems.map((newsItem, i) => (
+              <NewsCard key={newsItem.id ?? `global_news_${i}`} {...newsItem} />
+            ))}
+          </div>
+        </section>
+      </div>
+    </>
   );
 }
