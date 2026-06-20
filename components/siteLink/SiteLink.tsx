@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa6";
-
 import { SiteMeta } from "@/models/siteMeta";
 
 type Props = {
@@ -10,8 +9,8 @@ type Props = {
 };
 
 export function SiteLink(props: Props) {
-  const { meta, edit } = props
-  const { name, slug, background_image, avatar} = meta;
+  const { meta, edit = false } = props;
+  const { name, slug, background_image, avatar } = meta;
 
   const siteImage = background_image ?? "/default-site-cover.png";
   const siteAvatar = avatar ?? "/default-icon.png";
@@ -19,12 +18,21 @@ export function SiteLink(props: Props) {
   return (
     <Link
       href={`/p/${slug}`}
-      // スマホは縦長(h-[320px])、PC(md:)は横長(h-[160px])のロー
-      className="relative flex flex-col md:flex-row h-[320px] md:h-[160px] rounded-xl bg-white shadow-sm overflow-hidden border border-gray-100 transition duration-300 hover:shadow-lg hover:-translate-y-1 group"
+      // 全体の形状：edit=trueならモバイルもPCも横長(flex-row)。edit=falseならMARKIS風に縦長カード(flex-col)
+      className={`relative flex rounded-xl bg-white shadow-sm border border-gray-100 transition duration-300 hover:shadow-lg hover:-translate-y-1 group w-full ${
+        edit 
+          ? "flex-row h-[160px]" 
+          : "flex-col h-[320px]"
+      }`}
     >
-      {/* 📸 1. 左側：お店の画像エリア */}
-      {/* ここに relative を持たせ、中のアバターを「常にこのエリアの中心」に固定します */}
-      <div className="relative h-1/2 md:h-full w-full md:w-2/5 bg-slate-100 overflow-hidden shrink-0">
+      {/* 📸 1. 画像エリア */}
+      <div
+        className={`relative bg-slate-100 shrink-0 overflow-hidden ${
+          edit
+            ? "h-full w-1/3 sm:w-2/5 rounded-l-xl" // edit=true: 左側が画像
+            : "h-1/2 w-full rounded-t-xl"           // edit=false: 上半分が画像
+        }`}
+      >
         <Image
           src={siteImage}
           alt={`${name}のカバー画像`}
@@ -32,37 +40,46 @@ export function SiteLink(props: Props) {
           sizes="(max-w-768px) 100vw, 33vw"
           className="object-cover transition duration-500 group-hover:scale-105"
         />
-        {/* アバターを見やすくするために、画像上の黒オーバーレイを少しだけ濃く(bg-black/20)します */}
-        <div className="absolute inset-0 bg-black/20" />
+        <div className="absolute inset-0 bg-black/10" />
+      </div>
 
-        {/* ⚪️ 2. 【修正！】左半分（画像エリア）の中心に配置されるアバター */}
-        {/* md: をつけても位置が変わらないように一元化し、常に画像エリアのど真ん中に配置します */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-          <div className="relative h-16 w-16 md:h-20 md:w-20 rounded-full border-4 border-white bg-white shadow-md overflow-hidden transition duration-300 group-hover:scale-110">
-            <Image
-              src={siteAvatar}
-              alt={`${name}のアイコン`}
-              fill
-              sizes="80px"
-              className="object-cover"
-            />
-          </div>
+      {/* ⚪️ 2. アバター（背景とタイトルの境界線上に配置） */}
+      <div
+        className={`absolute z-30 transform -translate-x-1/2 -translate-y-1/2 ${
+          edit
+            ? "top-1/2 left-[33.333%] sm:left-[40%]" // edit=true: 左側画像の右端（縦の境界線）
+            : "top-1/2 left-1/2"                     // edit=false: 上半分画像の真下（横の境界線）
+        }`}
+      >
+        <div className="relative h-14 w-14 sm:h-16 sm:w-16 md:h-18 md:w-18 rounded-full border-4 border-white bg-white shadow-md overflow-hidden transition duration-300 group-hover:scale-110">
+          <Image
+            src={siteAvatar}
+            alt={`${name}のアイコン`}
+            fill
+            sizes="80px"
+            className="object-cover"
+          />
         </div>
       </div>
 
-      {/* 📝 3. 右側：サイト名と情報エリア */}
-      {/* アバターが完全に左側に収まったので、PC版の左余白（md:pl-6）を標準的なサイズにスッキリさせました */}
-      <div className="flex flex-col md:flex-row flex-1 p-5 text-center md:text-left justify-between items-center bg-white border-t md:border-t-0 md:border-l border-gray-100">
+      {/* 📝 3. サイト名と情報エリア */}
+      <div
+        className={`flex flex-1 p-5 text-center justify-between items-center bg-white z-10 border-gray-100 ${
+          edit
+            ? "flex-row border-l pl-14 sm:pl-16 md:pl-20 rounded-r-xl" // edit=true: 右側にテキスト(アバター避けの左余白)
+            : "flex-row border-t pt-9 rounded-b-xl"                     // edit=false: 下半分にテキスト(アバター避けの上余白)
+        }`}
+      >
         {/* サイト名 */}
-        <div className="space-y-1">
-          <h3 className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-1">
+        <div className="space-y-1 text-left">
+          <h3 className="text-base sm:text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-1">
             {name}
           </h3>
         </div>
 
-        {/* 下部の矢印ボタン */}
-        <div className="flex justify-center items-center gap-1.5 text-sm font-semibold text-blue-600 group-hover:text-blue-700 pt-2 md:pt-0 shrink-0">
-          <span>{edit ? "サイトを編集する" : "サイトを見る"}</span>
+        {/* 右側のボタンエリア */}
+        <div className="flex justify-center items-center gap-1.5 text-xs sm:text-sm font-semibold text-blue-600 group-hover:text-blue-700 shrink-0">
+          <span>{edit ? "編集する" : "サイトを見る"}</span>
           <FaArrowRight className="text-xs transition transform group-hover:translate-x-1" />
         </div>
       </div>
