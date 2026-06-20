@@ -8,7 +8,12 @@ export function NewsDrawer() {
   return (
     <>
       <button onClick={() => setOpen(true)}>お知らせ</button>
-      {open && <div>モーダル</div>}
+      {open && (
+        <div>
+          モーダル
+          <button onClick={() => setOpen(false)}>閉じる</button>
+        </div>
+      )}
     </>
   );
 }
