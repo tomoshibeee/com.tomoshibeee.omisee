@@ -38,13 +38,15 @@ export function DropDownMenu({ menu }: { menu: MenuItem[] }) {
                 : "text-gray-600 hover:text-gray-900 hover:bg-slate-50"
             }`}
           >
-            <Image
-              src={m.icon ?? "/default-icon.png"}
-              alt={m.label}
-              width={24}
-              height={24}
-              className="rounded-full object-cover"
-            />
+            {m.icon && (
+              <Image
+                src={m.icon || "/default-icon.png"}
+                alt={m.label}
+                width={24}
+                height={24}
+                className="rounded-full object-cover"
+              />
+            )}
             <span>{m.label}</span>
           </button>
           {m.children && m.children.length > 0 && openIndex === i && (
