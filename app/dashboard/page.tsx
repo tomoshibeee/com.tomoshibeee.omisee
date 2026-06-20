@@ -5,6 +5,7 @@ import { getSession } from "@/lib/auth"; // TODO : 仮
 import { UserData } from "@/types/user";
 
 import { getSiteMetas } from "@/services/siteMetaService";
+import { getGlobalNews, toGlobalNewsItems } from "@/services/globalNewsService";
 
 import Header from "@/components/shared/Header";
 import Footer from "@/components/shared/Footer";
@@ -31,15 +32,16 @@ export default async function Page() {
   // console.log("🚦🚦🚦 ダッシュボードのレンダリングテスト 🚦🚦🚦");
 
   const user: UserData = { name: userName, avator: userAvatar };
+
+  const news = await getGlobalNews();
+  const globalNewsItems = toGlobalNewsItems(news);
+
   return (
     <>
       <Header user={user} />
       <main style={{ padding: "20px" }}>
         <h1>omisee Dashboard Page</h1>
-        <p>もしこの画面が見えていたら、ファイルの配置（URL）は正常です！</p>
-        <p>ユーザー名：{userName}</p>
-        <NewsDrawer/>
-
+        <NewsDrawer newsItems={globalNewsItems}/>
         <section>
           <h2 className="text-xl font-semibold mb-4">Available Sites</h2>
           {/* これは表示されない */}

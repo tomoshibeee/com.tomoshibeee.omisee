@@ -1,11 +1,19 @@
 "use client";
 import { useEffect, useState } from "react";
 
-export function NewsDrawer() {
+import { NewsItem } from "@/features/block/news/types";
+import { NewsCard } from "@/components/news/NewsCard";
+
+type Props = {
+  newsItems: NewsItem[];
+};
+
+export function NewsDrawer(props: Props) {
+  const { newsItems } = props;
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    console.log("🚦🚦🚦open🚦🚦🚦", open);
+    // console.log("🚦🚦🚦open🚦🚦🚦", open);
   });
 
   const drawerClass = open
@@ -20,7 +28,6 @@ export function NewsDrawer() {
           className="bg-blue-500 text-white px-4 py-2 rounded shadow"
           onClick={() => {
             setOpen(true);
-            console.log("開くがクリックされました");
           }}
         >
           開く
@@ -29,14 +36,20 @@ export function NewsDrawer() {
 
       {/* ドロワー本体 */}
       <div className={drawerClass}>
-        <div className="p-4 font-bold text-black">
-          ここにお知らせ（開きました！）
-        </div>
+        {/* News */}
+        <section className="p-4 font-bold text-black">
+          <h2 className="text-xl font-semibold mb-4">Latest News</h2>
+
+          <div className="space-y-3">
+            {newsItems.map((newsItem, i) => (
+              <NewsCard key={newsItem.id ?? `global_news_${i}`} {...newsItem} />
+            ))}
+          </div>
+        </section>
         <button
           className="bg-blue-500 text-white px-4 py-2 rounded"
           onClick={() => {
             setOpen(false);
-            console.log("閉じるがクリックされました");
           }}
         >
           閉じる
