@@ -16,16 +16,6 @@ export default async function Page() {
         <h1 className="text-3xl font-bold mb-2">Tomoshibeee Church1 SaaS</h1>
         <p className="text-gray-500">It works 🚀</p>
       </section>
-      {/* News */}
-      <section>
-        <h2 className="text-xl font-semibold mb-4">Latest News</h2>
-
-        <div className="space-y-3">
-          {globalNewsItems.map((newsItem, i) => (
-            <NewsCard key={newsItem.id ?? `global_news_${i}`} {...newsItem} />
-          ))}
-        </div>
-      </section>
       {/* Sites */}
       <section>
         <h2 className="text-xl font-semibold mb-4">Available Sites</h2>
