@@ -22,8 +22,7 @@ export default function Footer({ site }: Props) {
   const isDashboard = pathname?.startsWith("/dashboard");
 
   if (isTop) {
-    return <footer>Top Page Footer</footer>
-    ;
+    return <footer>Top Page Footer</footer>;
   }
   if (isDashboard) {
     return <footer>Dashboard Footer</footer>;
@@ -161,6 +160,12 @@ export default function Footer({ site }: Props) {
             利用規約
           </a>
         </div>
+      </div>
+
+      {/* Control Panel */}
+      <div className="fixed bottom-0 left-0 right-0 p-4 bg-white border-t">
+        <button className="w-1/2">プレビュー</button>
+        <button className="w-1/2">保存</button>
       </div>
     </footer>
   );
