@@ -5,7 +5,7 @@ import {
   //, useEffect
 } from "react";
 import Header from "@/components/shared/Header";
-import { NewsDrawer } from "@/features/panel/ NewsDrawer";
+import { NewsDrawer } from "@/features/drawer/NewsDrawer";
 import { NewsItem } from "@/features/block/news/types";
 import { UserData } from "@/types/user";
 
