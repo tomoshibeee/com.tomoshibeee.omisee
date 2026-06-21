@@ -1,3 +1,5 @@
+"use client";
+
 import React, { JSX } from "react";
 import HeroBlockImage from "@/features/block/hero/components/HeroBlockImage";
 import HeroBlockCarousel from "@/features/block/hero/components/HeroBlockCarousel";
@@ -22,6 +24,7 @@ import {
 interface Props {
   meta: MetaData;
   block: Block;
+  edit: boolean;
 }
 type BlockRendererMap = {
   hero: (block: HeroBlockType) => JSX.Element;
@@ -74,10 +77,12 @@ const blockRegistry: BlockRendererMap = {
   },
 };
 
-export default function BlockRenderer({ meta, block }: Props) {
+export default function BlockRenderer({ meta, block, edit }: Props) {
   const render = blockRegistry[block.type];
 
   if (!render) return null;
 
-  return render(block as any, meta);
+  const content = render(block as any, meta);
+
+  return <div onClick={() => alert(`edit block:${block.type}-${block.id}`)}>{content}</div>;
 }

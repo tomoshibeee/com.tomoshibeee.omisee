@@ -19,6 +19,7 @@ export default function BaseSection({
           key={block.id ?? `${block.type}-${i}`}
           meta={meta}
           block={block}
+          edit={true}
         />
       ))}
     </section>
