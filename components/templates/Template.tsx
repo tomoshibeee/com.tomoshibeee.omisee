@@ -18,6 +18,7 @@ export default function Template({ edit = false, ...site }: TemplateProps) {
           key={section.id ?? sectionIndex}
           meta={site.meta}
           section={{ ...section }}
+          edit={edit}
         />
       ))}
       <Footer site={site} edit={edit} />

@@ -22,5 +22,5 @@ export default async function Page({
   if (!Template) return <div>Template Not Found</div>;
 
   // Template expects SiteData props directly, so spread the site object
-  return <Template {...site} />;
+  return <Template {...site} edit={false} />;
 }

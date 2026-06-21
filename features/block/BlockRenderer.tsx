@@ -77,6 +77,9 @@ const blockRegistry: BlockRendererMap = {
   },
 };
 
+const onEdit =  (block: Block) => {
+  alert(`edit block:${block.type}-${block.id}`);
+}
 export default function BlockRenderer({ meta, block, edit }: Props) {
   const render = blockRegistry[block.type];
 
@@ -84,5 +87,12 @@ export default function BlockRenderer({ meta, block, edit }: Props) {
 
   const content = render(block as any, meta);
 
-  return <div onClick={() => alert(`edit block:${block.type}-${block.id}`)}>{content}</div>;
+  if (edit) {
+    return (
+      <div onClick={() => onEdit(block)}>
+        {content}
+      </div>
+    );
+  }
+  return <div>{content}</div>;
 }
