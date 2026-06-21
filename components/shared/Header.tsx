@@ -38,8 +38,8 @@ export default function Header(props: Props) {
     return (
       <header className={baseClass}>
         <Logo />
-        <PrimaryNavigation user={user} onOpenNews={onOpenNews} />
-        <MobileNavigation  user={user} onOpenNews={onOpenNews}/>
+        <PrimaryNavigation user={user} site={site} onOpenNews={onOpenNews} />
+        <MobileNavigation  user={user} site={site} onOpenNews={onOpenNews}/>
       </header>
     );
   }
