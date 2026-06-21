@@ -20,7 +20,7 @@ export default function Template({ edit = false, ...site }: TemplateProps) {
           section={{ ...section }}
         />
       ))}
-      <Footer site={site} />
+      <Footer site={site} edit={edit} />
     </div>
   );
 }

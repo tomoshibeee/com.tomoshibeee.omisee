@@ -10,9 +10,11 @@ import { FaEnvelope, FaLocationDot, FaPhone } from "react-icons/fa6";
 
 type Props = {
   site?: SiteData;
+  edit?: boolean;
 };
 
-export default function Footer({ site }: Props) {
+export default function Footer(props: Props) {
+  const { site, edit = false } = props;
   const baseClass =
     "w-full border-t border-slate-200 bg-slate-950 px-6 pt-14 text-sm text-slate-300";
 
@@ -20,11 +22,16 @@ export default function Footer({ site }: Props) {
 
   const isTop = pathname === "/";
   const isDashboard = pathname?.startsWith("/dashboard");
+  // const isEditSite = /^\/dashboard\/[^/]+$/.test(pathname);
 
   if (isTop) {
     return <footer>Top Page Footer</footer>;
   }
-  if (isDashboard) {
+
+  // if (isEditSite) {
+  //   return <footer>Dashboard Edit Footer</footer>;
+  // }
+  if (isDashboard && !edit) {
     return <footer>Dashboard Footer</footer>;
   }
 
@@ -163,10 +170,12 @@ export default function Footer({ site }: Props) {
       </div>
 
       {/* Control Panel */}
-      <div className="fixed bottom-0 left-0 right-0 p-4 bg-white border-t">
-        <button className="w-1/2">プレビュー</button>
-        <button className="w-1/2">保存</button>
-      </div>
+      {edit && (
+        <div className="fixed bottom-0 left-0 right-0 p-4 bg-white border-t">
+          <button className="w-1/2">プレビュー</button>
+          <button className="w-1/2">保存</button>
+        </div>
+      )}
     </footer>
   );
 }
