@@ -1,11 +1,13 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
+import { redirect } from "next/navigation";
+
 import Image from "next/image";
 
 import { MenuItem } from "@/types/siteMenu";
 
-import { useState, useEffect } from "react";
+import { supabase } from "@/lib/supabase";
 
 type Props = {
   menu: MenuItem[];
@@ -32,17 +34,23 @@ export function DropDownMenu(props: Props) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    redirect("/login");
+  };
+
   return (
     <div ref={menuRef} className="flex items-center gap-6">
       {menu.map((m: MenuItem, i: number) => (
         <div key={`${i}-${m.label}`} className="relative">
           <button
             onClick={() => {
-              if (m.type == "news" && onOpenNews) {
+              if (m.type === "news" && onOpenNews) {
                 onOpenNews();
+                return;
               }
               toggle(i);
-            }} 
+            }}
             className={`flex items-center gap-2 px-2 py-2 text-sm transition-colors ${
               openIndex === i
                 ? "text-gray-900"
@@ -67,6 +75,11 @@ export function DropDownMenu(props: Props) {
                   key={`${m.label}-${i}-${c.label}-${j}`}
                   href={c.href}
                   className="block px-4 py-2 text-sm text-gray-600 transition hover:bg-slate-50 hover:text-gray-900"
+                  onClick={() => {
+                    if (c.type == "logout") {
+                      handleLogout();
+                    }
+                  }}
                 >
                   {c.label}
                 </a>

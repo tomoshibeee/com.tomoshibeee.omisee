@@ -16,7 +16,11 @@ export function PrimaryNavigation(props: Props) {
   if (!site) {
     const menu: MenuItem[] = [
       { label: "お知らせ", type: "news" },
-      { label: user?.name ?? "", icon: user?.avator, children: [] },
+      {
+        label: user?.name ?? "",
+        icon: user?.avator,
+        children: [{ label: "ログアウト", type: "logout" }],
+      },
     ];
     return (
       <nav className="hidden md:flex items-center gap-6">
