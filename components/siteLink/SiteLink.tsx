@@ -10,19 +10,17 @@ type Props = {
 
 export function SiteLink(props: Props) {
   const { meta, edit = false } = props;
-  const { name, slug, background_image, avatar } = meta;
+  const { site_id, name, slug, background_image, avatar } = meta;
 
   const siteImage = background_image ?? "/default-site-cover.png";
   const siteAvatar = avatar ?? "/default-icon.png";
 
   return (
     <Link
-      href={`/p/${slug}`}
+      href={edit ? `/dashboard/${site_id}` : `/p/${slug}`}
       // 全体の形状：edit=trueならモバイルもPCも横長(flex-row)。edit=falseならMARKIS風に縦長カード(flex-col)
       className={`relative flex rounded-xl bg-white shadow-sm border border-gray-100 transition duration-300 hover:shadow-lg hover:-translate-y-1 group w-full ${
-        edit 
-          ? "flex-row h-[160px]" 
-          : "flex-col h-[320px]"
+        edit ? "flex-row h-[160px]" : "flex-col h-[320px]"
       }`}
     >
       {/* 📸 1. 画像エリア */}
@@ -30,7 +28,7 @@ export function SiteLink(props: Props) {
         className={`relative bg-slate-100 shrink-0 overflow-hidden ${
           edit
             ? "h-full w-1/3 sm:w-2/5 rounded-l-xl" // edit=true: 左側が画像
-            : "h-1/2 w-full rounded-t-xl"           // edit=false: 上半分が画像
+            : "h-1/2 w-full rounded-t-xl" // edit=false: 上半分が画像
         }`}
       >
         <Image
@@ -48,7 +46,7 @@ export function SiteLink(props: Props) {
         className={`absolute z-30 transform -translate-x-1/2 -translate-y-1/2 ${
           edit
             ? "top-1/2 left-[33.333%] sm:left-[40%]" // edit=true: 左側画像の右端（縦の境界線）
-            : "top-1/2 left-1/2"                     // edit=false: 上半分画像の真下（横の境界線）
+            : "top-1/2 left-1/2" // edit=false: 上半分画像の真下（横の境界線）
         }`}
       >
         <div className="relative h-14 w-14 sm:h-16 sm:w-16 md:h-18 md:w-18 rounded-full border-4 border-white bg-white shadow-md overflow-hidden transition duration-300 group-hover:scale-110">
@@ -67,7 +65,7 @@ export function SiteLink(props: Props) {
         className={`flex flex-1 p-5 text-center justify-between items-center bg-white z-10 border-gray-100 ${
           edit
             ? "flex-row border-l pl-14 sm:pl-16 md:pl-20 rounded-r-xl" // edit=true: 右側にテキスト(アバター避けの左余白)
-            : "flex-row border-t pt-9 rounded-b-xl"                     // edit=false: 下半分にテキスト(アバター避けの上余白)
+            : "flex-row border-t pt-9 rounded-b-xl" // edit=false: 下半分にテキスト(アバター避けの上余白)
         }`}
       >
         {/* サイト名 */}
