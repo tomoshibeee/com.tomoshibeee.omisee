@@ -41,7 +41,7 @@ export default async function Page() {
       <main style={{ padding: "20px" }}>
         <section>
           <h2 className="text-xl font-semibold mb-4">Available Sites</h2>
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid md:grid-cols-3 gap-4">
             {siteMetas.map((m) => (
               <SiteLink key={m.site_id} meta={m} edit={true} />
             ))}
