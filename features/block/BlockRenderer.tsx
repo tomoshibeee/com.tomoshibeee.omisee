@@ -24,7 +24,8 @@ import {
 interface Props {
   meta: MetaData;
   block: Block;
-  edit: boolean;
+  edit?: boolean;
+  onEdit?: (block: Block) => void;
 }
 type BlockRendererMap = {
   hero: (block: HeroBlockType) => JSX.Element;
@@ -77,22 +78,16 @@ const blockRegistry: BlockRendererMap = {
   },
 };
 
-const onEdit =  (block: Block) => {
-  alert(`edit block:${block.type}-${block.id}`);
-}
-export default function BlockRenderer({ meta, block, edit }: Props) {
+export default function BlockRenderer(props: Props) {
+  const { meta, block, edit, onEdit } = props;
   const render = blockRegistry[block.type];
 
   if (!render) return null;
 
   const content = render(block as any, meta);
 
-  if (edit) {
-    return (
-      <div onClick={() => onEdit(block)}>
-        {content}
-      </div>
-    );
+  if (edit && onEdit) {
+    return <div onClick={() => onEdit(block)}>{content}</div>;
   }
   return <div>{content}</div>;
 }

@@ -1,6 +1,7 @@
-import { getSiteData } from "@/services/siteService";
-
 import Template from "@/components/templates/Template";
+import EditPageContainer from "@/components/shared/EditPageContainer";
+
+import { getSiteData } from "@/services/siteService";
 
 export default async function Page({
   params,
@@ -16,5 +17,5 @@ export default async function Page({
 
   if (!Template) return <div>Template Not Found</div>;
 
-  return <Template {...site} edit={true} />;
+  return <EditPageContainer site={site}/>
 }

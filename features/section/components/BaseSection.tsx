@@ -1,15 +1,18 @@
+"use client";
+
 import { MetaData } from "@/types/siteMeta";
 import { SectionData } from "@/features/section/types";
-import { NewsBlockData } from "@/features/block/news/types";
+import { Block } from "@/features/block/index";
 import BlockRenderer from "@/features/block/BlockRenderer";
 
 type Props = {
   section: SectionData;
   meta: MetaData;
-  edit: boolean;
+  edit?: boolean;
+  onEdit?: (b: Block) => void;
 };
 export default function BaseSection(props: Props) {
-  const { section, meta, edit } = props;
+  const { section, meta, edit, onEdit } = props;
   if (!section) return null;
   return (
     <section id={section.id} className="p-0 text-gray-800">
@@ -19,6 +22,7 @@ export default function BaseSection(props: Props) {
           meta={meta}
           block={block}
           edit={edit}
+          onEdit={onEdit}
         />
       ))}
     </section>
