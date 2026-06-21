@@ -14,7 +14,7 @@ type Props = {
   newsItems: NewsItem[];
 };
 
-export function PageContainer({ user, newsItems }: Props) {
+export function DasgboardContainer({ user, newsItems }: Props) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   // useEffect(() => {
   //   console.log("🚦🚦🚦isDrawerOpen🚦🚦🚦", isDrawerOpen);
