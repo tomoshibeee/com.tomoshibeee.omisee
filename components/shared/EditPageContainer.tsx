@@ -43,7 +43,7 @@ export default function EditPageContainer(props: Props) {
               })),
             );
 
-            setEditingBlock(updatedBlock); // ← UI同期（重要）
+            setEditingBlock(updatedBlock); 
           }}
         />
       )}
