@@ -1,9 +1,11 @@
 "use client";
-import { Block } from "@/features/block/index";
 
 import { IoIosCloseCircleOutline } from "react-icons/io";
 
+import { Block } from "@/features/block/index";
 import { HeroBlockData } from "@/features/block";
+
+import HeroForm from "@/features/block/hero/components/HeroForm";
 
 type Props = {
   block: Block;
@@ -29,20 +31,10 @@ export function BlockDrawer(props: Props) {
 
   if (block.type === "hero") {
     const data = block.data as HeroBlockData;
-
     content = (
-      <input
-        value={data.title ?? ""}
-        onChange={(e) => {
-          const updatedBlock: Block = {
-            ...block,
-            data: {
-              ...data,
-              title: e.target.value,
-            },
-          };
-          onChange(updatedBlock);
-        }}
+      <HeroForm
+        data={block.data}
+        onChange={(data) => onChange({ ...block, data })}
       />
     );
   } else {
