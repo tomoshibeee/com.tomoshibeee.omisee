@@ -59,10 +59,9 @@ export default function AuthPage() {
   };
 
   const signInWithGoogle = async () => {
-    const origin = window.location.origin;
     const provider = "google" as Provider;
-    const redirectTo = `${origin}/auth/callback`; // http://localhost:3000/auth/callback
-
+    const redirectTo = `${window.location.origin}/auth/callback`;
+    console.log("🚦🚦🚦redirectTo🚦🚦🚦", redirectTo);
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider,
       options: {
