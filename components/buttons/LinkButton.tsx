@@ -1,18 +1,19 @@
 import { SiteSocialLink } from "@/models/siteSocialLink";
-
 import {
   FaTwitter,
   FaFacebook,
   FaInstagram,
   FaYoutube,
   FaBlog,
+  FaTiktok,
 } from "react-icons/fa6";
 
 const SNS_ICON_MAP: Record<string, React.ComponentType<{ size?: number }>> = {
-  x: FaTwitter,
   facebook: FaFacebook,
+  x: FaTwitter,
   instagram: FaInstagram,
   youtube: FaYoutube,
+  tiktok: FaTiktok,
   note: FaBlog,
 };
 
@@ -24,13 +25,13 @@ function LinkButton({
   className?: string;
 }) {
   const SIZE = 20;
-  const Icon = SNS_ICON_MAP[item.type];
-  if (!Icon) return null;
+  const key = item.type_id.toLowerCase();
+  const Icon = SNS_ICON_MAP[key];
 
   return (
     <a
       href={item.url}
-      aria-label={`${item.type}を開く`}
+      aria-label={`${key}を開く`} // TODO : item.labelにしたい
       target="_blank"
       rel="noopener noreferrer"
       className={className}
