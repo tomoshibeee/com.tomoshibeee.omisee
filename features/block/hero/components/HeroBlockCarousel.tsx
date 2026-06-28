@@ -2,10 +2,13 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { FaCameraRetro } from "react-icons/fa6";
 
 import { HeroBlockData } from "@/features/block";
 
-export default function HeroBlockCarousel(data: HeroBlockData) {
+type Props = { data: HeroBlockData; edit: boolean };
+export default function HeroBlockCarousel(props: Props) {
+  const { data, edit = false } = props;
   const INTERVAL = 3000;
   const DURATION = 700;
 
@@ -64,8 +67,20 @@ export default function HeroBlockCarousel(data: HeroBlockData) {
     );
   }
 
+  const onEditClick = () => {
+    alert("onEditClick");
+  };
+
   return (
     <div className="relative min-h-[86svh] overflow-hidden bg-slate-900 text-white">
+      {edit && (
+        <button
+          onClick={onEditClick}
+          className="absolute right-4 top-4 z-20 w-10 h-10 rounded-full bg-black/50 px-3 py-1 text-sm text-white hover:bg-black/70"
+        >
+          <FaCameraRetro />
+        </button>
+      )}
       <div
         className={`flex min-h-[86svh] ${
           transition ? "transition-transform duration-700" : ""
@@ -93,7 +108,7 @@ export default function HeroBlockCarousel(data: HeroBlockData) {
 
       <div className="absolute inset-0 z-10 flex items-center justify-center px-6 pb-28 pt-24 text-center">
         <div className="max-w-4xl">
-          <p className="text-sm font-semibold text-blue-100">Welcome</p>
+          {/*<p className="text-sm font-semibold text-blue-100">Welcome</p>*/}
           <h1 className="mt-4 text-4xl font-bold leading-tight md:text-6xl">
             {data.title}
           </h1>

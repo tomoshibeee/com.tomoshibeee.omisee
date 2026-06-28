@@ -28,22 +28,38 @@ interface Props {
   onEdit?: (block: Block) => void;
 }
 type BlockRendererMap = {
-  hero: (block: HeroBlockType) => JSX.Element;
-  news: (block: NewsBlockType) => JSX.Element;
-  greeting: (block: GreetingBlockType) => JSX.Element;
-  access: (block: AccessBlockType, meta: MetaData) => JSX.Element;
-  cta: (block: CtaBlockType) => JSX.Element;
-  contact: (block: ContactBlockType, meta: MetaData) => JSX.Element;
-  service: (block: ServiceBlockType) => JSX.Element;
+  hero: (block: HeroBlockType, meta?: MetaData, edit?: boolean) => JSX.Element;
+  news: (block: NewsBlockType, meta?: MetaData, edit?: boolean) => JSX.Element;
+  greeting: (
+    block: GreetingBlockType,
+    meta?: MetaData,
+    edit?: boolean,
+  ) => JSX.Element;
+  access: (
+    block: AccessBlockType,
+    meta: MetaData,
+    edit?: boolean,
+  ) => JSX.Element;
+  cta: (block: CtaBlockType, meta?: MetaData, edit?: boolean) => JSX.Element;
+  contact: (
+    block: ContactBlockType,
+    meta: MetaData,
+    edit?: boolean,
+  ) => JSX.Element;
+  service: (
+    block: ServiceBlockType,
+    meta?: MetaData,
+    edit?: boolean,
+  ) => JSX.Element;
 };
 
 const blockRegistry: BlockRendererMap = {
-  hero: (block) => {
+  hero: (block, _meta, edit) => {
     if (block.type !== "hero") return {} as JSX.Element;
     return block.variant === "carousel" ? (
-      <HeroBlockCarousel {...block.data} />
+      <HeroBlockCarousel data={block.data} edit={Boolean(edit)} />
     ) : (
-      <HeroBlockImage {...block.data} />
+      <HeroBlockImage data={block.data} edit={Boolean(edit)} />
     );
   },
 
@@ -84,7 +100,7 @@ export default function BlockRenderer(props: Props) {
 
   if (!render) return null;
 
-  const content = render(block as any, meta);
+  const content = render(block as any, meta, edit);
 
   if (edit && onEdit) {
     return <div onClick={() => onEdit(block)}>{content}</div>;
