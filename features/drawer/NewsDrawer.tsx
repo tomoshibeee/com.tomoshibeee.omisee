@@ -11,7 +11,7 @@ type Props = {
 };
 
 export function NewsDrawer({ newsItems, open, onClose }: Props) {
-  const baseDrawerClass = "fixed bottom-0 left-0 w-full max-h-[80vh] overflow-y-auto bg-slate-100 shadow-2xl transform transition-transform duration-300 z-50  block pb-10";
+  const baseDrawerClass = "fixed z-100 bottom-0 left-0 w-full rounded-t-2xl max-h-[80vh] overflow-y-auto bg-slate-100 shadow-2xl transform transition-transform duration-300 z-50  block pb-10";
   const drawerClass = open
     ? `${baseDrawerClass} translate-y-0`
     : `${baseDrawerClass} translate-y-full`;
