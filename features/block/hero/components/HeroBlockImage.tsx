@@ -22,7 +22,7 @@ export default function HeroBlockSingleImage(props: Props) {
       {edit && (
         <button
           onClick={onEditClick}
-          className="absolute right-4 top-4 z-20 w-10 h-10 rounded-full bg-black/50 px-3 py-1 text-sm text-white hover:bg-black/70"
+          className="absolute right-4 top-4 z-20 flex items-center justify-center w-10 h-10 rounded-full bg-black/50 text-white hover:bg-black/70"
         >
           <FaCameraRetro />
         </button>
