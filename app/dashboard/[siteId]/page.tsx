@@ -17,5 +17,5 @@ export default async function Page({
 
   if (!Template) return <div>Template Not Found</div>;
 
-  return <EditPageContainer site={site}/>;
+  return <EditPageContainer site={site} />;
 }
