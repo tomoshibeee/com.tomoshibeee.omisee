@@ -2,13 +2,17 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { FaCameraRetro } from "react-icons/fa6";
 
+import ImageUploader from "@/components/media/ImageUploader";
 import { HeroBlockData } from "@/features/block";
 
-type Props = { data: HeroBlockData; edit: boolean };
+type Props = {
+  data: HeroBlockData;
+  edit: boolean;
+  onChange: (images: { url: string; alt?: string }[]) => void;
+};
 export default function HeroBlockCarousel(props: Props) {
-  const { data, edit = false } = props;
+  const { data,　onChange, edit = false } = props;
   const INTERVAL = 3000;
   const DURATION = 700;
 
@@ -67,20 +71,17 @@ export default function HeroBlockCarousel(props: Props) {
     );
   }
 
-  const onEditClick = () => {
-    // Cloudiaryの画像アップロード、一覧をモーダルで表示する
-    alert("onEditClick");
-  };
-
   return (
     <div className="relative min-h-[86svh] overflow-hidden bg-slate-900 text-white">
+      {/* カメラボタン */}
       {edit && (
-        <button
-          onClick={onEditClick}
-          className="absolute right-4 top-4 z-20 flex items-center justify-center w-10 h-10 rounded-full bg-black/50 text-white hover:bg-black/70"
-        >
-          <FaCameraRetro />
-        </button>
+        <div className="absolute right-4 top-4 z-20">
+          <ImageUploader
+            onUpload={(url) => {
+              onChange([...images, { url, alt: "" }]);
+            }}
+          />
+        </div>
       )}
       <div
         className={`flex min-h-[86svh] ${

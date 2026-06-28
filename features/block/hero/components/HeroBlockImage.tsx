@@ -1,7 +1,7 @@
 import Image from "next/image";
 
-import { HeroBlockData } from "@/features/block";
 import ImageUploader from "@/components/media/ImageUploader";
+import { HeroBlockData } from "@/features/block";
 
 type Props = {
   data: HeroBlockData;
@@ -21,11 +21,11 @@ export default function HeroBlockSingleImage(props: Props) {
         <div className="absolute right-4 top-4 z-20">
           <ImageUploader
             onUpload={(url) => {
-              onChange([{ url, alt: "" }]); // 1枚上書き
+              onChange([{ url, alt: "" }]);
             }}
-          />
+          />{" "}
         </div>
-      )}{" "}
+      )}
       {image && (
         <Image
           src={image.url}
