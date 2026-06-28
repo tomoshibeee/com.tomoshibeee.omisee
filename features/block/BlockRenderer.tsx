@@ -60,13 +60,11 @@ const blockRegistry: BlockRendererMap = {
       <HeroBlockCarousel
         data={block.data}
         edit={Boolean(edit)}
-        onChange={() => {}}
       />
     ) : (
       <HeroBlockImage
         data={block.data}
         edit={Boolean(edit)}
-        onChange={() => {}}
       />
     );
   },

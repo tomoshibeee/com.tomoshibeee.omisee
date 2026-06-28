@@ -5,7 +5,7 @@ import { useState } from "react";
 import Template from "@/components/templates/Template";
 import { SiteData } from "@/types/site";
 import { Block } from "@/features/block/index";
-import { BlockDrawer } from "@/features/block/BlockDrawer";
+import { ImageDrawer } from "@/features/drawer/ImageDrawer";
 
 type Props = {
   site: SiteData;
@@ -29,22 +29,21 @@ export default function EditPageContainer(props: Props) {
       />
 
       {editingBlock && (
-        <BlockDrawer
-          block={editingBlock}
+        <ImageDrawer
           open={true}
           onClose={() => setEditingBlock(null)}
-          onChange={(updatedBlock) => {
-            setSections((prev) =>
-              prev.map((section) => ({
-                ...section,
-                blocks: section.blocks.map((b) =>
-                  b.id === updatedBlock.id ? updatedBlock : b,
-                ),
-              })),
-            );
+          // onChange={(updatedBlock) => {
+          //   setSections((prev) =>
+          //     prev.map((section) => ({
+          //       ...section,
+          //       blocks: section.blocks.map((b) =>
+          //         b.id === updatedBlock.id ? updatedBlock : b,
+          //       ),
+          //     })),
+          //   );
 
-            setEditingBlock(updatedBlock); 
-          }}
+          //   setEditingBlock(updatedBlock); 
+          // }}
         />
       )}
     </>

@@ -6,11 +6,11 @@ import { HeroBlockData } from "@/features/block";
 type Props = {
   data: HeroBlockData;
   edit: boolean;
-  onChange: (images: { url: string; alt?: string }[]) => void;
+  // onChange: (images: { url: string; alt?: string }[]) => void;
 };
 
 export default function HeroBlockSingleImage(props: Props) {
-  const { data, onChange, edit } = props;
+  const { data, edit } = props;
   const { title, message, images } = data;
   const image = images?.[0];
 
