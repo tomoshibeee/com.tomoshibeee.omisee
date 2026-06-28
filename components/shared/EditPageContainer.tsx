@@ -16,6 +16,7 @@ export default function EditPageContainer(props: Props) {
 
   const [editingBlock, setEditingBlock] = useState<Block | null>(null);
   const [sections, setSections] = useState(site.layout.sections);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   return (
     <>
@@ -28,24 +29,7 @@ export default function EditPageContainer(props: Props) {
         onEdit={(b) => setEditingBlock(b)}
       />
 
-      {editingBlock && (
-        <ImageDrawer
-          open={true}
-          onClose={() => setEditingBlock(null)}
-          // onChange={(updatedBlock) => {
-          //   setSections((prev) =>
-          //     prev.map((section) => ({
-          //       ...section,
-          //       blocks: section.blocks.map((b) =>
-          //         b.id === updatedBlock.id ? updatedBlock : b,
-          //       ),
-          //     })),
-          //   );
-
-          //   setEditingBlock(updatedBlock); 
-          // }}
-        />
-      )}
+      <ImageDrawer open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} />
     </>
   );
 }

@@ -57,15 +57,9 @@ const blockRegistry: BlockRendererMap = {
   hero: (block, _meta, edit) => {
     if (block.type !== "hero") return {} as JSX.Element;
     return block.variant === "carousel" ? (
-      <HeroBlockCarousel
-        data={block.data}
-        edit={Boolean(edit)}
-      />
+      <HeroBlockCarousel data={block.data} edit={Boolean(edit)} />
     ) : (
-      <HeroBlockImage
-        data={block.data}
-        edit={Boolean(edit)}
-      />
+      <HeroBlockImage data={block.data} edit={Boolean(edit)} />
     );
   },
 

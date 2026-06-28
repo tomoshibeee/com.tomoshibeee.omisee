@@ -7,10 +7,10 @@ type Props = {
 
 export default function ImageUploader(props: Props) {
   const { data } = props;
-  const inputRef = useRef<HTMLInputElement | null>(null);
+  // const inputRef = useRef<HTMLInputElement | null>(null);
 
   const onEdit = () => {
-    alert("test");
+    alert("ImageDrawerを起動します");
   };
   // const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
   //   const file = e.target.files?.[0];
