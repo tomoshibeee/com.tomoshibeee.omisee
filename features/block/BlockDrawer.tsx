@@ -22,7 +22,7 @@ export function BlockDrawer(props: Props) {
     ? `${baseDrawerClass} translate-x-0`
     : `${baseDrawerClass} translate-x-full`;
 
-  const baseOverlayClass = "fixed inset-0 bg-black/40 z-40";
+  const baseOverlayClass = "fixed inset-0 z-100 bg-black/40 z-40";
   const overlayClass = open
     ? `${baseOverlayClass} transition-opacity duration-300 opacity-100 block`
     : `${baseOverlayClass} transition-opacity duration-300 opacity-0 hidden`;
