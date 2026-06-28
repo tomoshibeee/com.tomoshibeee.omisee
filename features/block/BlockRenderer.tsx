@@ -57,9 +57,17 @@ const blockRegistry: BlockRendererMap = {
   hero: (block, _meta, edit) => {
     if (block.type !== "hero") return {} as JSX.Element;
     return block.variant === "carousel" ? (
-      <HeroBlockCarousel data={block.data} edit={Boolean(edit)} />
+      <HeroBlockCarousel
+        data={block.data}
+        edit={Boolean(edit)}
+        onChange={() => {}}
+      />
     ) : (
-      <HeroBlockImage data={block.data} edit={Boolean(edit)} />
+      <HeroBlockImage
+        data={block.data}
+        edit={Boolean(edit)}
+        onChange={() => {}}
+      />
     );
   },
 
@@ -102,8 +110,8 @@ export default function BlockRenderer(props: Props) {
 
   const content = render(block as any, meta, edit);
 
-  if (edit && onEdit) {
-    return <div onClick={() => onEdit(block)}>{content}</div>;
-  }
+  // if (edit && onEdit) {
+  //   return <div onClick={() => onEdit(block)}>{content}</div>;
+  // }
   return <div>{content}</div>;
 }
