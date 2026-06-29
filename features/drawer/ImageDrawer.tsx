@@ -1,5 +1,7 @@
 "use client";
 
+import { useRef } from "react";
+
 import { IoIosCloseCircleOutline } from "react-icons/io";
 
 type Props = {
@@ -19,6 +21,16 @@ export function ImageDrawer({ open, onClose }: Props) {
     ? `${baseOverlayClass} transition-opacity duration-300 opacity-100 block`
     : `${baseOverlayClass} transition-opacity duration-300 opacity-0 hidden`;
 
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    alert("画像をアップロードします");
+    // const url = await uploadImage(file);
+    // onUpload(url);
+  };
+
   return (
     <>
       <div className={overlayClass} onClick={onClose} />
@@ -32,7 +44,13 @@ export function ImageDrawer({ open, onClose }: Props) {
         </button>
 
         <section className="p-6 font-bold text-black max-w-4xl mx-auto">
-          <div>ファイル選択</div>
+          <div>
+            <input
+              ref={inputRef}
+              type="file"
+              onChange={handleChange}
+            />
+          </div>
           <div>...</div>
           <div>画像一覧</div>
           <div>選択</div>
