@@ -25,33 +25,6 @@ export function ImageDrawer(props: Props) {
     ? `${baseOverlayClass} transition-opacity duration-300 opacity-100 block`
     : `${baseOverlayClass} transition-opacity duration-300 opacity-0 hidden`;
 
-  // const [file, setFile] = useState<File | null>(null);
-
-  // const uploadImage = async (file: File) => {
-  //   if (!file) return;
-
-  //   const formData = new FormData();
-  //   formData.append("file", file);
-  //   formData.append(
-  //     "upload_preset",
-  //     process.env.NEXT_PUBLIC_CLOUDIARY_PRESET_UPLOAD ?? "",
-  //   );
-
-  //   const res = await fetch(
-  //     `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDIARY_CLOUD_NAME}/image/upload`,
-  //     {
-  //       method: "POST",
-  //       body: formData,
-  //     },
-  //   );
-
-  //   const data = await res.json();
-  //   console.log("FULL RESPONSE:", data);
-  //   // console.log("uploaded:", data.secure_url);
-
-  //   // 👉 ここでDB保存 or state更新
-  // };
-
   const inputRef = useRef<HTMLInputElement | null>(null);
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
