@@ -17,33 +17,6 @@ export default function Template(props: Props) {
   const { site, edit, onOpenImageUploader } = props;
   const sections = site?.layout?.sections;
 
-  // const [file, setFile] = useState<File | null>(null);
-
-  // const uploadImage = async () => {
-  //   if (!file) return;
-
-  //   const formData = new FormData();
-  //   formData.append("file", file);
-  //   formData.append(
-  //     "upload_preset",
-  //     process.env.NEXT_PUBLIC_CLOUDIARY_PRESET_UPLOAD ?? "",
-  //   );
-
-  //   const res = await fetch(
-  //     `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDIARY_CLOUD_NAME}/image/upload`,
-  //     {
-  //       method: "POST",
-  //       body: formData,
-  //     },
-  //   );
-
-  //   const data = await res.json();
-  //   console.log("FULL RESPONSE:", data);
-  //   // console.log("uploaded:", data.secure_url);
-
-  //   // 👉 ここでDB保存 or state更新
-  // };
-
   return (
     <div>
       <Header site={site} />

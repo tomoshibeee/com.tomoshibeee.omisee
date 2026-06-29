@@ -29,7 +29,13 @@ export default function EditPageContainer(props: Props) {
         onOpenImageUploader={() => setIsDrawerOpen(true)}
       />
 
-      <ImageDrawer open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} />
+      <ImageDrawer
+        open={isDrawerOpen}
+        onClose={() => setIsDrawerOpen(false)}
+        onUpload={(url) => {
+          alert(`${url}を保存?`);
+        }}
+      />
     </>
   );
 }
