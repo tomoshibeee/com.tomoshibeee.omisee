@@ -2,8 +2,11 @@ import { FaArrowRight } from "react-icons/fa6";
 
 import { CtaBlockData } from "@/features/block";
 
-export default function CtaBlock(props: CtaBlockData) {
-  const buttons = props.buttons || [];
+type Props = CtaBlockData &{
+  edit?: boolean;
+};
+export default function CtaBlock(props: Props) {
+  const { buttons = [], edit } = props;
   if (buttons.length === 0) return null;
 
   return (

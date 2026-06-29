@@ -5,15 +5,14 @@ import { useEffect, useState } from "react";
 
 import ImageUploader from "@/components/media/ImageUploader";
 import { HeroBlockData } from "@/features/block";
-import { Block } from "@/features/block/index";
 
-type Props = {
-  data: HeroBlockData;
-  edit: boolean;
-  onEdit?: (b: Block) => void;
+type Props = HeroBlockData & {
+  onOpenImageUploader: () => void;
+  edit?: boolean;
 };
 export default function HeroBlockCarousel(props: Props) {
-  const { data, edit = false } = props;
+  const data = props;
+  const { edit = false, onOpenImageUploader } = props;
   const INTERVAL = 3000;
   const DURATION = 700;
 
@@ -22,7 +21,6 @@ export default function HeroBlockCarousel(props: Props) {
 
   const [index, setIndex] = useState(0);
   const [transition, setTransition] = useState(true);
-
   useEffect(() => {
     if (images.length === 0) return;
 
@@ -77,7 +75,10 @@ export default function HeroBlockCarousel(props: Props) {
       {/* カメラボタン */}
       {edit && (
         <div className="absolute right-4 top-4 z-20">
-          <ImageUploader data={data}/>
+          <ImageUploader
+            data={data}
+            onOpenImageUploader={onOpenImageUploader}
+          />
         </div>
       )}
       <div

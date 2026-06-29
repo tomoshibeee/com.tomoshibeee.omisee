@@ -1,17 +1,18 @@
-import { useRef } from "react";
 import { HeroBlockData } from "@/features/block";
 
 type Props = {
   data: HeroBlockData;
+  onOpenImageUploader: () => void;
 };
 
 export default function ImageUploader(props: Props) {
-  const { data } = props;
-  // const inputRef = useRef<HTMLInputElement | null>(null);
-
-  const onEdit = () => {
+  const { data, onOpenImageUploader } = props;
+  const handleEdit = async () => {
     alert("ImageDrawerを起動します");
-  };
+    console.log("🚦🚦🚦onOpenImageUploader🚦🚦🚦", onOpenImageUploader);
+    onOpenImageUploader();
+  }
+
   // const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
   //   const file = e.target.files?.[0];
   //   if (!file) return;
@@ -24,7 +25,7 @@ export default function ImageUploader(props: Props) {
 
   return (
     <>
-      <button onClick={onEdit}>📷</button>
+      <button onClick={handleEdit}>📷</button>
 
       {/*<input
         ref={inputRef}

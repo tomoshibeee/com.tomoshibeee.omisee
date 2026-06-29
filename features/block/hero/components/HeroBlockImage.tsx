@@ -3,27 +3,27 @@ import Image from "next/image";
 import ImageUploader from "@/components/media/ImageUploader";
 import { HeroBlockData } from "@/features/block";
 
-type Props = {
-  data: HeroBlockData;
-  edit: boolean;
-  // onChange: (images: { url: string; alt?: string }[]) => void;
+type Props = HeroBlockData & {
+  onOpenImageUploader: () => void;
+  edit?: boolean;
 };
 
 export default function HeroBlockSingleImage(props: Props) {
-  const { data, edit } = props;
+  const data = props;
+  const { edit, onOpenImageUploader } = props;
   const { title, message, images } = data;
   const image = images?.[0];
 
   return (
     <div className="relative min-h-[86svh] overflow-hidden bg-slate-900 px-6 text-white">
+      <p>edit:{edit}</p>
       {/* カメラボタン */}
       {edit && (
         <div className="absolute right-4 top-4 z-20">
           <ImageUploader
-            onUpload={(url) => {
-              onChange([{ url, alt: "" }]);
-            }}
-          />{" "}
+            data={data}
+            onOpenImageUploader={onOpenImageUploader}
+          />
         </div>
       )}
       {image && (

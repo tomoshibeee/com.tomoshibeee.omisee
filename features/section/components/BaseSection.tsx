@@ -8,11 +8,11 @@ import BlockRenderer from "@/features/block/BlockRenderer";
 type Props = {
   section: SectionData;
   meta: MetaData;
+  onOpenImageUploader: () => void;
   edit?: boolean;
-  onEdit?: (b: Block) => void;
 };
 export default function BaseSection(props: Props) {
-  const { section, meta, edit, onEdit } = props;
+  const { section, meta, edit, onOpenImageUploader } = props;
   if (!section) return null;
   return (
     <section id={section.id} className="p-0 text-gray-800">
@@ -21,8 +21,8 @@ export default function BaseSection(props: Props) {
           key={block.id ?? `${block.type}-${i}`}
           meta={meta}
           block={block}
+          onOpenImageUploader={onOpenImageUploader}
           edit={edit}
-          onEdit={onEdit}
         />
       ))}
     </section>

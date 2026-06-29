@@ -3,7 +3,13 @@ import { FaQuoteLeft } from "react-icons/fa6";
 
 import { GreetingBlockData } from "@/features/block";
 
-export default function GreetingBlock(data: GreetingBlockData) {
+type Props = GreetingBlockData & {
+  edit?: boolean;
+};
+
+export default function GreetingBlock(props: Props) {
+  const data = props;
+  const { edit } = props;
   if (!data.name.trim()) return null;
 
   return (
@@ -31,9 +37,7 @@ export default function GreetingBlock(data: GreetingBlockData) {
             </div>
 
             {data.bio && (
-              <p className="mt-4 text-sm leading-7 text-gray-600">
-                {data.bio}
-              </p>
+              <p className="mt-4 text-sm leading-7 text-gray-600">{data.bio}</p>
             )}
           </div>
         </div>

@@ -26,7 +26,7 @@ export default function EditPageContainer(props: Props) {
           layout: { ...site.layout, sections: sections },
         }}
         edit
-        onEdit={(b) => setEditingBlock(b)}
+        onOpenImageUploader={() => setIsDrawerOpen(true)}
       />
 
       <ImageDrawer open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} />

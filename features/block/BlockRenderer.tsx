@@ -24,83 +24,110 @@ import {
 interface Props {
   meta: MetaData;
   block: Block;
+  onOpenImageUploader: () => void;
   edit?: boolean;
-  onEdit?: (block: Block) => void;
 }
 type BlockRendererMap = {
-  hero: (block: HeroBlockType, meta?: MetaData, edit?: boolean) => JSX.Element;
-  news: (block: NewsBlockType, meta?: MetaData, edit?: boolean) => JSX.Element;
+  hero: (
+    block: HeroBlockType,
+    meta: MetaData,
+    onOpenImageUploader: () => void,
+    edit?: boolean,
+  ) => JSX.Element;
+  news: (
+    block: NewsBlockType,
+    meta: MetaData,
+    onOpenImageUploader: () => void,
+    edit?: boolean,
+  ) => JSX.Element;
   greeting: (
     block: GreetingBlockType,
-    meta?: MetaData,
+    meta: MetaData,
+    onOpenImageUploader: () => void,
     edit?: boolean,
   ) => JSX.Element;
   access: (
     block: AccessBlockType,
     meta: MetaData,
+    onOpenImageUploader: () => void,
     edit?: boolean,
   ) => JSX.Element;
-  cta: (block: CtaBlockType, meta?: MetaData, edit?: boolean) => JSX.Element;
+  cta: (
+    block: CtaBlockType,
+    meta: MetaData,
+    onOpenImageUploader: () => void,
+    edit?: boolean,
+  ) => JSX.Element;
   contact: (
     block: ContactBlockType,
     meta: MetaData,
+    onOpenImageUploader: () => void,
     edit?: boolean,
   ) => JSX.Element;
   service: (
     block: ServiceBlockType,
-    meta?: MetaData,
+    meta: MetaData,
+    onOpenImageUploader: () => void,
     edit?: boolean,
   ) => JSX.Element;
 };
 
 const blockRegistry: BlockRendererMap = {
-  hero: (block, _meta, edit) => {
+  hero: (block, _meta, onOpenImageUploader, edit) => {
     if (block.type !== "hero") return {} as JSX.Element;
     return block.variant === "carousel" ? (
-      <HeroBlockCarousel data={block.data} edit={Boolean(edit)} />
+      <HeroBlockCarousel
+        {...block.data}
+        onOpenImageUploader={onOpenImageUploader}
+        edit={edit}
+      />
     ) : (
-      <HeroBlockImage data={block.data} edit={Boolean(edit)} />
+      <HeroBlockImage
+        {...block.data}
+        onOpenImageUploader={onOpenImageUploader}
+        edit={edit}
+      />
     );
   },
 
-  news: (block) => {
+  news: (block, _meta, _onOpenImageUploader, edit) => {
     if (block.type !== "news") return {} as JSX.Element;
-    return <NewsBlock {...block.data} />;
+    return <NewsBlock {...block.data} edit={edit} />;
   },
 
-  greeting: (block) => {
+  greeting: (block, _meta, _onOpenImageUploader, edit) => {
     if (block.type !== "greeting") return {} as JSX.Element;
-    return <GreetingBlock {...block.data} />;
+    return <GreetingBlock {...block.data} edit={edit} />;
   },
 
-  service: (block) => {
-    return <ServiceBlock {...block.data} />;
+  service: (block, _meta, _onOpenImageUploader, edit) => {
+    return <ServiceBlock {...block.data} edit={edit} />;
   },
 
-  contact: (block, meta) => {
-    return <ContactBlock {...block.data} meta={meta} />;
+  contact: (block, meta, _onOpenImageUploader, edit) => {
+    return <ContactBlock {...block.data} meta={meta} edit={edit} />;
   },
 
-  access: (block, meta) => {
+  access: (block, meta, _onOpenImageUploader, edit) => {
     // if (block.type !== "access") return {} as JSX.Element;
     if (!meta) throw new Error("meta missing");
     // if (!meta.slug) throw new Error("slug missing");
-    return <AccessBlock {...meta} />;
+    return <AccessBlock {...meta} edit={edit}/>;
   },
 
-  cta: (block) => {
+  cta: (block, _meta, _onOpenImageUploader, edit) => {
     if (block.type !== "cta") return {} as JSX.Element;
-    return <CtaBlock {...block.data} />;
+    return <CtaBlock {...block.data} edit={edit} />;
   },
 };
 
 export default function BlockRenderer(props: Props) {
-  const { meta, block, edit, onEdit } = props;
+  const { meta, block, edit, onOpenImageUploader } = props;
   const render = blockRegistry[block.type];
 
   if (!render) return null;
 
-  const content = render(block as any, meta, edit);
+  const content = render(block as any, meta, onOpenImageUploader, edit);
 
   // if (edit && onEdit) {
   //   return <div onClick={() => onEdit(block)}>{content}</div>;

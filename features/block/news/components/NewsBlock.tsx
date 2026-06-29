@@ -1,9 +1,14 @@
 import { NewsBlockData } from "@/features/block";
 import { NewsCard } from "@/components/news/NewsCard";
-import { NewsItem } from "../types";
 
-export default function NewsBlock(data: NewsBlockData, limit: number = 5) {
-  // console.log("✨✨✨data.items✨✨✨", data.items);
+type Props = NewsBlockData & {
+  limit?: number;
+  edit?: boolean;
+};
+
+export default function NewsBlock(props: Props) {
+  const data = props;
+  const { limit = 5 } = props;
   if (!data) {
     return (
       <div className="bg-white px-6 py-14">

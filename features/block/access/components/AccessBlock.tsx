@@ -4,8 +4,17 @@ import MapBlock from "./MapEmbed";
 
 import { MetaData } from "@/types/siteMeta";
 
-export default function AccessBlock(meta: MetaData) {
-  const mapAddress = [meta.postalCode && `〒${meta.postalCode}`, meta.address, meta.bldg]
+type Props = MetaData & {
+  edit?: boolean;
+};
+
+export default function AccessBlock(props: Props) {
+  const meta = props;
+  const mapAddress = [
+    meta.postalCode && `〒${meta.postalCode}`,
+    meta.address,
+    meta.bldg,
+  ]
     .filter(Boolean)
     .join(" ");
 
@@ -15,9 +24,7 @@ export default function AccessBlock(meta: MetaData) {
         <div className="space-y-5">
           <div>
             <p className="text-sm font-semibold text-blue-600">Access</p>
-            <h2 className="mt-2 text-3xl font-bold text-gray-900">
-              アクセス
-            </h2>
+            <h2 className="mt-2 text-3xl font-bold text-gray-900">アクセス</h2>
             <p className="mt-4 leading-7 text-gray-600">
               初めてお越しの方も迷わず来られるよう、所在地と最寄りからの道順をご確認ください。
             </p>

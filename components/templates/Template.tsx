@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Header from "@/components/shared/Header";
 import Footer from "@/components/shared/Footer";
 import BaseSection from "@/features/section/components/BaseSection";
@@ -11,11 +10,11 @@ import { SiteData } from "@/types/site";
 type Props = {
   site: SiteData;
   edit?: boolean;
-  onEdit?: (b: Block) => void;
+  onOpenImageUploader: () => void;
 };
 
 export default function Template(props: Props) {
-  const { site, edit, onEdit } = props;
+  const { site, edit, onOpenImageUploader } = props;
   const sections = site?.layout?.sections;
 
   // const [file, setFile] = useState<File | null>(null);
@@ -70,7 +69,7 @@ export default function Template(props: Props) {
           meta={site.meta}
           section={{ ...section }}
           edit={edit}
-          onEdit={onEdit}
+          onOpenImageUploader={onOpenImageUploader}
         />
       ))}
 

@@ -13,7 +13,12 @@ const getGridCols = (count: number) => {
   return "grid-cols-1 md:grid-cols-3";
 };
 
-export default function ServiceBlock({ items }: ServiceBlockData) {
+type Props = ServiceBlockData & {
+  edit?: boolean;
+};
+
+export default function ServiceBlock(props: Props) {
+  const { items } = props;
   const gridCols = getGridCols(items.length);
 
   return (
@@ -41,9 +46,7 @@ export default function ServiceBlock({ items }: ServiceBlockData) {
                 <FaRegCalendarCheck />
               </div>
 
-              <h3 className="text-lg font-bold text-gray-900">
-                {item.title}
-              </h3>
+              <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>
 
               <div className="mt-4 space-y-2 text-sm text-gray-600">
                 <div className="flex items-center gap-2">

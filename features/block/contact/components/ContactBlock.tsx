@@ -6,14 +6,17 @@ import ContactForm from "./ContactForm";
 
 type Props = ContactBlockData & {
   meta: MetaData;
+  edit?: boolean;
 };
 
-export default function ContactBlock({
-  title = "お問い合わせ",
-  description = "礼拝や集会、見学についてなど、お気軽にお問い合わせください。",
-  submitLabel = "メールを作成する",
-  meta,
-}: Props) {
+export default function ContactBlock(props: Props) {
+  const {
+    title = "お問い合わせ",
+    description = "礼拝や集会、見学についてなど、お気軽にお問い合わせください。",
+    submitLabel = "メールを作成する",
+    meta,
+    edit,
+  } = props;
   return (
     <div className="bg-slate-50 px-6 py-14">
       <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-[0.85fr_1.15fr] md:items-start">
