@@ -108,7 +108,7 @@ const blockRegistry: BlockRendererMap = {
     return <ContactBlock {...block.data} meta={meta} edit={edit} />;
   },
 
-  access: (block, meta, _onOpenImageUploader, edit) => {
+  access: (_block, meta, _onOpenImageUploader, edit) => {
     // if (block.type !== "access") return {} as JSX.Element;
     if (!meta) throw new Error("meta missing");
     // if (!meta.slug) throw new Error("slug missing");
