@@ -8,8 +8,6 @@ type Props = {
 export default function ImageUploader(props: Props) {
   const { data, onOpenImageUploader } = props;
   const handleEdit = async () => {
-    alert("ImageDrawerを起動します");
-    console.log("🚦🚦🚦onOpenImageUploader🚦🚦🚦", onOpenImageUploader);
     onOpenImageUploader();
   }
 
