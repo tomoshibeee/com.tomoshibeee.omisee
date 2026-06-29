@@ -1,10 +1,11 @@
 "use client";
 
-import { useRef } from "react";
+import { useState } from "react";
 
 import { IoIosCloseCircleOutline } from "react-icons/io";
 
-import { uploadImage } from "@/lib/cloudinary/uploadImage";
+import { CloudinaryTab } from "./CloudinaryTab";
+import { GoogleDriveTab } from "./GoogleDriveTab";
 
 type Props = {
   open: boolean;
@@ -25,14 +26,12 @@ export function ImageDrawer(props: Props) {
     ? `${baseOverlayClass} transition-opacity duration-300 opacity-100 block`
     : `${baseOverlayClass} transition-opacity duration-300 opacity-0 hidden`;
 
-  const inputRef = useRef<HTMLInputElement | null>(null);
-  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
+  const [activeTab, setActiveTab] = useState<"cloudinary" | "gdrive">(
+    "cloudinary",
+  );
 
-    // alert("画像をアップロードします");
-    const url = await uploadImage(file);
-    onUpload(url);
+  const handleSelect = (url: string) => {
+    alert("handleSelect: " + url);
   };
 
   return (
@@ -48,12 +47,19 @@ export function ImageDrawer(props: Props) {
         </button>
 
         <section className="p-6 font-bold text-black max-w-4xl mx-auto">
-          <div>
-            <input ref={inputRef} type="file" onChange={handleChange} />
+          {/* タブ */}
+          <div className="flex gap-4 mb-4">
+            <button onClick={() => setActiveTab("cloudinary")}>
+              Cloudinary
+            </button>
+            <button onClick={() => setActiveTab("gdrive")}>Google Drive</button>
           </div>
-          <div>...</div>
-          <div>画像一覧</div>
-          <div>選択</div>
+          {/* 中身切り替え */}
+          {activeTab === "cloudinary" && (
+            <CloudinaryTab onSelect={handleSelect} />
+          )}
+
+          {activeTab === "gdrive" && <GoogleDriveTab onSelect={handleSelect} />}
         </section>
       </div>
     </>

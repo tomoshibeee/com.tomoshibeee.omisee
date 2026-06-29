@@ -5,7 +5,7 @@ import { useState } from "react";
 import Template from "@/components/templates/Template";
 import { SiteData } from "@/types/site";
 import { Block } from "@/features/block/index";
-import { ImageDrawer } from "@/features/drawer/ImageDrawer";
+import { ImageDrawer } from "@/features/drawer/ImageDrawer/ImageDrawer";
 
 type Props = {
   site: SiteData;
