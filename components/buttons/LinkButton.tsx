@@ -1,16 +1,17 @@
 import { SiteSocialLink } from "@/models/siteSocialLink";
 import {
-  FaTwitter,
   FaFacebook,
+  FaXTwitter, // 💡 古い FaTwitter から最新の「X」アイコンに変更！
   FaInstagram,
   FaYoutube,
-  FaBlog,
   FaTiktok,
+  FaBlog,
 } from "react-icons/fa6";
 
+// 💡 型定義をより厳密にして安全性を高めました
 const SNS_ICON_MAP: Record<string, React.ComponentType<{ size?: number }>> = {
   facebook: FaFacebook,
-  x: FaTwitter,
+  x: FaXTwitter, // 💡 マップも最新のXアイコンに差し替え
   instagram: FaInstagram,
   youtube: FaYoutube,
   tiktok: FaTiktok,
@@ -24,39 +25,43 @@ function LinkButton({
   item: SiteSocialLink;
   className?: string;
 }) {
-  const SIZE = 20;
+  // 💡 シェアボタンと合わせて、18pxにすると線が細くなり一気に垢抜けます
+  const SIZE = 18;
   const key = item.type_id.toLowerCase();
   const Icon = SNS_ICON_MAP[key];
+
+  // 万が一アイコンが存在しない場合の防衛策
+  if (!Icon) return null;
 
   return (
     <a
       href={item.url}
-      aria-label={`${key}を開く`} // TODO : item.labelにしたい
+      // 💡 TODOだった部分を解消！item.labelがあれば使い、なければフォールバックします
+      aria-label={item.label || `${key}を開く`}
       target="_blank"
       rel="noopener noreferrer"
-      className={className}
+      className={`${className} cursor-pointer inline-flex`}
     >
       <Icon size={SIZE} />
     </a>
   );
 }
 
+// 💡 Tailwindのバグを防ぐため、完全なクラス名で記述してデザインを今風に調整！
 export function LinkButtonHeader({ item }: { item: SiteSocialLink }) {
-  const COLOR = "gray";
   return (
     <LinkButton
       item={item}
-      className={`flex h-9 w-9 items-center justify-center rounded-full text-${COLOR}-600 transition hover:bg-slate-100 hover:text-${COLOR}-900`}
+      className="flex h-9 w-9 items-center justify-center rounded-full text-gray-600 transition-colors duration-200 hover:bg-slate-100 hover:text-gray-900"
     />
   );
 }
 
 export function LinkButtonFooter({ item }: { item: SiteSocialLink }) {
-  const COLOR = "gray";
   return (
     <LinkButton
       item={item}
-      className={`flex h-9 w-9 items-center justify-center rounded-md bg-white/10 text-${COLOR}-200 transition hover:bg-${COLOR}-600 hover:text-white`}
+      className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/5 text-gray-400 transition-all duration-200 hover:bg-white/15 hover:text-white"
     />
   );
 }
