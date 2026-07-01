@@ -5,7 +5,7 @@ import { getGlobalNews, toGlobalNewsItems } from "@/services/globalNewsService";
 
 import Footer from "@/components/shared/Footer";
 import { SiteLink } from "@/components/siteLink/SiteLink";
-import { DashboardContainer } from "@/components/shared/DashboardContainer";
+import { PortalNavigation } from "@/components/shared/PortalNavigation";
 
 export default async function Page() {
   // 1. ログイン状態（セッション）をチェック（ただし、未ログインでもリダイレクトはしない）
@@ -39,7 +39,7 @@ export default async function Page() {
         - ログイン前 ➔ undefined が渡り、「お知らせ ＋ ログイン動線」になる
         - ログイン後 ➔ ユーザーデータが渡り、「お知らせ ➔ アバターメニュー」に自動で切り替わる！
       */}
-      <DashboardContainer user={user} newsItems={newsItems} />
+      <PortalNavigation user={user} newsItems={newsItems} />
 
       <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-12 md:px-6">
         

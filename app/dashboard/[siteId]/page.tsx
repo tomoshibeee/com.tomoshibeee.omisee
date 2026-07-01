@@ -1,5 +1,5 @@
 import Template from "@/components/templates/Template";
-import EditPageContainer from "@/components/shared/EditPageContainer";
+import SiteNavigation from "@/components/shared/SiteNavigation";
 
 import { getSiteData } from "@/services/siteService";
 
@@ -17,5 +17,5 @@ export default async function Page({
 
   if (!Template) return <div>Template Not Found</div>;
 
-  return <EditPageContainer site={site} />;
+  return <SiteNavigation site={site} />;
 }
