@@ -8,12 +8,12 @@ type Props = {
   onOpenNews?: () => void;
 };
 
-
 export function MobileNavigation(props: Props) {
   const { site, user, onOpenNews } = props;
   return (
-    <nav className="flex md:hidden items-center gap-6">
-      <HamburgerMenu site={site} />
+    // 💡 PC版と同じく、ここも h-full を付与しておくと位置がヘッダー下にぴったり揃います
+    <nav className="flex h-full md:hidden items-center gap-6">
+      <HamburgerMenu site={site} user={user} onOpenNews={onOpenNews} />
     </nav>
   );
 }
