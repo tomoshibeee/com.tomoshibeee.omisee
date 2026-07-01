@@ -1,4 +1,4 @@
-import Link from "next/link"; // 💡 Linkを導入
+import Link from "next/link";
 import { HamburgerMenu } from "@/features/menu/HamburgerMenu";
 import { LinkButtonHeader } from "@/components/buttons/LinkButton";
 import { ShareButtonHeader } from "@/components/buttons/ShareButton";
@@ -15,7 +15,6 @@ type Props = {
 export function MobileNavigation(props: Props) {
   const { site, user, onOpenNews } = props;
 
-  // 💡 siteが無い場合（ログイン前など）のフォールバック
   if (!site) {
     const menu: MenuItem[] = [
       { label: "お知らせ", type: "news" },
@@ -26,7 +25,6 @@ export function MobileNavigation(props: Props) {
       },
     ];
     return (
-      // 💡 `hidden md:flex` から `flex md:hidden` へ修正してスマホで表示されるように
       <nav className="flex h-full md:hidden items-center gap-4">
         <HamburgerMenu menu={menu} onOpenNews={onOpenNews} />
       </nav>
@@ -36,23 +34,29 @@ export function MobileNavigation(props: Props) {
   const sortedSocialLinks = [...(site?.socialLinks ?? [])].sort(
     (a, b) => a.display_order - b.display_order,
   );
-  // スマホ画面の幅を考慮し、SNSリンクは1つか2つに絞る設計はGOODです！
   const headerSocialLinks = sortedSocialLinks.slice(0, 2);
 
   return (
-    // 💡 ボタンが密集するので、gap-6 から gap-3〜4 程度に調整すると綺麗です
+    // 💡 スマホ版も PC版と全く同じ美的なロジック（等間隔 ＋ 仕切り線）を適用！
     <nav className="flex h-full md:hidden items-center gap-3">
-      <div className="flex items-center gap-2">
+      {/* SNSリンクの塊 */}
+      <div className="flex items-center gap-1">
         {headerSocialLinks.map((item) => (
           <LinkButtonHeader key={item.id} item={item} />
         ))}
       </div>
-      
-      <div className="pl-1">
-        <ShareButtonHeader />
-      </div>
-      
-      <HamburgerMenu menu={site.navigation?.menu ?? []} onOpenNews={onOpenNews} />
+
+      {/* 📐 スマホにも仕切り線を入れることで、「外部SNS」と「自サイトの機能」が直感的に分離します */}
+      <div className="h-4 w-px bg-slate-200" />
+
+      {/* 共有ボタン */}
+      <ShareButtonHeader />
+
+      {/* ハンバーガーメニュー */}
+      <HamburgerMenu
+        menu={site.navigation?.menu ?? []}
+        onOpenNews={onOpenNews}
+      />
     </nav>
   );
 }
