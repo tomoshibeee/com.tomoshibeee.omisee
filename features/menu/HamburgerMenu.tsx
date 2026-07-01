@@ -2,31 +2,20 @@
 
 import { useState } from "react";
 import { redirect } from "next/navigation";
+import Link from "next/link"; // 💡 ページまるごとリロードを防ぐため Link に変更
 import { MenuItem } from "@/types/siteMenu";
-import { SiteData } from "@/types/site";
-import { UserData } from "@/types/user";
 import { supabase } from "@/lib/supabase";
 
 import { FaBars, FaXmark } from "react-icons/fa6";
 
 type Props = {
-  site?: SiteData;
-  user?: UserData;
+  menu: MenuItem[];
   onOpenNews?: () => void;
 };
 
 export function HamburgerMenu(props: Props) {
-  const { site, user, onOpenNews } = props;
+  const { menu, onOpenNews } = props;
   const [isOpen, setIsOpen] = useState(false);
-
-  // メニューの組み立て
-  const menu: MenuItem[] = site?.navigation?.menu ?? [
-    { label: "お知らせ", type: "news" },
-    {
-      label: user?.name ?? "マイページ",
-      children: [{ label: "ログアウト", type: "logout" }],
-    },
-  ];
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -39,16 +28,15 @@ export function HamburgerMenu(props: Props) {
       <button
         onClick={() => setIsOpen(true)}
         aria-label="メニューを開く"
-        className="text-gray-600 p-2 text-xl hover:text-gray-900"
+        className="text-gray-600 p-2 text-xl hover:text-gray-900 transition-colors"
       >
         <FaBars />
       </button>
 
       {/* 📱 メニュー本体（開いている時だけ表示） */}
       {isOpen && (
-        // 固定配置（fixed）で画面全体を覆う
         <div className="fixed inset-0 z-50 flex">
-          {/* 背景の黒透明（ここをタップしても閉じられる） */}
+          {/* 背景の黒透明 */}
           <div
             className="fixed inset-0 bg-black/40 transition-opacity"
             onClick={() => setIsOpen(false)}
@@ -61,14 +49,14 @@ export function HamburgerMenu(props: Props) {
               <button
                 onClick={() => setIsOpen(false)}
                 aria-label="メニューを閉じる"
-                className="text-gray-500 p-2 text-xl hover:text-gray-900"
+                className="text-gray-500 p-2 text-xl hover:text-gray-900 transition-colors"
               >
                 <FaXmark />
               </button>
             </div>
 
             {/* 階層メニュー一覧 */}
-            <nav className="flex flex-col gap-4 overflow-y-auto">
+            <nav className="flex flex-col gap-5 overflow-y-auto">
               {menu.map((m: MenuItem, i: number) => {
                 const hasChildren = m.children && m.children.length > 0;
 
@@ -82,7 +70,12 @@ export function HamburgerMenu(props: Props) {
                           setIsOpen(false);
                         }
                       }}
-                      className="text-sm font-bold text-gray-800 py-1"
+                      // 💡 クリック可能なものは `cursor-pointer` をつけておくと親切です
+                      className={`text-sm font-bold text-gray-800 py-1 ${
+                        m.type === "news"
+                          ? "cursor-pointer hover:text-blue-600"
+                          : ""
+                      }`}
                     >
                       {m.label}
                     </div>
@@ -91,23 +84,24 @@ export function HamburgerMenu(props: Props) {
                     {hasChildren && (
                       <div className="flex flex-col gap-1 border-l-2 border-slate-200 pl-3 ml-1">
                         {m.children!.map((c: MenuItem, j: number) => (
-                          <a
+                          // 💡 Link コンポーネントに差し替え
+                          <Link
                             key={`${m.label}-${i}-${c.label}-${j}`}
-                            href={c.href}
+                            href={c.href || "#"}
                             onClick={() => {
                               setIsOpen(false);
                               if (c.type === "logout") {
                                 handleLogout();
                               }
                             }}
-                            className={`block py-1.5 text-sm transition ${
+                            className={`block py-1.5 text-sm transition-colors ${
                               c.type === "logout"
-                                ? "text-red-600 font-medium"
+                                ? "text-red-600 font-medium hover:text-red-700"
                                 : "text-gray-600 hover:text-gray-900"
                             }`}
                           >
                             {c.label}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     )}
