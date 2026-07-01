@@ -1,9 +1,8 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { FaShareFromSquare, FaLine, FaXTwitter, FaCopy, FaCheck } from "react-icons/fa6";
+import { FaUpRightFromSquare, FaLine, FaXTwitter, FaCopy, FaCheck } from "react-icons/fa6";
 
-// 💡 共通で使うProps。isFooterを受け取れるように拡張しました
 type Props = {
   className?: string;
   isFooter?: boolean;
@@ -13,9 +12,10 @@ function ShareButton({ className, isFooter = false }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const popoverRef = useRef<HTMLDivElement>(null);
-  const SIZE = 20;
+  
+  // 💡 アイコンがシュッとしたので、サイズを少し落とす（18px）とさらに上品になります
+  const SIZE = 18; 
 
-  // 外側をクリックしたらポップアップを閉じる設定
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (popoverRef.current && !popoverRef.current.contains(event.target as Node)) {
@@ -26,7 +26,6 @@ function ShareButton({ className, isFooter = false }: Props) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isOpen]);
 
-  // 各種共有アクション (イベントオブジェクト `e` も安全に受け取れるように修正)
   const handleShare = (e: React.MouseEvent, type: "line" | "twitter" | "copy") => {
     e.preventDefault();
     e.stopPropagation();
@@ -47,7 +46,7 @@ function ShareButton({ className, isFooter = false }: Props) {
     if (type === "copy") {
       navigator.clipboard.writeText(currentUrl).then(() => {
         setCopied(true);
-        setTimeout(() => setCopied(false), 2000); // 2秒後にチェックマークを戻す
+        setTimeout(() => setCopied(false), 2000);
       });
     }
 
@@ -55,19 +54,19 @@ function ShareButton({ className, isFooter = false }: Props) {
   };
 
   return (
-    // 親の overflow-hidden や z-index 負けを防ぐために z-[9999] を親にも付与
     <div ref={popoverRef} className="relative inline-block z-[9999]">
       <button
         type="button"
         onClick={(e) => {
           e.preventDefault();
-          e.stopPropagation(); // 周りの要素のクリックイベントと干渉するのを防ぐ
+          e.stopPropagation();
           setIsOpen(!isOpen);
         }}
         className={`${className} cursor-pointer`}
         aria-label="このページを共有する"
       >
-        <FaShareFromSquare size={SIZE} />
+        {/* 💡 ここを新しい今風アイコンに変更 */}
+        <FaUpRightFromSquare size={SIZE} />
       </button>
 
       {/* 📋 共有先を選ぶ小さなポップアップ吹き出し */}
@@ -136,7 +135,7 @@ export function ShareButtonHeader() {
   return (
     <ShareButton
       className="flex h-9 w-9 items-center justify-center rounded-full text-gray-600 transition hover:bg-slate-100 hover:text-gray-900"
-      isFooter={false} // 💡 ヘッダーは下にメニューを開く
+      isFooter={false}
     />
   );
 }
@@ -145,7 +144,7 @@ export function ShareButtonFooter() {
   return (
     <ShareButton
       className="flex h-9 w-9 items-center justify-center rounded-md bg-white/10 text-gray-200 transition hover:bg-gray-600 hover:text-white"
-      isFooter={true} // 💡 フッターは上にメニューを開く
+      isFooter={true}
     />
   );
 }
