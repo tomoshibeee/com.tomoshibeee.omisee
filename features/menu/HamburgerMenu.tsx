@@ -1,25 +1,30 @@
 "use client";
 
 import { useState } from "react";
-import { redirect } from "next/navigation";
-import Link from "next/link"; // 💡 ページまるごとリロードを防ぐため Link に変更
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { MenuItem } from "@/types/siteMenu";
+import { NewsItem } from "@/features/block/news/types";
 import { supabase } from "@/lib/supabase";
 
 import { FaBars, FaXmark } from "react-icons/fa6";
+import { NewsModal } from "@/components/news/NewsModal";
 
 type Props = {
   menu: MenuItem[];
-  onOpenNews?: () => void;
+  newsItems: NewsItem[];
 };
 
 export function HamburgerMenu(props: Props) {
-  const { menu, onOpenNews } = props;
+  const { menu, newsItems } = props;
   const [isOpen, setIsOpen] = useState(false);
+
+  const router = useRouter();
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
-    redirect("/login");
+    setIsOpen(false);
+    router.push("/login");
   };
 
   return (
@@ -28,7 +33,7 @@ export function HamburgerMenu(props: Props) {
       <button
         onClick={() => setIsOpen(true)}
         aria-label="メニューを開く"
-        className="text-gray-600 p-2 text-xl hover:text-gray-900 transition-colors"
+        className="text-gray-600 p-2 text-xl hover:text-gray-900 transition-colors cursor-pointer"
       >
         <FaBars />
       </button>
@@ -49,42 +54,69 @@ export function HamburgerMenu(props: Props) {
               <button
                 onClick={() => setIsOpen(false)}
                 aria-label="メニューを閉じる"
-                className="text-gray-500 p-2 text-xl hover:text-gray-900 transition-colors"
+                className="text-gray-500 p-2 text-xl hover:text-gray-900 transition-colors cursor-pointer"
               >
                 <FaXmark />
               </button>
             </div>
 
             {/* 階層メニュー一覧 */}
-            <nav className="flex flex-col gap-5 overflow-y-auto">
+            <nav className="flex flex-col gap-5 overflow-y-auto pr-1">
               {menu.map((m: MenuItem, i: number) => {
                 const hasChildren = m.children && m.children.length > 0;
 
+                // 🔔 パターン1: お知らせメニューの場合（ポップアップさせない！）
+                if (m.type === "news") {
+                  return (
+                    <div
+                      key={`${i}-${m.label}`}
+                      className="flex flex-col gap-2"
+                    >
+                      {/* 💡 ポップアップを開くモーダルボタンに差し替え！ */}
+                      <NewsModal newsItems={newsItems} label={m.label} />
+                    </div>
+                  );
+                }
+
+                // 🚪 パターン2: ログアウトボタンの場合
+                if (m.type === "logout") {
+                  return (
+                    <div
+                      key={`${i}-${m.label}`}
+                      className="flex flex-col gap-2"
+                    >
+                      <button
+                        type="button"
+                        onClick={handleLogout}
+                        className="text-sm font-bold text-red-600 py-1 hover:text-red-700 text-left cursor-pointer"
+                      >
+                        {m.label}
+                      </button>
+                    </div>
+                  );
+                }
+
+                // 🔗 パターン3: 通常のリンクや子メニューを持つ親
                 return (
                   <div key={`${i}-${m.label}`} className="flex flex-col gap-2">
-                    {/* 第一階層（親メニュー） */}
-                    <div
-                      onClick={() => {
-                        if (m.type === "news" && onOpenNews) {
-                          onOpenNews();
-                          setIsOpen(false);
-                        }
-                      }}
-                      // 💡 クリック可能なものは `cursor-pointer` をつけておくと親切です
-                      className={`text-sm font-bold text-gray-800 py-1 ${
-                        m.type === "news"
-                          ? "cursor-pointer hover:text-blue-600"
-                          : ""
-                      }`}
-                    >
-                      {m.label}
-                    </div>
+                    {m.href ? (
+                      <Link
+                        href={m.href}
+                        onClick={() => setIsOpen(false)}
+                        className="text-sm font-bold text-gray-800 py-1 hover:text-blue-600 transition-colors"
+                      >
+                        {m.label}
+                      </Link>
+                    ) : (
+                      <div className="text-sm font-bold text-gray-800 py-1">
+                        {m.label}
+                      </div>
+                    )}
 
-                    {/* 第二階層（子メニュー：インデント付き） */}
+                    {/* 第二階層（子メニュー） */}
                     {hasChildren && (
                       <div className="flex flex-col gap-1 border-l-2 border-slate-200 pl-3 ml-1">
                         {m.children!.map((c: MenuItem, j: number) => (
-                          // 💡 Link コンポーネントに差し替え
                           <Link
                             key={`${m.label}-${i}-${c.label}-${j}`}
                             href={c.href || "#"}

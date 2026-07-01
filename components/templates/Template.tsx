@@ -5,20 +5,22 @@ import Footer from "@/components/shared/Footer";
 import BaseSection from "@/features/section/components/BaseSection";
 import { SectionData } from "@/features/section/types";
 import { SiteData } from "@/types/site";
+import { NewsItem } from "@/features/block/news/types";
 
 type Props = {
   site: SiteData;
   edit?: boolean;
+  newsItems: NewsItem[]; // 💡 ドロワーを開く関数ではなく、お知らせデータ自体を受け取るように変更
   onOpenImageUploader?: () => void;
 };
 
 export default function Template(props: Props) {
-  const { site, edit, onOpenImageUploader } = props;
+  const { site, edit, newsItems, onOpenImageUploader } = props;
   const sections = site?.layout?.sections;
 
   return (
     <div>
-      <Header site={site} />
+      <Header site={site} newsItems={newsItems} />
 
       {/* {edit && (
         <div>

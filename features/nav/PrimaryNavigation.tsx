@@ -3,16 +3,17 @@ import { LinkButtonHeader } from "@/components/buttons/LinkButton";
 import { ShareButtonHeader } from "@/components/buttons/ShareButton";
 import { SiteData } from "@/types/site";
 import { MenuItem } from "@/types/siteMenu";
+import { NewsItem } from "@/features/block/news/types";
 import { UserData } from "@/types/user";
 
 type Props = {
   site?: SiteData;
   user?: UserData;
-  onOpenNews?: () => void;
+  newsItems: NewsItem[]; // 💡 ドロワーを開く関数ではなく、お知らせデータ自体を受け取るように変更
 };
 
 export function PrimaryNavigation(props: Props) {
-  const { site, user, onOpenNews } = props;
+  const { site, user, newsItems } = props;
 
   if (!site) {
     const menu: MenuItem[] = [
@@ -25,7 +26,7 @@ export function PrimaryNavigation(props: Props) {
     ];
     return (
       <nav className="hidden h-full md:flex items-center gap-6">
-        <DropDownMenu menu={menu} onOpenNews={onOpenNews} />
+        <DropDownMenu menu={menu} newsItems={newsItems} />
       </nav>
     );
   }
@@ -38,7 +39,7 @@ export function PrimaryNavigation(props: Props) {
   return (
     // 💡 gap-4 で全体を程よい間隔に。無駄な pl-2 などを徹底排除して等間隔化！
     <nav className="hidden h-full md:flex items-center gap-4">
-      <DropDownMenu menu={site.navigation?.menu ?? []} />
+      <DropDownMenu menu={site.navigation?.menu ?? []} newsItems={newsItems} />
 
       {/* 📐 仕切り線をほんの少しマイルドなslate-200に */}
       <div className="h-4 w-px bg-slate-200" />

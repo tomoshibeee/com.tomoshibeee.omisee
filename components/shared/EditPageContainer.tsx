@@ -27,6 +27,7 @@ export default function EditPageContainer(props: Props) {
         }}
         edit
         onOpenImageUploader={() => setIsDrawerOpen(true)}
+        newsItems={[]}
       />
 
       <ImageDrawer

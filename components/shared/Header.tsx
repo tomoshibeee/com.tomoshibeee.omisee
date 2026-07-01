@@ -7,15 +7,16 @@ import { PrimaryNavigation } from "@/features/nav/PrimaryNavigation";
 import { MobileNavigation } from "@/features/nav/MobileNavigation";
 import { SiteData } from "@/types/site";
 import { UserData } from "@/types/user";
+import { NewsItem } from "@/features/block/news/types";
 
 type Props = {
   site?: SiteData;
   user?: UserData;
-  onOpenNews?: () => void;
+  newsItems: NewsItem[]; // 💡 ドロワーを開く関数ではなく、お知らせデータ自体を受け取るように変更
 };
 
 export default function Header(props: Props) {
-  const { site, user, onOpenNews } = props;
+  const { site, user, newsItems } = props;
 
   const pathname = usePathname();
 
@@ -29,8 +30,8 @@ export default function Header(props: Props) {
     return (
       <header className={baseClass}>
         <Logo />
-        <PrimaryNavigation />
-        <MobileNavigation />
+        <PrimaryNavigation newsItems={newsItems} />
+        <MobileNavigation newsItems={newsItems} />
       </header>
     );
   }
@@ -38,8 +39,8 @@ export default function Header(props: Props) {
     return (
       <header className={baseClass}>
         <Logo />
-        <PrimaryNavigation user={user} site={site} onOpenNews={onOpenNews} />
-        <MobileNavigation  user={user} site={site} onOpenNews={onOpenNews}/>
+        <PrimaryNavigation user={user} site={site} newsItems={newsItems} />
+        <MobileNavigation user={user} site={site} newsItems={newsItems} />
       </header>
     );
   }
@@ -49,8 +50,8 @@ export default function Header(props: Props) {
       {site && (
         <>
           <Logo site={site} />
-          <PrimaryNavigation site={site} />
-          <MobileNavigation site={site} />
+          <PrimaryNavigation site={site} newsItems={newsItems} />
+          <MobileNavigation site={site} newsItems={newsItems} />
         </>
       )}
     </header>

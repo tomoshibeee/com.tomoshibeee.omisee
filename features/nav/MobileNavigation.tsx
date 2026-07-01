@@ -1,19 +1,19 @@
-import Link from "next/link";
 import { HamburgerMenu } from "@/features/menu/HamburgerMenu";
 import { LinkButtonHeader } from "@/components/buttons/LinkButton";
 import { ShareButtonHeader } from "@/components/buttons/ShareButton";
 import { SiteData } from "@/types/site";
 import { UserData } from "@/types/user";
 import { MenuItem } from "@/types/siteMenu";
+import { NewsItem } from "@/features/block/news/types";
 
 type Props = {
   site?: SiteData;
   user?: UserData;
-  onOpenNews?: () => void;
+  newsItems: NewsItem[]; // 💡 ドロワーを開く関数ではなく、お知らせデータ自体を受け取るように変更
 };
 
 export function MobileNavigation(props: Props) {
-  const { site, user, onOpenNews } = props;
+  const { site, user, newsItems } = props;
 
   if (!site) {
     const menu: MenuItem[] = [
@@ -26,7 +26,7 @@ export function MobileNavigation(props: Props) {
     ];
     return (
       <nav className="flex h-full md:hidden items-center gap-4">
-        <HamburgerMenu menu={menu} onOpenNews={onOpenNews} />
+        <HamburgerMenu menu={menu} newsItems={newsItems} />
       </nav>
     );
   }
@@ -45,18 +45,13 @@ export function MobileNavigation(props: Props) {
           <LinkButtonHeader key={item.id} item={item} />
         ))}
       </div>
-
       {/* 📐 スマホにも仕切り線を入れることで、「外部SNS」と「自サイトの機能」が直感的に分離します */}
       <div className="h-4 w-px bg-slate-200" />
-
       {/* 共有ボタン */}
       <ShareButtonHeader />
-
       {/* ハンバーガーメニュー */}
-      <HamburgerMenu
-        menu={site.navigation?.menu ?? []}
-        onOpenNews={onOpenNews}
-      />
+      <HamburgerMenu menu={site.navigation?.menu ?? []} newsItems={newsItems} />
+      s{" "}
     </nav>
   );
 }

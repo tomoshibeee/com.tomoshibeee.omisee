@@ -10,7 +10,7 @@ import { getGlobalNews, toGlobalNewsItems } from "@/services/globalNewsService";
 import Footer from "@/components/shared/Footer";
 import { SiteLink } from "@/components/siteLink/SiteLink";
 
-import { DasgboardContainer } from "@/components/shared/DashboardContainer";
+import { DashboardContainer } from "@/components/shared/DashboardContainer";
 
 export default async function Page() {
   const session = await getSession();
@@ -33,11 +33,11 @@ export default async function Page() {
   const user: UserData = { name: userName, avator: userAvatar };
 
   const news = await getGlobalNews();
-  const globalNewsItems = toGlobalNewsItems(news);
+  const newsItems = toGlobalNewsItems(news);
 
   return (
     <>
-      <DasgboardContainer user={user} newsItems={globalNewsItems} />
+      <DashboardContainer user={user} newsItems={newsItems}/>
       <main style={{ padding: "20px" }}>
         <section>
           <h2 className="text-xl font-semibold mb-4">Available Sites</h2>

@@ -5,7 +5,7 @@ import { getGlobalNews, toGlobalNewsItems } from "@/services/globalNewsService";
 
 import Footer from "@/components/shared/Footer";
 import { SiteLink } from "@/components/siteLink/SiteLink";
-import { DasgboardContainer } from "@/components/shared/DashboardContainer";
+import { DashboardContainer } from "@/components/shared/DashboardContainer";
 
 export default async function Page() {
   // 1. ログイン状態（セッション）をチェック（ただし、未ログインでもリダイレクトはしない）
@@ -30,7 +30,7 @@ export default async function Page() {
   // 2. データの取得
   const siteMetas = await getSiteMetas();
   const news = await getGlobalNews();
-  const globalNewsItems = toGlobalNewsItems(news);
+  const newsItems = toGlobalNewsItems(news);
 
   return (
     <div className="flex min-h-screen flex-col bg-slate-50/50">
@@ -39,7 +39,7 @@ export default async function Page() {
         - ログイン前 ➔ undefined が渡り、「お知らせ ＋ ログイン動線」になる
         - ログイン後 ➔ ユーザーデータが渡り、「お知らせ ➔ アバターメニュー」に自動で切り替わる！
       */}
-      <DasgboardContainer user={user} newsItems={globalNewsItems} />
+      <DashboardContainer user={user} newsItems={newsItems} />
 
       <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-12 md:px-6">
         

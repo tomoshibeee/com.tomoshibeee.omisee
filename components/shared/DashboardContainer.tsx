@@ -1,33 +1,19 @@
 "use client";
 
-import {
-  useState,
-  //, useEffect
-} from "react";
 import Header from "@/components/shared/Header";
-import { NewsDrawer } from "@/features/drawer/NewsDrawer";
-import { NewsItem } from "@/features/block/news/types";
 import { UserData } from "@/types/user";
+import { NewsItem } from "@/features/block/news/types";
+
 
 type Props = {
-  user: UserData;
-  newsItems: NewsItem[];
+  user?: UserData;
+  newsItems: NewsItem[]; // 💡 ドロワーを開く関数ではなく、お知らせデータ自体を受け取るように変更
 };
 
-export function DasgboardContainer({ user, newsItems }: Props) {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  // useEffect(() => {
-  //   console.log("🚦🚦🚦isDrawerOpen🚦🚦🚦", isDrawerOpen);
-  // }, []);
-
+export function DashboardContainer({ user, newsItems }: Props) {
   return (
     <>
-      <Header user={user} onOpenNews={() => setIsDrawerOpen(true)} />
-      <NewsDrawer
-        newsItems={newsItems}
-        open={isDrawerOpen}
-        onClose={() => setIsDrawerOpen(false)}
-      />
+      <Header user={user} newsItems={newsItems} />
     </>
   );
 }
