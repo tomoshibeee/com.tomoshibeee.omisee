@@ -36,8 +36,7 @@ function LinkButton({
   return (
     <a
       href={item.url}
-      // 💡 TODOだった部分を解消！item.labelがあれば使い、なければフォールバックします
-      aria-label={item.label || `${key}を開く`}
+      aria-label={`${item.type_id}を開く`}
       target="_blank"
       rel="noopener noreferrer"
       className={`${className} cursor-pointer inline-flex`}

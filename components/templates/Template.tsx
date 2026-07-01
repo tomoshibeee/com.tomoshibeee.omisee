@@ -4,13 +4,12 @@ import Header from "@/components/shared/Header";
 import Footer from "@/components/shared/Footer";
 import BaseSection from "@/features/section/components/BaseSection";
 import { SectionData } from "@/features/section/types";
-import { Block } from "@/features/block/index";
 import { SiteData } from "@/types/site";
 
 type Props = {
   site: SiteData;
   edit?: boolean;
-  onOpenImageUploader: () => void;
+  onOpenImageUploader?: () => void;
 };
 
 export default function Template(props: Props) {
@@ -42,7 +41,7 @@ export default function Template(props: Props) {
           meta={site.meta}
           section={{ ...section }}
           edit={edit}
-          onOpenImageUploader={onOpenImageUploader}
+          onOpenImageUploader={onOpenImageUploader ?? (() => {})}
         />
       ))}
 
