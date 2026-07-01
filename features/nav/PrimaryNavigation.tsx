@@ -23,7 +23,8 @@ export function PrimaryNavigation(props: Props) {
       },
     ];
     return (
-      <nav className="hidden md:flex items-center gap-6">
+      // 💡 `h-full` を追加
+      <nav className="hidden h-full md:flex items-center gap-6">
         <DropDownMenu menu={menu} onOpenNews={onOpenNews} />
       </nav>
     );
@@ -36,7 +37,8 @@ export function PrimaryNavigation(props: Props) {
   const headerSocialLinks = sortedSocialLinks.slice(0, 2);
 
   return (
-    <nav className="hidden md:flex items-center gap-6">
+    // 💡 `h-full` を追加
+    <nav className="hidden h-full md:flex items-center gap-6">
       <DropDownMenu menu={site.navigation?.menu ?? []} />
 
       <div className="mx-2 h-5 w-px bg-slate-300" />
