@@ -10,7 +10,7 @@ import { getGlobalNews, toGlobalNewsItems } from "@/services/globalNewsService";
 import Footer from "@/components/shared/Footer";
 import { SiteLink } from "@/components/siteLink/SiteLink";
 
-import { DashboardNavigation } from "@/components/shared/DashboardNavigation";
+import { DashboardNavigation } from "@/components/navigations/DashboardNavigation";
 
 export default async function Page() {
   const session = await getSession();

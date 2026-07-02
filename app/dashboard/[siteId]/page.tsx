@@ -1,5 +1,5 @@
 import Template from "@/components/templates/Template";
-import SiteNavigation from "@/components/shared/SiteNavigation";
+import SiteNavigation from "@/components/navigations/SiteNavigation";
 
 import { getSiteData } from "@/services/siteService";
 

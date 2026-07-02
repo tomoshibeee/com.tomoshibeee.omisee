@@ -5,7 +5,7 @@ import { getGlobalNews, toGlobalNewsItems } from "@/services/globalNewsService";
 
 import Footer from "@/components/shared/Footer";
 import { SiteLink } from "@/components/siteLink/SiteLink";
-import { PortalNavigation } from "@/components/shared/PortalNavigation";
+import { PortalNavigation } from "@/components/navigations/PortalNavigation";
 
 export default async function Page() {
   // 1. ログイン状態（セッション）をチェック（ただし、未ログインでもリダイレクトはしない）
